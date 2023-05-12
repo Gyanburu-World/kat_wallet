@@ -1,0 +1,6 @@
+- Criar dois modos do reactfield, 
+    - para acusar o quando estiver escrevendo
+    - para acusar o erro apenas quando for chamado o validate
+
+- Estudar paleta do MATERIAL 3
+- Fazer internacionalização

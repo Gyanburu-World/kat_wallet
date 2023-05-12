@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:project_quest/core/validators/password_field.validator.dart';
 
 import '../../core/abstractions/field.interface.dart';
 
 class TextFieldWidget extends StatelessWidget {
+  final String label;
   final IField field;
-  const TextFieldWidget({required this.field, super.key});
+  const TextFieldWidget({required this.field, required this.label, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,17 +17,25 @@ class TextFieldWidget extends StatelessWidget {
           controller: field.controller,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
-          textAlign: TextAlign.center,
+          obscureText: field.validators.any((e) => e is PasswordFieldValidator),
           decoration: InputDecoration(
             filled: true,
-            fillColor: const Color(0xFF15455C).withOpacity(.5),
+            labelText: label,
+            fillColor: Colors.grey[200],
+            labelStyle: const TextStyle(color: Colors.grey, fontSize: 16.0),
             enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFFA49D85), width: 1),
+              borderSide: BorderSide(color: Colors.grey, width: 1.0),
             ),
             focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFFF1F0D7), width: 1),
+              borderSide: BorderSide(color: Colors.blue, width: 2.0),
             ),
-            // errorText: snapshot.data,
+            errorBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.red, width: 1.0),
+            ),
+            focusedErrorBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.red, width: 2.0),
+            ),
+            errorText: snapshot.data,
           ),
         );
       },

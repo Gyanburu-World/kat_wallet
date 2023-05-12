@@ -1,13 +1,13 @@
 import 'package:go_router/go_router.dart';
 
-import '../../features/home/presentation/home.screen.dart';
+import '../../features/bindings.dart';
+import '../../features/screens.dart';
 import '../utils/provider.util.dart';
-import '../../features/home/domain/bindings/home_controller.binding.dart';
 import 'routes.dart';
 
 class Navigation {
   static final router = GoRouter(
-    initialLocation: Routes.home,
+    initialLocation: Routes.login,
     debugLogDiagnostics: true,
     routes: [
       GoRoute(
@@ -17,6 +17,15 @@ class Navigation {
           onBuild: (_) => const HomeScreen(),
           onInit: (_) => HomeControllerBinding.inject(),
           onDispose: (_) => HomeControllerBinding.dipose(),
+        ),
+      ),
+      GoRoute(
+        path: Routes.login,
+        name: Routes.login,
+        builder: (context, state) => EntryProvider(
+          onBuild: (_) => const LoginScreen(),
+          onInit: (_) => LoginControllerBinding.inject(),
+          onDispose: (_) => LoginControllerBinding.dipose(),
         ),
       ),
     ],

@@ -1,6 +1,6 @@
-import './mixins/home_state.mixin.dart';
+import '../../domain/abstractions/controllers/home_controller.interface.dart';
 
-class HomeController with HomeStateMixin {
+class HomeController implements IHomeController {
   const HomeController();
 
   @override
