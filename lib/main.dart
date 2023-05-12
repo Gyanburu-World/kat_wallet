@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: Navigation.router);
+    return MaterialApp.router(routerConfig: Navigation.router(initialRoute));
   }
 }
 
