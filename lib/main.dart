@@ -7,17 +7,16 @@ import 'initializer.dart';
 
 void main() async {
   Initializer.init();
-  final initialRoute = await Routes.initialRoute;
-  runApp(MyApp(initialRoute: initialRoute));
+  Initializer.initialRoute = await Routes.initialRoute;
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final String initialRoute;
-  const MyApp({super.key, required this.initialRoute});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: Navigation.router(initialRoute));
+    return MaterialApp.router(routerConfig: Navigation.router);
   }
 }
 
