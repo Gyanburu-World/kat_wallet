@@ -31,6 +31,7 @@ IField<String> makeLoginField() {
 
 IField<String> makePasswordField() {
   return ReactFieldModel(
+    validateOnType: false,
     validators: FieldValidatorBuilder<String>().required().password().build(),
     controller: TextEditingController(),
   );

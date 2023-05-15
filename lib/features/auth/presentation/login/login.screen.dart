@@ -15,27 +15,16 @@ class LoginScreen extends ViewController<ILoginController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Logo
             Container(
               margin: const EdgeInsets.only(bottom: 20.0),
               child: const Text(
                 'LOGO',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
               ),
             ),
-            // Login Form
-            TextFieldWidget(
-              label: 'Username',
-              field: controller.loginField,
-            ),
+            TextFieldWidget(label: 'Username', field: controller.loginField),
             const SizedBox(height: 20.0),
-            TextFieldWidget(
-              label: 'Password',
-              field: controller.passwordField,
-            ),
+            TextFieldWidget(label: 'Password', field: controller.passwordField),
             const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,10 +33,7 @@ class LoginScreen extends ViewController<ILoginController> {
                   onPressed: controller.doLogin,
                   child: const Text('Login'),
                 ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('Register?'),
-                ),
+                TextButton(onPressed: () {}, child: const Text('Register?')),
               ],
             ),
           ],
