@@ -1,5 +1,7 @@
 import 'dart:developer' as developer;
 
+import 'package:project_quest/features/shared/loading/loading.interface.dart';
+
 import '../../../../core/abstractions/field.interface.dart';
 import '../../domain/bindings/login/login_controller.interface.dart';
 import '../../domain/usecases/authenticate_user.usecase.dart';
@@ -8,6 +10,7 @@ class LoginController implements ILoginController {
   final AuthenticateUserUsecase authenticateUserUsecase;
   final IField<String> _loginField;
   final IField<String> _passwordField;
+  final ILoadingController loading;
 
   @override
   IField<String> get loginField => _loginField;
@@ -19,18 +22,26 @@ class LoginController implements ILoginController {
     required IField<String> loginField,
     required IField<String> passwordField,
     required this.authenticateUserUsecase,
+    required this.loading,
   })  : _loginField = loginField,
         _passwordField = passwordField;
 
   @override
-  void authenticateUser() async {
-    if (validateFields) {
-      final user = await authenticateUserUsecase(
-        login: _loginField.value!,
-        password: _passwordField.value!,
-      );
+  Future<void> authenticateUser() async {
+    try {
+      loading.isLoading = true;
+      if (validateFields) {
+        final user = await authenticateUserUsecase(
+          login: _loginField.value!,
+          password: _passwordField.value!,
+        );
 
-      developer.log('$user');
+        developer.log('$user');
+      }
+    } catch (err) {
+      rethrow;
+    } finally {
+      loading.isLoading = false;
     }
   }
 

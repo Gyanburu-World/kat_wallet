@@ -7,17 +7,12 @@ part 'authenticate_user.response.g.dart';
 
 @JsonSerializable()
 class AuthenticateUserResponse {
-  final bool success;
   final AuthenticateUserDataResponse? data;
-  final List<ErrorData>? errors;
+  final ErrorData? error;
 
-  const AuthenticateUserResponse({
-    required this.success,
-    required this.data,
-    required this.errors,
-  });
+  const AuthenticateUserResponse({required this.data, required this.error});
 
-  factory AuthenticateUserResponse.fromJson(json) =>
+  factory AuthenticateUserResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthenticateUserResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$AuthenticateUserResponseToJson(this);
@@ -29,7 +24,7 @@ class AuthenticateUserDataResponse {
   final String token;
   const AuthenticateUserDataResponse({required this.user, required this.token});
 
-  factory AuthenticateUserDataResponse.fromJson(json) =>
+  factory AuthenticateUserDataResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthenticateUserDataResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$AuthenticateUserDataResponseToJson(this);

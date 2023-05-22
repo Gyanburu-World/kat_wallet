@@ -1,4 +1,4 @@
 abstract class AuthStorageConstants {
-  static const String user = 'user';
-  static const String tokenAuthorization = 'token-authorization';
+  static const user = 'user';
+  static const tokenAuthorization = 'token-authorization';
 }

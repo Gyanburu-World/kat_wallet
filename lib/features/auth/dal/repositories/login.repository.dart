@@ -16,17 +16,21 @@ class LoginRepository implements ILoginRepository {
     required String login,
     required String password,
   }) async {
-    final response = authDatasource.authenticateUser(
-      login: login,
-      password: password,
-    );
+    try {
+      final response = await authDatasource.authenticateUser(
+        login: login,
+        password: password,
+      );
 
-    await storage.write(
-      key: AuthStorageConstants.tokenAuthorization,
-      value: response.token,
-    );
+      await storage.write(
+        key: AuthStorageConstants.tokenAuthorization,
+        value: response.token,
+      );
 
-    final model = UserMapper.toModel(response.user);
-    return model;
+      final model = UserMapper.toModel(response.user);
+      return model;
+    } catch (err) {
+      rethrow;
+    }
   }
 }

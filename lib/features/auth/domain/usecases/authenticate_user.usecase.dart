@@ -6,11 +6,15 @@ class AuthenticateUserUsecase {
   const AuthenticateUserUsecase({required this.loginRepository});
 
   Future<UserModel> call({required String login, required String password}) {
-    final user = loginRepository.authenticateUser(
-      login: login,
-      password: password,
-    );
+    try {
+      final user = loginRepository.authenticateUser(
+        login: login,
+        password: password,
+      );
 
-    return user;
+      return user;
+    } catch (err) {
+      rethrow;
+    }
   }
 }

@@ -1,0 +1,10 @@
+{
+    "data": {
+        "user": {
+            "id": "123",
+            "name": "Katekko",
+            "role": "major"
+        },
+        "token": "token123"
+    }
+}

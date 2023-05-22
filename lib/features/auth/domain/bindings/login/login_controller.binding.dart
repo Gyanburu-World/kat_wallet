@@ -38,6 +38,7 @@ ILoginController makeLoginController() {
     loginField: makeLoginField(),
     passwordField: makePasswordField(),
     authenticateUserUsecase: authenticateUserUsecase,
+    loading: Inject.find(),
   );
 }
 

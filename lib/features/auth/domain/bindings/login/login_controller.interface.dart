@@ -5,5 +5,5 @@ abstract class ILoginController extends IController {
   IField<String> get loginField;
   IField<String> get passwordField;
 
-  void authenticateUser();
+  Future<void> authenticateUser();
 }
