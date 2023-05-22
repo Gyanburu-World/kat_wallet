@@ -1,6 +1,10 @@
-- Criar dois modos do reactfield, 
-    - para acusar o quando estiver escrevendo
-    - para acusar o erro apenas quando for chamado o validate
+- Navegar para tela de home ao fazer login
+- Subir modificações feitas para a brick com a mudança do login navegando para tela da home
+- criar teste automatizado para todo o fluxo do login
 
+
+
+
+Para quando não estiver fazendo nada:
 - Estudar paleta do MATERIAL 3
 - Fazer internacionalização
