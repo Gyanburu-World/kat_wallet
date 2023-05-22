@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/text_field.widget.dart';
 import '../../../shared/view_controller.interface.dart';
-import '../../domain/abstractions/login_controller.interface.dart';
+import '../../domain/bindings/login/login_controller.interface.dart';
 
 class LoginScreen extends ViewController<ILoginController> {
   const LoginScreen({super.key});
@@ -30,7 +30,7 @@ class LoginScreen extends ViewController<ILoginController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                  onPressed: controller.doLogin,
+                  onPressed: controller.authenticateUser,
                   child: const Text('Login'),
                 ),
                 TextButton(onPressed: () {}, child: const Text('Register?')),
