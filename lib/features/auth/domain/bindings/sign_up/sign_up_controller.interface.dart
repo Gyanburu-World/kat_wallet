@@ -3,9 +3,9 @@ import '../../../../../core/abstractions/field.interface.dart';
 
 abstract class ISignUpController extends IController {
   IField<String> get userNameField;
-  IField<String> get nameField;
+  IField<String> get nicknameField;
   IField<String> get emailField;
   IField<String> get passwordField;
 
-  void signUp();
+  Future<void> signUp();
 }

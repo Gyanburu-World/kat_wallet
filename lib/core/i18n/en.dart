@@ -1,7 +1,8 @@
-import 'package:project_quest/core/i18n/screens/sign_up_screen.strings.dart';
+import 'package:project_quest/core/i18n/contexts/sign_up_screen.strings.dart';
 
+import 'contexts/validators.strings.dart';
 import 'translation.dart';
-import 'screens/landing_screen.strings.dart';
+import 'contexts/landing_screen.strings.dart';
 
 class EnStringsTranslations implements StringsTranslations {
   static const String getLocale = 'en-US';
@@ -17,10 +18,18 @@ class EnStringsTranslations implements StringsTranslations {
 
   final signUp = SignUpScreenStrings(
     title: 'Register',
-    userNameLabel: 'Username',
-    nameLabel: 'Full Name',
-    emailLabel: 'E-mail',
-    passwordLabel: 'Password',
+    usernameLabelField: 'Username',
+    nicknameLabelField: 'Nickname',
+    emailLabelField: 'E-mail',
+    passwordLabelField: 'Password',
+    signUpButton: 'Sign Up',
+  );
+
+  final validators = ValidatorsStrings(
+    emailIsInvalid: 'Invalid email format',
+    emailIsRequired: 'Email is required',
+    invalidPassword: 'Invalid Password: At least 6 characters',
+    required: 'Field is required',
   );
 
   @override
@@ -28,6 +37,7 @@ class EnStringsTranslations implements StringsTranslations {
     return StringsI18n(
       landing: landingScreen,
       signUp: signUp,
+      validators: validators,
     );
   }
 }

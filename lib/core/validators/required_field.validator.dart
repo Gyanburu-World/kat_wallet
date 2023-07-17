@@ -1,12 +1,16 @@
 import 'package:equatable/equatable.dart';
 
 import '../abstractions/validators/field_validator.interface.dart';
+import '../i18n/translation.dart';
+import '../inject.dart';
 
 class RequiredFieldValidator<T> extends Equatable
     implements IFieldValidator<T> {
+  final i18n = Inject.find<StringsTranslations>().strings.validators;
+
   @override
   String? validate(T? value) {
-    const message = 'Required Field';
+    final message = i18n.required;
     if (value == null) return message;
 
     if (value is String && value.isEmpty) {

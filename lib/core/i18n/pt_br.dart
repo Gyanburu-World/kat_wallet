@@ -1,5 +1,6 @@
-import 'screens/landing_screen.strings.dart';
-import 'screens/sign_up_screen.strings.dart';
+import 'contexts/landing_screen.strings.dart';
+import 'contexts/sign_up_screen.strings.dart';
+import 'contexts/validators.strings.dart';
 import 'translation.dart';
 
 class PtBrStringsTranslations implements StringsTranslations {
@@ -16,10 +17,18 @@ class PtBrStringsTranslations implements StringsTranslations {
 
   final signUp = SignUpScreenStrings(
     title: 'Registre-se',
-    userNameLabel: 'Nome de Usuario',
-    nameLabel: 'Nome Completo',
-    emailLabel: 'E-mail',
-    passwordLabel: 'Senha',
+    usernameLabelField: 'Nome de Usuario',
+    nicknameLabelField: 'Apelido',
+    emailLabelField: 'E-mail',
+    passwordLabelField: 'Senha',
+    signUpButton: 'Registrar',
+  );
+
+  final validators = ValidatorsStrings(
+    emailIsInvalid: 'Formato de email inválido',
+    emailIsRequired: 'Email é obrigatório',
+    invalidPassword: 'Senha inválida: Pelo menos 6 caracteres',
+    required: 'Campo é obrigatório',
   );
 
   @override
@@ -27,6 +36,7 @@ class PtBrStringsTranslations implements StringsTranslations {
     return StringsI18n(
       landing: landingScreen,
       signUp: signUp,
+      validators: validators,
     );
   }
 }

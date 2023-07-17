@@ -1,0 +1,6 @@
+{
+    "error": {
+        "id": 32,
+        "message": "Email already in use"
+    }
+}

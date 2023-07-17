@@ -1,10 +1,14 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:project_quest/core/abstractions/custom_exception.interface.dart';
+import 'package:project_quest/features/auth/domain/exceptions/username_already_in_use.exception.dart';
 import 'package:project_quest/features/shared/loading/loading.widget.dart';
 import 'package:project_quest/features/shared/primary_button.widget.dart';
 import 'package:project_quest/features/shared/text_field.widget.dart';
 
 import '../../../shared/view_controller.interface.dart';
 import '../../domain/bindings/sign_up/sign_up_controller.interface.dart';
+import '../../domain/exceptions/email_already_in_use.exception.dart';
 
 class SignUpScreen extends ViewController<ISignUpController> {
   const SignUpScreen({super.key});
@@ -20,9 +24,9 @@ class SignUpScreen extends ViewController<ISignUpController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Register',
-                  style: TextStyle(
+                Text(
+                  i18n.strings.signUp.title,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 24,
                   ),
@@ -33,22 +37,22 @@ class SignUpScreen extends ViewController<ISignUpController> {
                       children: [
                         const SizedBox(height: 24),
                         TextFieldWidget(
-                          label: 'Username',
+                          label: i18n.strings.signUp.usernameLabelField,
                           field: controller.userNameField,
                         ),
                         const SizedBox(height: 16),
                         TextFieldWidget(
-                          label: 'Name',
-                          field: controller.nameField,
+                          label: i18n.strings.signUp.nicknameLabelField,
+                          field: controller.nicknameField,
                         ),
                         const SizedBox(height: 16),
                         TextFieldWidget(
-                          label: 'Email',
+                          label: i18n.strings.signUp.emailLabelField,
                           field: controller.emailField,
                         ),
                         const SizedBox(height: 16),
                         TextFieldWidget(
-                          label: 'Password',
+                          label: i18n.strings.signUp.passwordLabelField,
                           field: controller.passwordField,
                         ),
                         const SizedBox(height: 24),
@@ -56,7 +60,10 @@ class SignUpScreen extends ViewController<ISignUpController> {
                     ),
                   ),
                 ),
-                PrimaryButtonWidget(text: 'Sign UP', onPressed: onSignUp),
+                PrimaryButtonWidget(
+                  text: i18n.strings.signUp.signUpButton,
+                  onPressed: onSignUp,
+                ),
               ],
             ),
           ),
@@ -65,11 +72,36 @@ class SignUpScreen extends ViewController<ISignUpController> {
     );
   }
 
-  void onSignUp(BuildContext context) {
+  void onSignUp(BuildContext context) async {
     try {
-      controller.signUp();
+      await controller.signUp();
+    } on UsernameAlreadyInUseException catch (err) {
+      showErrorSnackbar(context: context, err: err);
+    } on EmailAlreadyInUseException catch (err) {
+      showErrorSnackbar(context: context, err: err);
+      rethrow;
     } catch (err) {
       rethrow;
     }
+  }
+
+  void showErrorSnackbar({
+    required BuildContext context,
+    required CustomException err,
+  }) {
+    final snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: 'Oh dear!',
+        message: err.failure.message,
+        contentType: ContentType.failure,
+      ),
+    );
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
   }
 }

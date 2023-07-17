@@ -13,6 +13,7 @@ abstract class IField<T> extends IValidator<T> {
   void onChange(String val);
   void Function(T? val)? onChangeCallback;
   void clearError();
+  void setError(String error);
   void dispose();
 
   @override

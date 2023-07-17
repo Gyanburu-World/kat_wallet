@@ -9,4 +9,14 @@ class AuthDatasource implements IAuthDatasource {
   }) async {
     throw UnimplementedError();
   }
+
+  @override
+  Future<AuthenticateUserDataResponse> signUp({
+    required String username,
+    required String password,
+    required String email,
+    required String nickname,
+  }) {
+    throw UnimplementedError();
+  }
 }

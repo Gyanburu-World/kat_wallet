@@ -36,6 +36,9 @@ class ReactFieldModel<T> extends IField<T> {
   void clearError() => _error.sink.add(null);
 
   @override
+  void setError(String error) => _error.sink.add(error);
+
+  @override
   void onChange(String? val) {
     if (val != null) {
       if ((runtimeType == ReactFieldModel<double>) ||

@@ -9,25 +9,6 @@ import '../../domain/exceptions/user_or_password_incorrect.exception.dart';
 class LoginScreen extends ViewController<ILoginController> {
   const LoginScreen({super.key});
 
-  void authenticateUser(BuildContext context) async {
-    try {
-      await controller.authenticateUser();
-    } on UserOrPasswordIncorrectException catch (err) {
-      showDialog(
-        context: context,
-        builder: (ctx) => Dialog(
-          child: SizedBox(
-            width: 300,
-            height: 30,
-            child: Center(child: Text(err.failure.desc)),
-          ),
-        ),
-      );
-    } catch (err) {
-      throw Exception(err);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return LoadingWidget(
@@ -66,5 +47,24 @@ class LoginScreen extends ViewController<ILoginController> {
         ),
       ),
     );
+  }
+
+  void authenticateUser(BuildContext context) async {
+    try {
+      await controller.authenticateUser();
+    } on UserOrPasswordIncorrectException catch (err) {
+      showDialog(
+        context: context,
+        builder: (ctx) => Dialog(
+          child: SizedBox(
+            width: 300,
+            height: 30,
+            child: Center(child: Text(err.failure.message)),
+          ),
+        ),
+      );
+    } catch (err) {
+      throw Exception(err);
+    }
   }
 }

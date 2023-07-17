@@ -5,9 +5,12 @@ class AuthenticateUserUsecase {
   final ILoginRepository loginRepository;
   const AuthenticateUserUsecase({required this.loginRepository});
 
-  Future<UserModel> call({required String login, required String password}) {
+  Future<UserModel> call({
+    required String login,
+    required String password,
+  }) async {
     try {
-      final user = loginRepository.authenticateUser(
+      final user = await loginRepository.authenticateUser(
         login: login,
         password: password,
       );

@@ -8,10 +8,10 @@ part of 'error.data.dart';
 
 ErrorData _$ErrorDataFromJson(Map<String, dynamic> json) => ErrorData(
       id: json['id'] as int,
-      desc: json['desc'] as String,
+      message: json['message'] as String,
     );
 
 Map<String, dynamic> _$ErrorDataToJson(ErrorData instance) => <String, dynamic>{
       'id': instance.id,
-      'desc': instance.desc,
+      'message': instance.message,
     };

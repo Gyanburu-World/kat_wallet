@@ -1,6 +1,6 @@
 {
     "error":{
         "id": 404,
-        "desc": "Username or password is incorrect"
+        "message": "Username or password is incorrect"
     }
 }
