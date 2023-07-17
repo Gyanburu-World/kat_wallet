@@ -13,7 +13,7 @@ class ButtonsWidget extends ViewController<ILandingController> {
       mainAxisSize: MainAxisSize.min,
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () => onSignUpPressed(context),
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 48),
             backgroundColor: const Color(0xFFDA8017),
@@ -49,5 +49,9 @@ class ButtonsWidget extends ViewController<ILandingController> {
 
   void onJoinNowPressed(BuildContext context) {
     LoginScreenRoute().go(context);
+  }
+
+  void onSignUpPressed(BuildContext context) {
+    SignUpScreenRoute().go(context);
   }
 }

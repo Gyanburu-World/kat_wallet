@@ -1,6 +1,5 @@
 import 'package:go_router/go_router.dart';
 
-import '../../features/auth/domain/bindings/landing/landing_controller.binding.dart';
 import '../../features/bindings.dart';
 import '../../features/screens.dart';
 import '../../initializer.dart';
@@ -37,6 +36,15 @@ class Navigation {
               onBuild: (_) => const LoginScreen(),
               onInit: (_) => LoginControllerBinding.inject(),
               onDispose: (_) => LoginControllerBinding.dipose(),
+            ),
+          ),
+          GoRoute(
+            path: Routes.signUp,
+            name: Routes.signUp,
+            builder: (context, state) => EntryProvider(
+              onBuild: (_) => const SignUpScreen(),
+              onInit: (_) => SignUpControllerBinding.inject(),
+              onDispose: (_) => SignUpControllerBinding.dipose(),
             ),
           ),
         ],

@@ -10,6 +10,7 @@ part 'go_router_builder.g.dart';
   path: Routes.landing,
   routes: [
     TypedGoRoute<LoginScreenRoute>(path: Routes.login),
+    TypedGoRoute<SignUpScreenRoute>(path: Routes.signUp),
   ],
 )
 @immutable
@@ -22,6 +23,12 @@ class LandingScreenRoute extends GoRouteData {
 class LoginScreenRoute extends GoRouteData {
   @override
   Widget build(context, state) => const LoginScreen();
+}
+
+@immutable
+class SignUpScreenRoute extends GoRouteData {
+  @override
+  Widget build(context, state) => const SignUpScreen();
 }
 
 @immutable

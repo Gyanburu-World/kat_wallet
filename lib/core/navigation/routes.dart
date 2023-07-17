@@ -9,5 +9,6 @@ class Routes {
 
   static const landing = '/landing';
   static const login = 'login';
+  static const signUp = 'sign-up';
   static const home = '/home';
 }
