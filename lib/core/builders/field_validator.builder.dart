@@ -1,4 +1,5 @@
 import '../abstractions/validators/field_validator.interface.dart';
+import '../validators/email_field.validator.dart';
 import '../validators/password_field.validator.dart';
 import '../validators/required_field.validator.dart';
 
@@ -12,6 +13,11 @@ class FieldValidatorBuilder<T> {
 
   FieldValidatorBuilder<T> password() {
     _validators.add(PasswordFieldValidator<T>());
+    return this;
+  }
+
+  FieldValidatorBuilder<T> email() {
+    _validators.add(EmailFieldValidator<T>());
     return this;
   }
 

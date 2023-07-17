@@ -18,24 +18,17 @@ class TextFieldWidget extends StatelessWidget {
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
           obscureText: field.validators.any((e) => e is PasswordFieldValidator),
+          style: const TextStyle(color: Color.fromARGB(255, 226, 226, 226)),
           decoration: InputDecoration(
             filled: true,
+            fillColor: const Color(0xFF2E2E2E),
             labelText: label,
-            fillColor: Colors.grey[200],
-            labelStyle: const TextStyle(color: Colors.grey, fontSize: 16.0),
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey, width: 1.0),
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blue, width: 2.0),
-            ),
-            errorBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red, width: 1.0),
-            ),
-            focusedErrorBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red, width: 2.0),
-            ),
+            labelStyle: const TextStyle(color: Color(0xFFBEBEBE), fontSize: 20),
             errorText: snapshot.data,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide.none,
+            ),
           ),
         );
       },

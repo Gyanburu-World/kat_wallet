@@ -1,3 +1,5 @@
+import 'package:project_quest/core/i18n/screens/sign_up_screen.strings.dart';
+
 import 'translation.dart';
 import 'screens/landing_screen.strings.dart';
 
@@ -13,8 +15,19 @@ class EnStringsTranslations implements StringsTranslations {
     signInButton: 'Already have an account? Sign in',
   );
 
+  final signUp = SignUpScreenStrings(
+    title: 'Register',
+    userNameLabel: 'Username',
+    nameLabel: 'Full Name',
+    emailLabel: 'E-mail',
+    passwordLabel: 'Password',
+  );
+
   @override
   StringsI18n get strings {
-    return StringsI18n(landing: landingScreen);
+    return StringsI18n(
+      landing: landingScreen,
+      signUp: signUp,
+    );
   }
 }

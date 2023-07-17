@@ -1,5 +1,6 @@
-import 'translation.dart';
 import 'screens/landing_screen.strings.dart';
+import 'screens/sign_up_screen.strings.dart';
+import 'translation.dart';
 
 class PtBrStringsTranslations implements StringsTranslations {
   static const String getLocale = 'pt_BR';
@@ -13,8 +14,19 @@ class PtBrStringsTranslations implements StringsTranslations {
     signInButton: 'Já tem uma conta? Faça login',
   );
 
+  final signUp = SignUpScreenStrings(
+    title: 'Registre-se',
+    userNameLabel: 'Nome de Usuario',
+    nameLabel: 'Nome Completo',
+    emailLabel: 'E-mail',
+    passwordLabel: 'Senha',
+  );
+
   @override
   StringsI18n get strings {
-    return StringsI18n(landing: landingScreen);
+    return StringsI18n(
+      landing: landingScreen,
+      signUp: signUp,
+    );
   }
 }
