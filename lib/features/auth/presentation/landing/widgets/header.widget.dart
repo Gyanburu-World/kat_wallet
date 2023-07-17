@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-class HeaderWidget extends StatelessWidget {
+import '../../../../shared/view_controller.interface.dart';
+import '../../../domain/bindings/landing/landing_controller.interface.dart';
+import '../../../domain/constants/landing_assets.constants.dart';
+
+class HeaderWidget extends ViewController<ILandingController> {
   const HeaderWidget({super.key});
 
   @override
@@ -18,9 +22,9 @@ class HeaderWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Quest Land',
-                  style: TextStyle(
+                Text(
+                  i18n.strings.landing.title,
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
                     color: Colors.white,
@@ -28,9 +32,7 @@ class HeaderWidget extends StatelessWidget {
                 ),
                 Flexible(
                   child: Center(
-                    child: Image.asset(
-                      'assets/images/hero_landing_screen.png',
-                    ),
+                    child: Image.asset(LandingAssetsConstants.logo),
                   ),
                 ),
               ],

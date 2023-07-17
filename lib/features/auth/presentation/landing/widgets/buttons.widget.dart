@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_quest/core/navigation/go_router_builder.dart';
 
-class ButtonsWidget extends StatelessWidget {
+import '../../../../shared/view_controller.interface.dart';
+import '../../../domain/bindings/landing/landing_controller.interface.dart';
+
+class ButtonsWidget extends ViewController<ILandingController> {
   const ButtonsWidget({super.key});
 
   @override
@@ -10,14 +13,14 @@ class ButtonsWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         ElevatedButton(
-          onPressed: () => onJoinNowPressed(context),
+          onPressed: () {},
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 48),
             backgroundColor: const Color(0xFFDA8017),
           ),
-          child: const Text(
-            'Join Now',
-            style: TextStyle(
+          child: Text(
+            i18n.strings.landing.joinNowButton,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -26,14 +29,14 @@ class ButtonsWidget extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () => onJoinNowPressed(context),
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 48),
             backgroundColor: Colors.white,
           ),
-          child: const Text(
-            'Already have an account? Sign in',
-            style: TextStyle(
+          child: Text(
+            i18n.strings.landing.signInButton,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: Color(0xFF757575),
