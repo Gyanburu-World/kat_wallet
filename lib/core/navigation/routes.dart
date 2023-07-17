@@ -1,12 +1,13 @@
 class Routes {
   static Future<String> get initialRoute async {
     try {
-      return login;
+      return landing;
     } catch (err) {
-      return login;
+      return landing;
     }
   }
 
-  static const login = '/login';
+  static const landing = '/landing';
+  static const login = 'login';
   static const home = '/home';
 }
