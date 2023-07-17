@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:project_quest/features/auth/domain/exceptions/user_or_password_incorrect.exception.dart';
-import 'package:project_quest/features/shared/loading/loading.widget.dart';
 
+import '../../../shared/loading/loading.widget.dart';
 import '../../../shared/text_field.widget.dart';
 import '../../../shared/view_controller.interface.dart';
 import '../../domain/bindings/login/login_controller.interface.dart';
+import '../../domain/exceptions/user_or_password_incorrect.exception.dart';
 
 class LoginScreen extends ViewController<ILoginController> {
   const LoginScreen({super.key});
