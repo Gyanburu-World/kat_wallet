@@ -23,8 +23,9 @@ class TextFieldWidget extends StatelessWidget {
             filled: true,
             fillColor: const Color(0xFF2E2E2E),
             labelText: label,
-            labelStyle: const TextStyle(color: Color(0xFFBEBEBE), fontSize: 20),
+            labelStyle: const TextStyle(color: Color(0xFFBEBEBE), fontSize: 16),
             errorText: snapshot.data,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
