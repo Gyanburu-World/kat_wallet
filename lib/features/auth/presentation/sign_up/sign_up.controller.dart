@@ -50,7 +50,9 @@ class SignUpController implements ISignUpController {
         _emailField = emailField,
         _passwordField = passwordField,
         _majorCheckField = majorCheckField,
-        _majorField = majorField;
+        _majorField = majorField {
+    _majorCheckField.onChangeCallback = (val) => _majorField.clearError();
+  }
 
   @override
   Future<void> signUp() async {
@@ -83,10 +85,15 @@ class SignUpController implements ISignUpController {
     _emailField.validate();
     _passwordField.validate();
 
+    if (_majorCheckField.value!) {
+      _majorField.validate();
+    }
+
     return !_usernameField.hasError &&
         !_passwordField.hasError &&
         !_nicknameField.hasError &&
-        !_emailField.hasError;
+        !_emailField.hasError &&
+        !_majorField.hasError;
   }
 
   @override

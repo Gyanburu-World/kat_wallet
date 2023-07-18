@@ -82,6 +82,6 @@ IField<bool> _makeMajorCheckField() {
 
 IField<String> _makeMajorField() {
   return TextReactFieldModel(
-    validators: FieldValidatorBuilder<String>().build(),
+    validators: FieldValidatorBuilder<String>().required().build(),
   );
 }
