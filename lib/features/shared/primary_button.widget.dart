@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class PrimaryButtonWidget extends StatelessWidget {
   final String text;
   final void Function(BuildContext context) onPressed;
+
   const PrimaryButtonWidget({
     super.key,
     required this.text,

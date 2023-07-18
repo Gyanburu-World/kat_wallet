@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_quest/core/utils/snackbar.util.dart';
+import 'package:project_quest/features/shared/primary_button.widget.dart';
 
 import '../../../shared/loading/loading.widget.dart';
 import '../../../shared/text_field.widget.dart';
@@ -13,34 +15,46 @@ class LoginScreen extends ViewController<ILoginController> {
   Widget build(BuildContext context) {
     return LoadingWidget(
       child: Scaffold(
+        backgroundColor: const Color(0xFF161616),
         body: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 20.0),
-                child: const Text(
-                  'LOGO',
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              Text(
+                i18n.strings.login.userNameLabel,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-              TextFieldWidget(label: 'Username', field: controller.loginField),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 8),
               TextFieldWidget(
-                label: 'Password',
-                field: controller.passwordField,
+                label: i18n.strings.login.userNameLabel,
+                field: controller.loginField,
+                useLabelAsHint: true,
               ),
               const SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () => authenticateUser(context),
-                    child: const Text('Login'),
-                  ),
-                  TextButton(onPressed: () {}, child: const Text('Register?')),
-                ],
+              Text(
+                i18n.strings.login.passwordLabel,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextFieldWidget(
+                label: i18n.strings.login.passwordLabel,
+                field: controller.passwordField,
+                useLabelAsHint: true,
+              ),
+              const SizedBox(height: 20.0),
+              PrimaryButtonWidget(
+                text: i18n.strings.login.loginButtonLabel,
+                onPressed: authenticateUser,
               ),
             ],
           ),
@@ -51,18 +65,10 @@ class LoginScreen extends ViewController<ILoginController> {
 
   void authenticateUser(BuildContext context) async {
     try {
+      FocusScope.of(context).unfocus();
       await controller.authenticateUser();
     } on UserOrPasswordIncorrectException catch (err) {
-      showDialog(
-        context: context,
-        builder: (ctx) => Dialog(
-          child: SizedBox(
-            width: 300,
-            height: 30,
-            child: Center(child: Text(err.failure.message)),
-          ),
-        ),
-      );
+      showErrorSnackbar(context: context, err: err);
     } catch (err) {
       throw Exception(err);
     }

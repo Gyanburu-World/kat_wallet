@@ -1,3 +1,4 @@
+import 'package:project_quest/core/i18n/contexts/login_screen.strings.dart';
 import 'package:project_quest/core/i18n/contexts/sign_up_screen.strings.dart';
 
 import 'contexts/validators.strings.dart';
@@ -14,6 +15,12 @@ class EnStringsTranslations implements StringsTranslations {
         'With a range of quests to choose from and the ability to create your own, Quest Land is the perfect platform for exploring and challenging yourself. Stay focused on your goals and join the adventure today.',
     joinNowButton: 'Join Now',
     signInButton: 'Already have an account? Sign in',
+  );
+
+  final login = LoginScreenStrings(
+    userNameLabel: 'Username',
+    passwordLabel: 'Password',
+    loginButtonLabel: 'Sign In',
   );
 
   final signUp = SignUpScreenStrings(
@@ -38,6 +45,7 @@ class EnStringsTranslations implements StringsTranslations {
   StringsI18n get strings {
     return StringsI18n(
       landing: landingScreen,
+      login: login,
       signUp: signUp,
       validators: validators,
     );

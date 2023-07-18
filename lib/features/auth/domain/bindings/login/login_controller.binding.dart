@@ -51,7 +51,6 @@ IField<String> makeLoginField() {
 
 IField<String> makePasswordField() {
   return TextReactFieldModel(
-    validateOnType: false,
     validators: FieldValidatorBuilder<String>().required().password().build(),
     controller: TextEditingController(),
   );

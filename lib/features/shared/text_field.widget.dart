@@ -6,7 +6,13 @@ import '../../core/abstractions/field.interface.dart';
 class TextFieldWidget extends StatelessWidget {
   final String label;
   final IField field;
-  const TextFieldWidget({required this.field, required this.label, super.key});
+  final bool useLabelAsHint;
+  const TextFieldWidget({
+    required this.field,
+    required this.label,
+    super.key,
+    this.useLabelAsHint = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +28,10 @@ class TextFieldWidget extends StatelessWidget {
           decoration: InputDecoration(
             filled: true,
             fillColor: const Color(0xFF2E2E2E),
-            labelText: label,
+            labelText: useLabelAsHint ? null : label,
             labelStyle: const TextStyle(color: Color(0xFFBEBEBE), fontSize: 16),
+            hintText: useLabelAsHint ? label : null,
+            hintStyle: const TextStyle(color: Color(0xFFBEBEBE), fontSize: 16),
             errorText: snapshot.data,
             contentPadding: const EdgeInsets.symmetric(horizontal: 16),
             border: OutlineInputBorder(
