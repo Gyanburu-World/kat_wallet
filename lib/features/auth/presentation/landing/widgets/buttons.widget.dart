@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_quest/core/navigation/go_router_builder.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../core/navigation/routes.dart';
 import '../../../../shared/primary_button.widget.dart';
 import '../../../../shared/secondary_button.widget.dart';
 import '../../../../shared/view_controller.interface.dart';
@@ -28,10 +29,10 @@ class ButtonsWidget extends ViewController<ILandingController> {
   }
 
   void onSignInPressed(BuildContext context) {
-    LoginScreenRoute().go(context);
+    context.goNamed(Routes.login);
   }
 
   void onSignUpPressed(BuildContext context) {
-    SignUpScreenRoute().go(context);
+    context.goNamed(Routes.signUp);
   }
 }

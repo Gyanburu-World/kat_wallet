@@ -22,6 +22,10 @@ RouteBase get $landingScreenRoute => GoRouteData.$route(
           path: 'sign-up',
           factory: $SignUpScreenRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: '/home',
+          factory: $HomeScreenRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -66,6 +70,23 @@ extension $SignUpScreenRouteExtension on SignUpScreenRoute {
 
   String get location => GoRouteData.$location(
         '/landing/sign-up',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $HomeScreenRouteExtension on HomeScreenRoute {
+  static HomeScreenRoute _fromState(GoRouterState state) => HomeScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/home',
       );
 
   void go(BuildContext context) => context.go(location);

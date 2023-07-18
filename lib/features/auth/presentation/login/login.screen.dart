@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:project_quest/core/utils/snackbar.util.dart';
 import 'package:project_quest/features/shared/primary_button.widget.dart';
 
+import '../../../../core/navigation/routes.dart';
 import '../../../shared/loading/loading.widget.dart';
 import '../../../shared/text_field.widget.dart';
 import '../../../shared/view_controller.interface.dart';
@@ -67,6 +69,7 @@ class LoginScreen extends ViewController<ILoginController> {
     try {
       FocusScope.of(context).unfocus();
       await controller.authenticateUser();
+      if (context.mounted) context.goNamed(Routes.home);
     } on UserOrPasswordIncorrectException catch (err) {
       showErrorSnackbar(context: context, err: err);
     } catch (err) {

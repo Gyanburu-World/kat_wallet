@@ -22,7 +22,7 @@ class AuthDatasourceMock implements IAuthDatasource {
     required String password,
   }) async {
     await Future.delayed(const Duration(seconds: 1));
-    if (login.toLowerCase() != 'katekko' || password != '123456') {
+    if (login.toLowerCase() != 'katekko' || password != 'qwe123') {
       final mock = await _getMock(
         AuthPathMocksConstants.authenticateUserFailure,
       );
