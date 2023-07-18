@@ -1,5 +1,3 @@
-import 'dart:developer' as developer;
-
 import 'package:project_quest/features/shared/loading/loading.interface.dart';
 
 import '../../../../core/abstractions/field.interface.dart';
@@ -31,12 +29,10 @@ class LoginController implements ILoginController {
     try {
       loading.isLoading = true;
       if (validateFields) {
-        final user = await authenticateUserUsecase(
+        await authenticateUserUsecase(
           login: _loginField.value!,
           password: _passwordField.value!,
         );
-
-        developer.log('$user');
       }
     } catch (err) {
       rethrow;

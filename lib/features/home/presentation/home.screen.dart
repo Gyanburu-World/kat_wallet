@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../../shared/view_controller.interface.dart';
+import '../domain/abstractions/controllers/home_controller.interface.dart';
+
+class HomeScreen extends ViewController<IHomeController> {
   const HomeScreen({super.key});
 
   @override

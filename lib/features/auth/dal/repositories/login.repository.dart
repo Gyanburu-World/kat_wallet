@@ -12,7 +12,7 @@ class LoginRepository implements ILoginRepository {
   const LoginRepository({required this.authDatasource, required this.storage});
 
   @override
-  Future<UserModel> authenticateUser({
+  Future<({UserModel user, String token})> authenticateUser({
     required String login,
     required String password,
   }) async {
@@ -22,15 +22,24 @@ class LoginRepository implements ILoginRepository {
         password: password,
       );
 
-      await storage.write(
-        key: AuthStorageConstants.tokenAuthorization,
-        value: response.token,
-      );
-
       final model = UserMapper.toModel(response.user);
-      return model;
+      return (user: model, token: response.token);
     } catch (err) {
       rethrow;
     }
+  }
+
+  @override
+  Future<void> saveToken(String token) async {
+    await storage.write(
+      key: AuthStorageConstants.tokenAuthorization,
+      value: token,
+    );
+  }
+
+  @override
+  Future<void> saveUser(UserModel user) async {
+    final json = UserMapper.toJson(user);
+    await storage.write(key: AuthStorageConstants.user, value: json);
   }
 }

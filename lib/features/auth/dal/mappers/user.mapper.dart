@@ -16,4 +16,12 @@ abstract class UserMapper {
 
     return UserModel(id: data.id, name: data.name, role: role);
   }
+
+  static Map<String, dynamic> toJson(UserModel model) {
+    return {
+      'id': model.id,
+      'name': model.name,
+      'role': model.role.toString(),
+    };
+  }
 }
