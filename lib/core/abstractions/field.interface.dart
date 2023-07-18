@@ -1,16 +1,18 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 import 'validators/validator.interface.dart';
 
 abstract class IField<T> extends IValidator<T> {
   set value(T? val);
   T? get value;
+  ValueListenable<T?> get valueNotifier;
   Stream<String?> get errorStream;
-  late final TextEditingController controller;
+  final TextEditingController? controller;
 
-  IField({required super.validators, required this.controller});
+  IField({required super.validators, this.controller});
 
-  void onChange(String val);
+  void onChange(T? val);
   void Function(T? val)? onChangeCallback;
   void clearError();
   void setError(String error);

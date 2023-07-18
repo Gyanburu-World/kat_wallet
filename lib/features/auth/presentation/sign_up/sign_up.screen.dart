@@ -9,6 +9,8 @@ import 'package:project_quest/features/shared/text_field.widget.dart';
 import '../../../shared/view_controller.interface.dart';
 import '../../domain/bindings/sign_up/sign_up_controller.interface.dart';
 import '../../domain/exceptions/email_already_in_use.exception.dart';
+import 'widgets/major_checkbox.widget.dart';
+import 'widgets/major_field.widget.dart';
 
 class SignUpScreen extends ViewController<ISignUpController> {
   const SignUpScreen({super.key});
@@ -55,6 +57,10 @@ class SignUpScreen extends ViewController<ISignUpController> {
                           label: i18n.strings.signUp.passwordLabelField,
                           field: controller.passwordField,
                         ),
+                        const SizedBox(height: 24),
+                        const MajorCheckboxWidget(),
+                        const SizedBox(height: 8),
+                        const MajorFieldWidget(),
                         const SizedBox(height: 24),
                       ],
                     ),

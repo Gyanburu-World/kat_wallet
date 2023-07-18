@@ -7,7 +7,7 @@ import '../../../../../core/abstractions/field.interface.dart';
 import '../../../../../core/builders/field_validator.builder.dart';
 import '../../../../../core/dal/storage/storage.interface.dart';
 import '../../../../../core/inject.dart';
-import '../../../../../core/models/react_field.model.dart';
+import '../../../../../core/models/text_react_field.model.dart';
 import '../../../presentation/login/login.controller.dart';
 import 'login_controller.interface.dart';
 
@@ -43,14 +43,14 @@ ILoginController makeLoginController() {
 }
 
 IField<String> makeLoginField() {
-  return ReactFieldModel(
+  return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().build(),
     controller: TextEditingController(),
   );
 }
 
 IField<String> makePasswordField() {
-  return ReactFieldModel(
+  return TextReactFieldModel(
     validateOnType: false,
     validators: FieldValidatorBuilder<String>().required().password().build(),
     controller: TextEditingController(),

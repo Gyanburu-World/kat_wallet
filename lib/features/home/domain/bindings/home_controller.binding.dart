@@ -5,7 +5,7 @@ import '../../presentation/home.controller.dart';
 import '../../../../core/abstractions/field.interface.dart';
 import '../../../../core/builders/field_validator.builder.dart';
 import '../../../../core/inject.dart';
-import '../../../../core/models/react_field.model.dart';
+import '../../../../core/models/text_react_field.model.dart';
 
 class HomeControllerBinding {
   static void inject() {
@@ -20,7 +20,7 @@ class HomeControllerBinding {
 IHomeController makeHomeController() => const HomeController();
 
 IField<String> makeNameField() {
-  return ReactFieldModel(
+  return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().build(),
     controller: TextEditingController(),
   );

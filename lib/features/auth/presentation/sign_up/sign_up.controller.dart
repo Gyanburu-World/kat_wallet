@@ -14,6 +14,8 @@ class SignUpController implements ISignUpController {
   final IField<String> _nicknameField;
   final IField<String> _emailField;
   final IField<String> _passwordField;
+  final IField<bool> _majorCheckField;
+  final IField<String> _majorField;
 
   @override
   IField<String> get userNameField => _usernameField;
@@ -28,17 +30,27 @@ class SignUpController implements ISignUpController {
   IField<String> get passwordField => _passwordField;
 
   @override
+  IField<bool> get majorCheckField => _majorCheckField;
+
+  @override
+  IField<String> get majorField => _majorField;
+
+  @override
   SignUpController({
     required IField<String> usernameField,
     required IField<String> nicknameField,
     required IField<String> emailField,
     required IField<String> passwordField,
+    required IField<bool> majorCheckField,
+    required IField<String> majorField,
     required this.loading,
     required this.signUpUsecase,
   })  : _usernameField = usernameField,
         _nicknameField = nicknameField,
         _emailField = emailField,
-        _passwordField = passwordField;
+        _passwordField = passwordField,
+        _majorCheckField = majorCheckField,
+        _majorField = majorField;
 
   @override
   Future<void> signUp() async {

@@ -3,7 +3,7 @@ import 'package:rxdart/rxdart.dart';
 
 import '../abstractions/field.interface.dart';
 
-class ReactFieldModel<T> extends IField<T> {
+class TextReactFieldModel<T> extends IField<T> {
   T? _value;
   final _valueNotifier = ValueNotifier<T?>(null);
   final _error = BehaviorSubject<String?>();
@@ -11,13 +11,13 @@ class ReactFieldModel<T> extends IField<T> {
   var firstTimeAux = true;
   final bool validateOnType;
 
-  ReactFieldModel({
+  TextReactFieldModel({
     T? value,
     required super.validators,
     super.controller,
     this.validateOnType = true,
   }) : _value = value {
-    _valueNotifier.value = value;
+    controller?.addListener(() => onChange(controller?.text as T));
   }
 
   @override
@@ -45,15 +45,26 @@ class ReactFieldModel<T> extends IField<T> {
 
   @override
   void onChange(T? val) {
-    if (val != null) {
-      firstTimeAux = false;
-      _value = val;
-      _valueNotifier.value = _value;
+    if (val != null && val is String) {
+      if ((runtimeType == TextReactFieldModel<double>) ||
+          runtimeType == TextReactFieldModel<int>) {
+        dynamic parse;
+        final onlyNumber = val.replaceAll(RegExp('[^0-9.]'), '');
+        parse = num.tryParse(onlyNumber);
+        _value = parse;
+        firstTimeAux = false;
+      } else if (runtimeType == TextReactFieldModel<String>) {
+        _value = val;
+        if (val == '') {
+          controller?.text = val;
+        } else {
+          firstTimeAux = false;
+        }
+      }
     }
 
     if (!firstTimeAux && validateOnType) validate();
     onChangeCallback?.call(_value);
-    _valueNotifier.value = _value;
   }
 
   @override
@@ -65,6 +76,5 @@ class ReactFieldModel<T> extends IField<T> {
   @override
   void dispose() {
     _error.close();
-    controller?.dispose();
   }
 }

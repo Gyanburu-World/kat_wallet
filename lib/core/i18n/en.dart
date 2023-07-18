@@ -23,6 +23,8 @@ class EnStringsTranslations implements StringsTranslations {
     emailLabelField: 'E-mail',
     passwordLabelField: 'Password',
     signUpButton: 'Sign Up',
+    majorCheckField: 'I have a major',
+    majorField: 'Major\'s Username',
   );
 
   final validators = ValidatorsStrings(

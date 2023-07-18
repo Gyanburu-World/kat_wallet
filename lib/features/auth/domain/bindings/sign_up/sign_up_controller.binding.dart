@@ -7,6 +7,7 @@ import '../../../../../core/builders/field_validator.builder.dart';
 import '../../../../../core/dal/storage/storage.interface.dart';
 import '../../../../../core/inject.dart';
 import '../../../../../core/models/react_field.model.dart';
+import '../../../../../core/models/text_react_field.model.dart';
 import '../../../dal/datasource/auth.datasource.interface.dart';
 import '../../../presentation/sign_up/sign_up.controller.dart';
 import 'sign_up_controller.interface.dart';
@@ -37,35 +38,50 @@ ISignUpController makeSignUpController() {
     emailField: _makeEmailField(),
     nicknameField: _makeNicknameField(),
     passwordField: _makePasswordField(),
+    majorCheckField: _makeMajorCheckField(),
+    majorField: _makeMajorField(),
     loading: Inject.find(),
     signUpUsecase: signUpUsecase,
   );
 }
 
 IField<String> _makeUserNameField() {
-  return ReactFieldModel(
+  return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().build(),
     controller: TextEditingController(),
   );
 }
 
 IField<String> _makeNicknameField() {
-  return ReactFieldModel(
+  return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().build(),
     controller: TextEditingController(),
   );
 }
 
 IField<String> _makeEmailField() {
-  return ReactFieldModel(
+  return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().email().build(),
     controller: TextEditingController(),
   );
 }
 
 IField<String> _makePasswordField() {
-  return ReactFieldModel(
+  return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().password().build(),
     controller: TextEditingController(),
+  );
+}
+
+IField<bool> _makeMajorCheckField() {
+  return ReactFieldModel(
+    value: false,
+    validators: FieldValidatorBuilder<bool>().build(),
+  );
+}
+
+IField<String> _makeMajorField() {
+  return TextReactFieldModel(
+    validators: FieldValidatorBuilder<String>().build(),
   );
 }
