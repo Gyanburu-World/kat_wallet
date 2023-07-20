@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../abstractions/field.interface.dart';
@@ -14,9 +15,9 @@ class TextReactFieldModel<T> extends IField<T> {
   TextReactFieldModel({
     T? value,
     required super.validators,
-    super.controller,
     this.validateOnType = true,
-  }) : _value = value {
+  })  : _value = value,
+        super(controller: TextEditingController()) {
     controller?.addListener(() => onChange(controller?.text as T));
   }
 

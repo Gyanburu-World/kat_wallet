@@ -13,6 +13,7 @@ class SignUpRepository implements ISignUpRepository {
     required String username,
     required String password,
     required String email,
+    required String? centralUser,
     required bool isCentral,
     required bool isCashier,
     required bool isDeliveryman,
@@ -22,7 +23,10 @@ class SignUpRepository implements ISignUpRepository {
         username: username,
         password: password,
         email: email,
-        nickname: '',
+        centralUser: centralUser,
+        isCentral: isCentral,
+        isCashier: isCashier,
+        isDeliveryman: isDeliveryman,
       );
     } catch (err) {
       rethrow;

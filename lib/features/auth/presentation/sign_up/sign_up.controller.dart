@@ -1,3 +1,4 @@
+import 'package:project_quest/features/auth/domain/exceptions/central_not_exists.exception.dart';
 import 'package:project_quest/features/auth/domain/exceptions/email_already_in_use.exception.dart';
 import 'package:project_quest/features/auth/domain/exceptions/username_already_in_use.exception.dart';
 
@@ -104,6 +105,7 @@ class SignUpController implements ISignUpController {
           email: emailField.value!,
           password: passwordField.value!,
           username: userNameField.value!,
+          centralUser: _centralField.value,
           isCashier: _cashierCheckField.value!,
           isCentral: _centralCheckField.value!,
           isDeliveryman: _deliverymanCheckField.value!,
@@ -115,7 +117,8 @@ class SignUpController implements ISignUpController {
     } on EmailAlreadyInUseException catch (err) {
       _emailField.setError(err.failure.message);
       rethrow;
-    } catch (err) {
+    } on CentralNotExistsException catch (err) {
+      _centralField.setError(err.failure.message);
       rethrow;
     } finally {
       loading.isLoading = false;

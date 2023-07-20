@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:project_quest/features/auth/dal/datasource/auth.datasource.interface.dart';
 import 'package:project_quest/features/auth/dal/repositories/login.repository.dart';
 import 'package:project_quest/features/auth/domain/usecases/authenticate_user.usecase.dart';
@@ -45,13 +44,11 @@ ILoginController makeLoginController() {
 IField<String> makeLoginField() {
   return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().build(),
-    controller: TextEditingController(),
   );
 }
 
 IField<String> makePasswordField() {
   return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().password().build(),
-    controller: TextEditingController(),
   );
 }

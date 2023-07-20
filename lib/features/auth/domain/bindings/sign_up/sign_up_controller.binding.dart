@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:project_quest/features/auth/dal/repositories/sign_up.repository.dart';
 import 'package:project_quest/features/auth/domain/usecases/sign_up.usecase.dart';
 
@@ -50,28 +49,24 @@ ISignUpController makeSignUpController() {
 IField<String> _makeUserNameField() {
   return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().build(),
-    controller: TextEditingController(),
   );
 }
 
 IField<String> _makeNicknameField() {
   return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().build(),
-    controller: TextEditingController(),
   );
 }
 
 IField<String> _makeEmailField() {
   return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().email().build(),
-    controller: TextEditingController(),
   );
 }
 
 IField<String> _makePasswordField() {
   return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().password().build(),
-    controller: TextEditingController(),
   );
 }
 

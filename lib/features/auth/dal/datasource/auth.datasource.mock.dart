@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'dart:developer';
+
+import 'package:project_quest/features/auth/domain/exceptions/central_not_exists.exception.dart';
 
 import '../../../../core/utils/mock.util.dart';
 import '../../domain/exceptions/email_already_in_use.exception.dart';
@@ -40,7 +43,10 @@ class AuthDatasourceMock implements IAuthDatasource {
     required String username,
     required String password,
     required String email,
-    required String nickname,
+    required String? centralUser,
+    required bool isCentral,
+    required bool isCashier,
+    required bool isDeliveryman,
   }) async {
     try {
       await Future.delayed(const Duration(seconds: 1));
@@ -56,7 +62,17 @@ class AuthDatasourceMock implements IAuthDatasource {
         );
 
         throw UsernameAlreadyInUseException(failure: mock.error!);
+      } else if (centralUser != null && centralUser != 'katekko') {
+        final mock = await _getMock(
+          AuthPathMocksConstants.signUpCentralNotExists,
+        );
+
+        throw CentralNotExistsException(failure: mock.error!);
       }
+
+      log(
+        '[Kat Delivery] Usuário cadastrado com sucesso!\nuser:$username, password:$password, email:$email, centralLink:$centralUser, isCentral:$isCentral, isCashier:$isCashier, isDeliveryman:$isDeliveryman',
+      );
     } catch (err) {
       rethrow;
     }

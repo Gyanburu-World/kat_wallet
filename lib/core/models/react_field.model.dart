@@ -14,7 +14,6 @@ class ReactFieldModel<T> extends IField<T> {
   ReactFieldModel({
     T? value,
     required super.validators,
-    super.controller,
     this.validateOnType = true,
   }) : _value = value {
     _valueNotifier.value = value;

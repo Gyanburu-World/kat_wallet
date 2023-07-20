@@ -15,7 +15,10 @@ class AuthDatasource implements IAuthDatasource {
     required String username,
     required String password,
     required String email,
-    required String nickname,
+    required String? centralUser,
+    required bool isCentral,
+    required bool isCashier,
+    required bool isDeliveryman,
   }) {
     throw UnimplementedError();
   }

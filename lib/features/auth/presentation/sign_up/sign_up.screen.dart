@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_quest/features/auth/domain/exceptions/central_not_exists.exception.dart';
 import 'package:project_quest/features/auth/domain/exceptions/username_already_in_use.exception.dart';
 import 'package:project_quest/features/shared/loading/loading.widget.dart';
 import 'package:project_quest/features/shared/primary_button.widget.dart';
@@ -94,9 +95,8 @@ class SignUpScreen extends ViewController<ISignUpController> {
       showErrorSnackbar(context: context, err: err);
     } on EmailAlreadyInUseException catch (err) {
       showErrorSnackbar(context: context, err: err);
-      rethrow;
-    } catch (err) {
-      rethrow;
+    } on CentralNotExistsException catch (err) {
+      showErrorSnackbar(context: context, err: err);
     }
   }
 }
