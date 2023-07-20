@@ -9,4 +9,6 @@ abstract class ILoginRepository {
   Future<void> saveToken(String token);
 
   Future<void> saveUser(UserModel user);
+
+  Future<bool> isUserLoggedIn();
 }

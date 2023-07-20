@@ -42,4 +42,12 @@ class LoginRepository implements ILoginRepository {
     final json = UserMapper.toJson(user);
     await storage.write(key: AuthStorageConstants.user, value: json);
   }
+
+  @override
+  Future<bool> isUserLoggedIn() async {
+    final user = await storage.read(AuthStorageConstants.user);
+    final token = await storage.read(AuthStorageConstants.tokenAuthorization);
+
+    return token != null && user != null;
+  }
 }
