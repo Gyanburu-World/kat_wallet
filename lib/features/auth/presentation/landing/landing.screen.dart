@@ -14,16 +14,22 @@ class LandingScreen extends ViewController<ILandingController> {
     return const Scaffold(
       backgroundColor: Color(0xFF161616),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            children: [
-              Expanded(child: HeaderWidget()),
-              SizedBox(height: 16),
-              Expanded(child: BodyTextWidget()),
-              ButtonsWidget(),
-            ],
-          ),
+        child: Column(
+          children: [
+            HeaderWidget(),
+            SizedBox(height: 16),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    Expanded(child: BodyTextWidget()),
+                    ButtonsWidget(),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

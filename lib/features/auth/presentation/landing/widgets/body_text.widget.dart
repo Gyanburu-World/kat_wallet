@@ -19,8 +19,10 @@ class BodyTextWidget extends ViewController<ILandingController> {
             color: Colors.white,
           ),
         ),
+        const SizedBox(height: 4),
         Text(
           i18n.strings.landing.bodyText,
+          textAlign: TextAlign.justify,
           style: const TextStyle(
             fontSize: 18,
             color: Colors.white,

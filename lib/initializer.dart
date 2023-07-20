@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:project_quest/core/i18n/en.dart';
 import 'package:project_quest/features/auth/dal/datasource/auth.datasource.interface.dart';
 
 import 'core/constants/storage.constants.dart';
@@ -57,12 +56,10 @@ class Initializer {
   static Future<void> _initI18n() async {
     StringsTranslations getCurrentI18n(String locale) {
       switch (locale) {
-        case EnStringsTranslations.getLocale:
-          return EnStringsTranslations();
         case PtBrStringsTranslations.getLocale:
           return PtBrStringsTranslations();
         default:
-          return EnStringsTranslations();
+          return PtBrStringsTranslations();
       }
     }
 
@@ -77,7 +74,7 @@ class Initializer {
       if (currentLocale != null) {
         i18n = getCurrentI18n(currentLocale);
       } else {
-        i18n = EnStringsTranslations();
+        i18n = PtBrStringsTranslations();
       }
     }
 

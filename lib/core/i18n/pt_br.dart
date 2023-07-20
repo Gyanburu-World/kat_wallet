@@ -8,10 +8,10 @@ class PtBrStringsTranslations implements StringsTranslations {
   static const String getLocale = 'pt_BR';
 
   final landingScreen = LandingScreenStrings(
-    title: 'Quest Land',
-    titleBodyText: 'Embarque em missões',
+    title: 'Kat Delivery',
+    titleBodyText: 'Bem-vindo!',
     bodyText:
-        'Com uma variedade de missões para escolher e a capacidade de criar as suas próprias, Quest Land é a plataforma perfeita para explorar e desafiar a si mesmo. Mantenha o foco em seus objetivos e junte-se à aventura hoje mesmo.',
+        'Se você faz parte da central, nosso aplicativo permite que você gerencie seus clientes, produtos e pedidos. Já se você é responsável pelas entregas, utilize-o para controlar todas as entregas necessárias, facilitando o processo ao anexar comprovantes e automatizar o fluxo.',
     joinNowButton: 'Junte-se agora',
     signInButton: 'Já tem uma conta? Faça login',
   );
