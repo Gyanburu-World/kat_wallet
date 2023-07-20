@@ -21,42 +21,62 @@ class LoginScreen extends ViewController<ILoginController> {
         body: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                i18n.strings.login.userNameLabel,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Kat Delivery',
+                      style:
+                          Theme.of(context).textTheme.displayMedium?.copyWith(
+                                color: Colors.white,
+                                fontSize: 32,
+                              ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 8),
-              TextFieldWidget(
-                label: i18n.strings.login.userNameLabel,
-                field: controller.loginField,
-                useLabelAsHint: true,
-              ),
-              const SizedBox(height: 20.0),
-              Text(
-                i18n.strings.login.passwordLabel,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      i18n.strings.login.userNameLabel,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    TextFieldWidget(
+                      label: i18n.strings.login.userNameLabel,
+                      field: controller.loginField,
+                      useLabelAsHint: true,
+                    ),
+                    const SizedBox(height: 20.0),
+                    Text(
+                      i18n.strings.login.passwordLabel,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    TextFieldWidget(
+                      label: i18n.strings.login.passwordLabel,
+                      field: controller.passwordField,
+                      useLabelAsHint: true,
+                    ),
+                    const SizedBox(height: 20.0),
+                    PrimaryButtonWidget(
+                      text: i18n.strings.login.loginButtonLabel,
+                      onPressed: authenticateUser,
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 8),
-              TextFieldWidget(
-                label: i18n.strings.login.passwordLabel,
-                field: controller.passwordField,
-                useLabelAsHint: true,
-              ),
-              const SizedBox(height: 20.0),
-              PrimaryButtonWidget(
-                text: i18n.strings.login.loginButtonLabel,
-                onPressed: authenticateUser,
               ),
             ],
           ),
