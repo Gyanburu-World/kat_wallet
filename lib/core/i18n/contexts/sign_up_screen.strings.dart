@@ -5,8 +5,10 @@ class SignUpScreenStrings {
   final String emailLabelField;
   final String passwordLabelField;
   final String signUpButton;
-  final String majorCheckField;
-  final String majorField;
+  final String centralCheckboxLabel;
+  final String cashierCheckboxLabel;
+  final String deliverymanCheckboxLabel;
+  final String centralField;
 
   SignUpScreenStrings({
     required this.title,
@@ -15,7 +17,9 @@ class SignUpScreenStrings {
     required this.emailLabelField,
     required this.passwordLabelField,
     required this.signUpButton,
-    required this.majorCheckField,
-    required this.majorField,
+    required this.centralCheckboxLabel,
+    required this.cashierCheckboxLabel,
+    required this.deliverymanCheckboxLabel,
+    required this.centralField,
   });
 }

@@ -11,17 +11,15 @@ class SignUpController implements ISignUpController {
   final SignUpUsecase signUpUsecase;
 
   final IField<String> _usernameField;
-  final IField<String> _nicknameField;
   final IField<String> _emailField;
   final IField<String> _passwordField;
-  final IField<bool> _majorCheckField;
-  final IField<String> _majorField;
+  final IField<bool> _centralCheckField;
+  final IField<bool> _cashierCheckField;
+  final IField<bool> _deliverymanCheckField;
+  final IField<String> _centralField;
 
   @override
   IField<String> get userNameField => _usernameField;
-
-  @override
-  IField<String> get nicknameField => _nicknameField;
 
   @override
   IField<String> get emailField => _emailField;
@@ -30,10 +28,16 @@ class SignUpController implements ISignUpController {
   IField<String> get passwordField => _passwordField;
 
   @override
-  IField<bool> get majorCheckField => _majorCheckField;
+  IField<bool> get centralCheckField => _centralCheckField;
 
   @override
-  IField<String> get majorField => _majorField;
+  IField<bool> get cashierCheckField => _cashierCheckField;
+
+  @override
+  IField<bool> get deliverymanCheckField => _deliverymanCheckField;
+
+  @override
+  IField<String> get centralField => _centralField;
 
   @override
   SignUpController({
@@ -41,17 +45,54 @@ class SignUpController implements ISignUpController {
     required IField<String> nicknameField,
     required IField<String> emailField,
     required IField<String> passwordField,
-    required IField<bool> majorCheckField,
-    required IField<String> majorField,
+    required IField<bool> cashierCheckField,
+    required IField<bool> centralCheckField,
+    required IField<bool> deliverymanCheckField,
+    required IField<String> centralField,
     required this.loading,
     required this.signUpUsecase,
   })  : _usernameField = usernameField,
-        _nicknameField = nicknameField,
         _emailField = emailField,
         _passwordField = passwordField,
-        _majorCheckField = majorCheckField,
-        _majorField = majorField {
-    _majorCheckField.onChangeCallback = (val) => _majorField.clearError();
+        _centralCheckField = centralCheckField,
+        _cashierCheckField = cashierCheckField,
+        _deliverymanCheckField = deliverymanCheckField,
+        _centralField = centralField {
+    initCheckboxesCallbacks();
+  }
+
+  void initCheckboxesCallbacks() {
+    _centralCheckField.onChangeCallback = (val) {
+      if (val!) {
+        _cashierCheckField.value = false;
+        _deliverymanCheckField.value = false;
+        _centralField.clearError();
+      } else {
+        if (!_cashierCheckField.value! && !_deliverymanCheckField.value!) {
+          _centralCheckField.value = true;
+        }
+      }
+    };
+    _cashierCheckField.onChangeCallback = (val) {
+      if (val!) {
+        _centralCheckField.value = false;
+        _deliverymanCheckField.value = false;
+      } else {
+        if (!_centralCheckField.value! && !_deliverymanCheckField.value!) {
+          _cashierCheckField.value = true;
+        }
+      }
+    };
+    _deliverymanCheckField.onChangeCallback = (val) {
+      if (val!) {
+        _centralCheckField.value = false;
+        _cashierCheckField.value = false;
+      } else {
+        if (!_cashierCheckField.value! && !!!_centralCheckField.value!) {
+          _deliverymanCheckField.value = true;
+        }
+      }
+    };
   }
 
   @override
@@ -61,9 +102,11 @@ class SignUpController implements ISignUpController {
       if (validateFields) {
         await signUpUsecase(
           email: emailField.value!,
-          nickname: nicknameField.value!,
           password: passwordField.value!,
           username: userNameField.value!,
+          isCashier: _cashierCheckField.value!,
+          isCentral: _centralCheckField.value!,
+          isDeliveryman: _deliverymanCheckField.value!,
         );
       }
     } on UsernameAlreadyInUseException catch (err) {
@@ -81,25 +124,22 @@ class SignUpController implements ISignUpController {
 
   bool get validateFields {
     _usernameField.validate();
-    _nicknameField.validate();
     _emailField.validate();
     _passwordField.validate();
 
-    if (_majorCheckField.value!) {
-      _majorField.validate();
+    if (_cashierCheckField.value! || _deliverymanCheckField.value!) {
+      _centralField.validate();
     }
 
     return !_usernameField.hasError &&
         !_passwordField.hasError &&
-        !_nicknameField.hasError &&
         !_emailField.hasError &&
-        !_majorField.hasError;
+        !_centralField.hasError;
   }
 
   @override
   void dispose() {
     _usernameField.dispose();
-    _nicknameField.dispose();
     _emailField.dispose();
     _passwordField.dispose();
   }

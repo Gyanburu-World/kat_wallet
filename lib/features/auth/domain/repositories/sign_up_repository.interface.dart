@@ -3,6 +3,8 @@ abstract class ISignUpRepository {
     required String username,
     required String password,
     required String email,
-    required String nickname,
+    required bool isCentral,
+    required bool isCashier,
+    required bool isDeliveryman,
   });
 }

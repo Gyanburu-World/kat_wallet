@@ -29,8 +29,10 @@ class PtBrStringsTranslations implements StringsTranslations {
     emailLabelField: 'E-mail',
     passwordLabelField: 'Senha',
     signUpButton: 'Registrar',
-    majorCheckField: 'Eu tenho um superior',
-    majorField: 'Nome de Usuario do Superior',
+    centralCheckboxLabel: 'Sou a central',
+    cashierCheckboxLabel: 'Sou caixa',
+    deliverymanCheckboxLabel: 'Sou entregador',
+    centralField: 'Usuario da central',
   );
 
   final validators = ValidatorsStrings(

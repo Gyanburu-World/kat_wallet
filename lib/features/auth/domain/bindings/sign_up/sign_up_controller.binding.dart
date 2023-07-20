@@ -38,8 +38,10 @@ ISignUpController makeSignUpController() {
     emailField: _makeEmailField(),
     nicknameField: _makeNicknameField(),
     passwordField: _makePasswordField(),
-    majorCheckField: _makeMajorCheckField(),
-    majorField: _makeMajorField(),
+    centralCheckField: _makeCentralCheckField(),
+    cashierCheckField: _makeCashierCheckField(),
+    deliverymanCheckField: _makeDeliveryCheckField(),
+    centralField: _makeCentralField(),
     loading: Inject.find(),
     signUpUsecase: signUpUsecase,
   );
@@ -73,14 +75,28 @@ IField<String> _makePasswordField() {
   );
 }
 
-IField<bool> _makeMajorCheckField() {
+IField<bool> _makeCentralCheckField() {
+  return ReactFieldModel(
+    value: true,
+    validators: FieldValidatorBuilder<bool>().build(),
+  );
+}
+
+IField<bool> _makeCashierCheckField() {
   return ReactFieldModel(
     value: false,
     validators: FieldValidatorBuilder<bool>().build(),
   );
 }
 
-IField<String> _makeMajorField() {
+IField<bool> _makeDeliveryCheckField() {
+  return ReactFieldModel(
+    value: false,
+    validators: FieldValidatorBuilder<bool>().build(),
+  );
+}
+
+IField<String> _makeCentralField() {
   return TextReactFieldModel(
     validators: FieldValidatorBuilder<String>().required().build(),
   );

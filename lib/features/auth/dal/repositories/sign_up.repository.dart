@@ -13,14 +13,16 @@ class SignUpRepository implements ISignUpRepository {
     required String username,
     required String password,
     required String email,
-    required String nickname,
+    required bool isCentral,
+    required bool isCashier,
+    required bool isDeliveryman,
   }) async {
     try {
       await authDatasource.signUp(
         username: username,
         password: password,
         email: email,
-        nickname: nickname,
+        nickname: '',
       );
     } catch (err) {
       rethrow;
