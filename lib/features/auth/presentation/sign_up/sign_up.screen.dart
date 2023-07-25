@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_quest/core/style/colors.dart';
 import 'package:project_quest/features/auth/domain/exceptions/central_not_exists.exception.dart';
 import 'package:project_quest/features/auth/domain/exceptions/username_already_in_use.exception.dart';
 import 'package:project_quest/features/shared/loading/loading.widget.dart';
@@ -19,7 +20,7 @@ class SignUpScreen extends ViewController<ISignUpController> {
   Widget build(BuildContext context) {
     return LoadingWidget(
       child: Scaffold(
-        backgroundColor: const Color(0xFF161616),
+        backgroundColor: const Color(CColors.background),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -28,10 +29,7 @@ class SignUpScreen extends ViewController<ISignUpController> {
               children: [
                 Text(
                   i18n.strings.signUp.title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
+                  style: const TextStyle(color: Colors.white, fontSize: 24),
                 ),
                 Expanded(
                   child: SingleChildScrollView(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project_quest/core/style/colors.dart';
 import 'package:project_quest/core/utils/snackbar.util.dart';
 import 'package:project_quest/features/shared/primary_button.widget.dart';
 
@@ -17,7 +18,7 @@ class LoginScreen extends ViewController<ILoginController> {
   Widget build(BuildContext context) {
     return LoadingWidget(
       child: Scaffold(
-        backgroundColor: const Color(0xFF161616),
+        backgroundColor: const Color(CColors.background),
         body: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
