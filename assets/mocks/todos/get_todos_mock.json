@@ -1,0 +1,32 @@
+{
+    "data": [
+        {
+            "id": "1",
+            "title": "Seguro da moto",
+            "value": 256.45,
+            "date": "2022-01-01T00:00:00Z",
+            "isBilling": false
+        },
+        {
+            "id": "1",
+            "title": "Seguro de Vida",
+            "value": 100.78,
+            "date": "2022-01-01T00:00:00Z",
+            "isBilling": false
+        },
+        {
+            "id": "2",
+            "title": "Cartão de crédito",
+            "value": 4000,
+            "date": "2022-01-02T00:00:00Z",
+            "isBilling": false
+        },
+        {
+            "id": "3",
+            "title": "Tenis do goen",
+            "value": null,
+            "date": "2022-01-03T00:00:00Z",
+            "isBilling": true
+        }
+    ]
+}

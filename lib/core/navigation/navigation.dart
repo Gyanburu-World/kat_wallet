@@ -15,7 +15,7 @@ class Navigation {
         path: Routes.home,
         name: Routes.home,
         builder: (context, state) => EntryProvider(
-          onBuild: (_) => HomeScreen(),
+          onBuild: (_) => const HomeScreen(),
           onInit: (_) => HomeControllerBinding.inject(),
           onDispose: (_) => HomeControllerBinding.dipose(),
         ),

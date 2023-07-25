@@ -1,12 +1,9 @@
-import '../enums/role.enum.dart';
-
 class UserModel {
   final String id;
   final String name;
-  final RoleEnum role;
 
-  const UserModel({required this.id, required this.name, required this.role});
+  const UserModel({required this.id, required this.name});
 
   @override
-  String toString() => 'UserModel [id: $id, name: $name, role: $role]';
+  String toString() => 'UserModel [id: $id, name: $name]';
 }

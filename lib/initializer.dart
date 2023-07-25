@@ -1,7 +1,9 @@
+import 'package:devicelocale/devicelocale.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:project_quest/features/auth/dal/datasource/auth.datasource.interface.dart';
+import 'package:project_quest/features/home/data/datasource/todo.datasource.mock.dart';
 
 import 'core/constants/storage.constants.dart';
 import 'core/dal/storage/getx_storage.dart';
@@ -10,9 +12,9 @@ import 'core/i18n/pt_br.dart';
 import 'core/i18n/translation.dart';
 import 'core/inject.dart';
 import 'features/auth/dal/datasource/auth.datasource.mock.dart';
+import 'features/home/data/datasource/todo.datasource.interface.dart';
 import 'features/shared/loading/loading.controller.dart';
 import 'features/shared/loading/loading.interface.dart';
-import 'package:devicelocale/devicelocale.dart';
 
 class Initializer {
   static late final String initialRoute;
@@ -45,6 +47,9 @@ class Initializer {
   static void _initMockDatasourceDependencies() {
     final authDatasource = AuthDatasourceMock();
     Inject.put<IAuthDatasource>(authDatasource);
+
+    final todoDatasource = TodoDatasourceMock();
+    Inject.put<ITodoDatasource>(todoDatasource);
   }
 
   static Future<void> _initStorage() async {
