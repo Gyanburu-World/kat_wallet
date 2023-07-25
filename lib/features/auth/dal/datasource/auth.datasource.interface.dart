@@ -1,10 +1,11 @@
+import '../dto/authenticate_user.body.dart';
 import '../dto/authenticate_user.response.dart';
+import '../dto/sign_up.body.dart';
 
 abstract class IAuthDatasource {
-  Future<AuthenticateUserDataResponse> authenticateUser({
-    required String email,
-    required String password,
-  });
+  Future<AuthenticateUserDataResponse> authenticateUser(
+    AuthenticateUserBody body,
+  );
 
-  Future<void> signUp({required String email, required String password});
+  Future<void> signUp(SignUpBody body);
 }

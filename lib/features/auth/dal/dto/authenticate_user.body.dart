@@ -5,13 +5,13 @@ part 'authenticate_user.body.g.dart';
 
 @JsonSerializable()
 class AuthenticateUserBody extends Equatable {
-  final String login;
+  final String email;
   final String password;
 
   AuthenticateUserBody({
-    required String login,
+    required String email,
     required String password,
-  })  : login = login.trim(),
+  })  : email = email.trim(),
         password = password.trim();
 
   factory AuthenticateUserBody.fromJson(Map<String, dynamic> json) =>
@@ -20,5 +20,5 @@ class AuthenticateUserBody extends Equatable {
   Map<String, dynamic> toJson() => _$AuthenticateUserBodyToJson(this);
 
   @override
-  List<Object?> get props => [login, password];
+  List<Object?> get props => [email, password];
 }

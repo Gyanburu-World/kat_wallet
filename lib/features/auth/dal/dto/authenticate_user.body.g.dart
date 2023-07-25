@@ -9,13 +9,13 @@ part of 'authenticate_user.body.dart';
 AuthenticateUserBody _$AuthenticateUserBodyFromJson(
         Map<String, dynamic> json) =>
     AuthenticateUserBody(
-      login: json['login'] as String,
+      email: json['email'] as String,
       password: json['password'] as String,
     );
 
 Map<String, dynamic> _$AuthenticateUserBodyToJson(
         AuthenticateUserBody instance) =>
     <String, dynamic>{
-      'login': instance.login,
+      'email': instance.email,
       'password': instance.password,
     };

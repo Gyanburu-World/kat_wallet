@@ -8,16 +8,12 @@ class AuthenticateUserUsecase {
     required String login,
     required String password,
   }) async {
-    try {
-      final response = await loginRepository.authenticateUser(
-        login: login,
-        password: password,
-      );
+    final response = await loginRepository.authenticateUser(
+      login: login,
+      password: password,
+    );
 
-      await loginRepository.saveToken(response.token);
-      await loginRepository.saveUser(response.user);
-    } catch (err) {
-      rethrow;
-    }
+    await loginRepository.saveToken(response.token);
+    await loginRepository.saveUser(response.user);
   }
 }

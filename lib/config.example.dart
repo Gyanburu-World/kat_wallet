@@ -10,7 +10,7 @@ class ConfigEnvironments {
   static const List<Map<String, String>> _availableEnvironments = [
     {
       'env': Environments.local,
-      'url': 'http://192.168.0.2:5000/api/',
+      'url': 'http://192.168.0.2:5000/api',
     },
     {
       'env': Environments.develop,
@@ -22,7 +22,7 @@ class ConfigEnvironments {
     },
     {
       'env': Environments.production,
-      'url': 'https://api-ekko.herokuapp.com/api/',
+      'url': 'https://api-ekko.herokuapp.com/api',
     },
   ];
 

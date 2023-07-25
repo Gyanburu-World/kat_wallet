@@ -11,9 +11,11 @@ SignUpResponse _$SignUpResponseFromJson(Map<String, dynamic> json) =>
       error: json['error'] == null
           ? null
           : ErrorData.fromJson(json['error'] as Map<String, dynamic>),
+      data: UserData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SignUpResponseToJson(SignUpResponse instance) =>
     <String, dynamic>{
+      'data': instance.data,
       'error': instance.error,
     };

@@ -10,7 +10,8 @@ class AuthenticateUserResponse {
   final AuthenticateUserDataResponse? data;
   final ErrorData? error;
 
-  const AuthenticateUserResponse({required this.data, required this.error});
+  const AuthenticateUserResponse({required this.data, required this.error})
+      : assert(data != null || error != null);
 
   factory AuthenticateUserResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthenticateUserResponseFromJson(json);

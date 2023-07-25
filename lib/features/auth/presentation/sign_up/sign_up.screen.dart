@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:project_quest/core/style/colors.dart';
 import 'package:project_quest/features/shared/loading/loading.widget.dart';
 import 'package:project_quest/features/shared/primary_button.widget.dart';
 import 'package:project_quest/features/shared/text_field.widget.dart';
 
+import '../../../../core/navigation/routes.dart';
 import '../../../../core/utils/snackbar.util.dart';
 import '../../../shared/view_controller.interface.dart';
 import '../../domain/bindings/sign_up/sign_up_controller.interface.dart';
@@ -62,6 +64,14 @@ class SignUpScreen extends ViewController<ISignUpController> {
     try {
       FocusScope.of(context).unfocus();
       await controller.signUp();
+      if (context.mounted) {
+        context.goNamed(Routes.login);
+        showSuccessSnackbar(
+          context: context,
+          title: 'Sucesso!',
+          message: 'Sua conta foi criada com sucesso!',
+        );
+      }
     } on EmailAlreadyInUseException catch (err) {
       showErrorSnackbar(context: context, err: err);
     }

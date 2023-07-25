@@ -2,36 +2,36 @@ import './response.model.dart';
 
 abstract class IHttpConnect {
   Future<Response<T>> get<T>(
-    String url, {
-    required T Function(dynamic)? decoder,
+    String urlPath, {
+    required T Function(Map<String, dynamic>)? decoder,
   });
 
   Future<Response<T>> post<T>(
-    String url,
+    String urlPath,
     Map<String, dynamic> body, {
-    T Function(dynamic)? decoder,
+    T Function(Map<String, dynamic>)? decoder,
   });
 
   Future<Response<T>> put<T>(
-    String url,
+    String urlPath,
     Map<String, dynamic> body, {
-    T Function(dynamic)? decoder,
+    T Function(Map<String, dynamic>)? decoder,
   });
 
   Future<Response<T>> patch<T>(
-    String url,
+    String urlPath,
     Map<String, dynamic> body, {
-    T Function(dynamic)? decoder,
+    T Function(Map<String, dynamic>)? decoder,
   });
 
   Future<Response<T>> delete<T>(
-    String url, {
-    required T Function(dynamic)? decoder,
+    String urlPath, {
+    required T Function(Map<String, dynamic>)? decoder,
   });
 
   Future<Response<T>> postMultipartFile<T>(
-    String url,
+    String urlPath,
     dynamic form, {
-    T Function(dynamic)? decoder,
+    T Function(Map<String, dynamic>)? decoder,
   });
 }

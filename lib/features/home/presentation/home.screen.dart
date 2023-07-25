@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_quest/core/style/colors.dart';
+import 'package:project_quest/features/shared/loading/loading.widget.dart';
 
 import '../../shared/view_controller.interface.dart';
 import '../domain/bindings/home_controller.interface.dart';
@@ -27,15 +28,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(CColors.background),
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('Lista Financeira'),
-      ),
-      body: ValueListenableBuilder(
-        valueListenable: widget.controller.todos,
-        builder: (_, snap, ___) => ListTodoWidget(todos: snap),
+    return LoadingWidget(
+      child: Scaffold(
+        backgroundColor: const Color(CColors.background),
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: const Text('Lista Financeira'),
+        ),
+        body: ValueListenableBuilder(
+          valueListenable: widget.controller.todos,
+          builder: (_, snap, ___) => ListTodoWidget(todos: snap),
+        ),
       ),
     );
   }

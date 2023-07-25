@@ -34,8 +34,6 @@ class LoginController implements ILoginController {
           password: _passwordField.value!,
         );
       }
-    } catch (err) {
-      rethrow;
     } finally {
       loading.isLoading = false;
     }

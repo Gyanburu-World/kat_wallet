@@ -1,9 +1,9 @@
 class UserModel {
-  final String id;
-  final String name;
+  final int id;
+  final String email;
 
-  const UserModel({required this.id, required this.name});
+  const UserModel({required this.id, required this.email});
 
   @override
-  String toString() => 'UserModel [id: $id, name: $name]';
+  String toString() => 'UserModel [id: $id, email: $email]';
 }

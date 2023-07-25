@@ -2,16 +2,20 @@ import 'package:devicelocale/devicelocale.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:project_quest/core/models/token_client.dart';
 import 'package:project_quest/features/auth/dal/datasource/auth.datasource.interface.dart';
 import 'package:project_quest/features/home/data/datasource/todo.datasource.mock.dart';
 
+import 'core/abstractions/http_connect.interface.dart';
 import 'core/constants/storage.constants.dart';
 import 'core/dal/storage/getx_storage.dart';
 import 'core/dal/storage/storage.interface.dart';
 import 'core/i18n/pt_br.dart';
 import 'core/i18n/translation.dart';
 import 'core/inject.dart';
-import 'features/auth/dal/datasource/auth.datasource.mock.dart';
+import 'core/models/http_connect.dart';
+import 'features/auth/dal/datasource/auth.datasource.dart';
+import 'features/auth/domain/constants/auth_storage.constants.dart';
 import 'features/home/data/datasource/todo.datasource.interface.dart';
 import 'features/shared/loading/loading.controller.dart';
 import 'features/shared/loading/loading.interface.dart';
@@ -24,9 +28,10 @@ class Initializer {
       WidgetsFlutterBinding.ensureInitialized();
       _initScreenPreference();
       _initGlobalLoading();
-      _initMockDatasourceDependencies();
       await _initStorage();
       await _initI18n();
+      await _initConnect();
+      _initDatasourceDependencies();
     } catch (err) {
       rethrow;
     }
@@ -44,8 +49,10 @@ class Initializer {
     Inject.put<ILoadingController>(loading);
   }
 
-  static void _initMockDatasourceDependencies() {
-    final authDatasource = AuthDatasourceMock();
+  static void _initDatasourceDependencies() {
+    final connect = Inject.find<IHttpConnect>();
+    final authDatasource = AuthDatasource(connect: connect);
+    // final authDatasource = AuthDatasourceMock();
     Inject.put<IAuthDatasource>(authDatasource);
 
     final todoDatasource = TodoDatasourceMock();
@@ -84,5 +91,13 @@ class Initializer {
     }
 
     Inject.put<StringsTranslations>(i18n);
+  }
+
+  static Future<void> _initConnect() async {
+    final storage = Inject.find<IStorage>();
+    final token = await storage.read(AuthStorageConstants.tokenAuthorization);
+    final client = TokenClient(token);
+    final connect = HttpConnect(client);
+    Inject.put<IHttpConnect>(connect);
   }
 }

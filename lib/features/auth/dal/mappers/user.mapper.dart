@@ -3,10 +3,10 @@ import '../data/user.data.dart';
 
 abstract class UserMapper {
   static UserModel toModel(UserData data) {
-    return UserModel(id: data.id, name: data.name);
+    return UserModel(id: data.id, email: data.email);
   }
 
   static Map<String, dynamic> toJson(UserModel model) {
-    return {'id': model.id, 'name': model.name};
+    return {'id': model.id, 'email': model.email};
   }
 }

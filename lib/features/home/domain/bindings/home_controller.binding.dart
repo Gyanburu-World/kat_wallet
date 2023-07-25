@@ -21,7 +21,10 @@ class HomeControllerBinding {
 IHomeController makeHomeController() {
   final todoRepository = TodoRepository(todoDatasource: Inject.find());
   final getTodosUsecase = GetTodosUsecase(todoRepository: todoRepository);
-  return HomeController(getTodosUsecase: getTodosUsecase);
+  return HomeController(
+    loading: Inject.find(),
+    getTodosUsecase: getTodosUsecase,
+  );
 }
 
 IField<String> makeNameField() {
