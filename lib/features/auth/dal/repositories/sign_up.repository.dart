@@ -9,25 +9,9 @@ class SignUpRepository implements ISignUpRepository {
   const SignUpRepository({required this.authDatasource, required this.storage});
 
   @override
-  Future<void> signUp({
-    required String username,
-    required String password,
-    required String email,
-    required String? centralUser,
-    required bool isCentral,
-    required bool isCashier,
-    required bool isDeliveryman,
-  }) async {
+  Future<void> signUp({required String email, required String password}) async {
     try {
-      await authDatasource.signUp(
-        username: username,
-        password: password,
-        email: email,
-        centralUser: centralUser,
-        isCentral: isCentral,
-        isCashier: isCashier,
-        isDeliveryman: isDeliveryman,
-      );
+      await authDatasource.signUp(password: password, email: email);
     } catch (err) {
       rethrow;
     }

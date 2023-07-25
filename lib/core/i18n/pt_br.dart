@@ -7,16 +7,19 @@ import 'translation.dart';
 class PtBrStringsTranslations implements StringsTranslations {
   static const String getLocale = 'pt_BR';
 
+  static const title = 'Kat Wallet';
+
   final landingScreen = LandingScreenStrings(
-    title: 'Kat Delivery',
+    title: title,
     titleBodyText: 'Bem-vindo!',
     bodyText:
-        'Se você faz parte da central, nosso aplicativo permite que você gerencie seus clientes, produtos e pedidos. Já se você é responsável pelas entregas, utilize-o para controlar todas as entregas necessárias, facilitando o processo ao anexar comprovantes e automatizar o fluxo.',
+        'Simplifique suas finanças com facilidade. Controle seus pagamentos e cobranças em um só lugar. Interface intuitiva e amigável para gerenciar suas transações. Experimente agora mesmo! ',
     joinNowButton: 'Junte-se agora',
     signInButton: 'Já tem uma conta? Faça login',
   );
 
   final login = LoginScreenStrings(
+    title: title,
     userNameLabel: 'Nome de Usuario',
     passwordLabel: 'Senha',
     loginButtonLabel: 'Entrar',
@@ -24,15 +27,9 @@ class PtBrStringsTranslations implements StringsTranslations {
 
   final signUp = SignUpScreenStrings(
     title: 'Registre-se',
-    usernameLabelField: 'Nome de Usuario',
-    nicknameLabelField: 'Apelido',
     emailLabelField: 'E-mail',
     passwordLabelField: 'Senha',
     signUpButton: 'Registrar',
-    centralCheckboxLabel: 'Sou a central',
-    cashierCheckboxLabel: 'Sou caixa',
-    deliverymanCheckboxLabel: 'Sou entregador',
-    centralField: 'Usuario da central',
   );
 
   final validators = ValidatorsStrings(

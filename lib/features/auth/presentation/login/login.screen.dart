@@ -28,7 +28,7 @@ class LoginScreen extends ViewController<ILoginController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Kat Delivery',
+                      i18n.strings.login.title,
                       style:
                           Theme.of(context).textTheme.displayMedium?.copyWith(
                                 color: Colors.white,

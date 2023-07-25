@@ -5,24 +5,11 @@ class SignUpUsecase {
   const SignUpUsecase({required this.signUpRepository});
 
   Future<void> call({
-    required String username,
-    required String password,
     required String email,
-    required String? centralUser,
-    required bool isCentral,
-    required bool isCashier,
-    required bool isDeliveryman,
+    required String password,
   }) async {
     try {
-      await signUpRepository.signUp(
-        username: username,
-        password: password,
-        email: email,
-        centralUser: centralUser,
-        isDeliveryman: isDeliveryman,
-        isCashier: isCashier,
-        isCentral: isCentral,
-      );
+      await signUpRepository.signUp(password: password, email: email);
     } catch (err) {
       rethrow;
     }

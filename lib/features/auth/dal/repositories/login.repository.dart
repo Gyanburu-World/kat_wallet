@@ -18,7 +18,7 @@ class LoginRepository implements ILoginRepository {
   }) async {
     try {
       final response = await authDatasource.authenticateUser(
-        login: login,
+        email: login,
         password: password,
       );
 
