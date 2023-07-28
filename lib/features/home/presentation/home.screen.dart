@@ -54,9 +54,16 @@ class _HomeScreenState extends State<HomeScreen> {
           valueListenable: widget.controller.todos,
           builder: (_, snap, ___) => ListTodoWidget(todos: snap),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: onFloatingActionButtonPressed,
+          backgroundColor: Colors.black87,
+          child: const Icon(Icons.add, size: 30),
+        ),
       ),
     );
   }
+
+  void onFloatingActionButtonPressed() {}
 
   void logout() {
     showDialog(
