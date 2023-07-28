@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../../../utils/mock.util.dart';
+import '../../../../base/utils/mock.util.dart';
 import '../dto/get_todos.response.dart';
 import 'todo.datasource.interface.dart';
 import 'todo_path_mocks.constants.dart';

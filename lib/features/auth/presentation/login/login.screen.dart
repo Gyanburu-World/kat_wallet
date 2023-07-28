@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:project_quest/core/style/colors.dart';
-import 'package:project_quest/core/utils/snackbar.util.dart';
 import 'package:project_quest/features/shared/primary_button.widget.dart';
 
+import '../../../../core/base/style/colors.dart';
+import '../../../../core/base/utils/snackbar.util.dart';
 import '../../../../core/domains/user/domain/exceptions/user_or_password_incorrect.exception.dart';
 import '../../../../core/navigation/routes.dart';
 import '../../../shared/loading/loading.widget.dart';

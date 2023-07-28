@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import '../../../../utils/mock.util.dart';
+import '../../../../base/utils/mock.util.dart';
 import '../../domain/exceptions/email_already_in_use.exception.dart';
 import '../../domain/exceptions/user_or_password_incorrect.exception.dart';
 import '../dto/authenticate_user.body.dart';

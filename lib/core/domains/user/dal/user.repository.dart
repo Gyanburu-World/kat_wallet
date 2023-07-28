@@ -1,6 +1,6 @@
 import 'package:project_quest/core/domains/user/domain/models/user.model.dart';
 
-import '../../../dal/storage/storage.interface.dart';
+import '../../../base/dal/storage/storage.interface.dart';
 import '../domain/constants/user_storage.constants.dart';
 import '../domain/user_repository.interface.dart';
 import 'datasource/user.datasource.interface.dart';

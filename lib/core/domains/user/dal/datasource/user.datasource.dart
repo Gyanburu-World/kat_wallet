@@ -1,7 +1,7 @@
 import 'package:project_quest/core/domains/user/domain/exceptions/email_already_in_use.exception.dart';
 
-import '../../../../abstractions/http_connect.interface.dart';
-import '../../../../exceptions/http_failure.exception.dart';
+import '../../../../base/abstractions/http_connect.interface.dart';
+import '../../../../base/exceptions/http_failure.exception.dart';
 import '../../domain/constants/errors.constants.dart';
 import '../../domain/exceptions/user_or_password_incorrect.exception.dart';
 import '../dto/authenticate_user.body.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:project_quest/core/style/colors.dart';
-import 'package:project_quest/features/shared/loading/loading.widget.dart';
 
+import '../../../core/base/style/colors.dart';
 import '../../../core/navigation/routes.dart';
+import '../../shared/loading/loading.widget.dart';
 import '../../shared/view_controller.interface.dart';
 import '../domain/bindings/home_controller.interface.dart';
 import 'widgets/list_todos.widget.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/abstractions/field.interface.dart';
+import '../../../../../core/base/abstractions/field.interface.dart';
 import '../../../../shared/view_controller.interface.dart';
 import '../../../domain/bindings/sign_up/sign_up_controller.interface.dart';
 

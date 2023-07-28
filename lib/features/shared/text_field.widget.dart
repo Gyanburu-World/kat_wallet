@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_quest/core/validators/password_field.validator.dart';
 
-import '../../core/abstractions/field.interface.dart';
+import '../../core/base/abstractions/field.interface.dart';
+import '../../core/base/validators/password_field.validator.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String label;

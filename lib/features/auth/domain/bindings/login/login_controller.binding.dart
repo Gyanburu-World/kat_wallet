@@ -1,10 +1,10 @@
-import '../../../../../core/abstractions/field.interface.dart';
-import '../../../../../core/builders/field_validator.builder.dart';
-import '../../../../../core/dal/storage/storage.interface.dart';
+import '../../../../../core/base/abstractions/field.interface.dart';
+import '../../../../../core/base/builders/field_validator.builder.dart';
+import '../../../../../core/base/dal/storage/storage.interface.dart';
+import '../../../../../core/base/models/text_react_field.model.dart';
 import '../../../../../core/domains/user/dal/datasource/user.datasource.interface.dart';
 import '../../../../../core/domains/user/dal/user.repository.dart';
 import '../../../../../core/inject.dart';
-import '../../../../../core/models/text_react_field.model.dart';
 import '../../../presentation/login/login.controller.dart';
 import '../../usecases/authenticate_user.usecase.dart';
 import 'login_controller.interface.dart';

@@ -1,8 +1,8 @@
-import '../../../../core/abstractions/field.interface.dart';
-import '../../../../core/builders/field_validator.builder.dart';
+import '../../../../core/base/abstractions/field.interface.dart';
+import '../../../../core/base/builders/field_validator.builder.dart';
+import '../../../../core/base/models/text_react_field.model.dart';
 import '../../../../core/domains/user/dal/user.repository.dart';
 import '../../../../core/inject.dart';
-import '../../../../core/models/text_react_field.model.dart';
 import '../../../../core/domains/todo/dal/todo.repository.dart';
 import '../../presentation/home.controller.dart';
 import '../usecases/get_todos.usecase.dart';

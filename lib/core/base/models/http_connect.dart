@@ -3,7 +3,7 @@ import 'dart:developer' as developer;
 
 import 'package:http/http.dart' as http;
 
-import '../../config.dart';
+import '../../../config.dart';
 import '../abstractions/http_connect.interface.dart';
 import '../abstractions/response.model.dart';
 import '../exceptions/http_failure.exception.dart';

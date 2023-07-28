@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../dal/data/error.data.dart';
+import '../../../../base/dal/data/error.data.dart';
 import '../data/user.data.dart';
 
 part 'authenticate_user.response.g.dart';
