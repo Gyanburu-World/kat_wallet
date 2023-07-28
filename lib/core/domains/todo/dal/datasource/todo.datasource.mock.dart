@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:project_quest/core/domains/todo/dal/dto/create_todo.body.dart';
+
 import '../../../../base/utils/mock.util.dart';
 import '../dto/get_todos.response.dart';
 import 'todo.datasource.interface.dart';
@@ -12,5 +14,10 @@ class TodoDatasourceMock implements ITodoDatasource {
     final file = await MockUtil.getMockFile(TodoPathMocksConstants.getTodos);
     final response = GetTodosResponse.fromJson(jsonDecode(file));
     return response;
+  }
+
+  @override
+  Future<void> create(CreateTodoBody body) async {
+    await Future.delayed(const Duration(seconds: 1));
   }
 }

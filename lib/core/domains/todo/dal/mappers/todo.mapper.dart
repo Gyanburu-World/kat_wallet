@@ -6,8 +6,8 @@ abstract class TodoMapper {
   static TodoModel toModel(TodoData data) {
     return TodoModel(
       id: data.id,
-      date: data.date,
-      isBilling: data.isBilling,
+      date: data.doAt,
+      isBilling: true,
       title: data.title,
       value: data.value,
     );

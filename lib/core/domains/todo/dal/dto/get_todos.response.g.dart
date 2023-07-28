@@ -11,8 +11,8 @@ GetTodosResponse _$GetTodosResponseFromJson(Map<String, dynamic> json) =>
       errors: (json['errors'] as List<dynamic>?)
           ?.map((e) => ErrorData.fromJson(e as Map<String, dynamic>))
           .toList(),
-      data: (json['data'] as List<dynamic>)
-          .map((e) => TodoData.fromJson(e as Map<String, dynamic>))
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => TodoData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

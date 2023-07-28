@@ -7,7 +7,7 @@ part 'get_todos.response.g.dart';
 
 @JsonSerializable()
 class GetTodosResponse {
-  final List<TodoData> data;
+  final List<TodoData>? data;
   final List<ErrorData>? errors;
   const GetTodosResponse({required this.errors, required this.data});
 

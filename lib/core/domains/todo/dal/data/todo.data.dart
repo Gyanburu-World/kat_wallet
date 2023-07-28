@@ -4,18 +4,22 @@ part 'todo.data.g.dart';
 
 @JsonSerializable()
 class TodoData {
-  final String id;
+  final int id;
   final String title;
+  final String description;
   final double? value;
-  final DateTime date;
-  final bool isBilling;
+  final DateTime doneAt;
+  final DateTime doAt;
+  final bool recurring;
 
-  TodoData({
+  const TodoData({
     required this.id,
     required this.title,
     required this.value,
-    required this.date,
-    required this.isBilling,
+    required this.description,
+    required this.doAt,
+    required this.doneAt,
+    required this.recurring,
   });
 
   factory TodoData.fromJson(Map<String, dynamic> json) =>

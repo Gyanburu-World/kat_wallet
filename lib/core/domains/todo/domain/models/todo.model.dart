@@ -1,5 +1,5 @@
 class TodoModel {
-  final String id;
+  final int id;
   final String title;
   final double? value;
   final DateTime date;
