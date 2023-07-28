@@ -8,8 +8,8 @@ part 'get_todos.response.g.dart';
 @JsonSerializable()
 class GetTodosResponse {
   final List<TodoData> data;
-  final ErrorData? error;
-  const GetTodosResponse({required this.error, required this.data});
+  final List<ErrorData>? errors;
+  const GetTodosResponse({required this.errors, required this.data});
 
   factory GetTodosResponse.fromJson(Map<String, dynamic> json) =>
       _$GetTodosResponseFromJson(json);

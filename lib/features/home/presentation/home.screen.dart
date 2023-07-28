@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:project_quest/core/style/colors.dart';
 import 'package:project_quest/features/shared/loading/loading.widget.dart';
 
+import '../../../core/navigation/routes.dart';
 import '../../shared/view_controller.interface.dart';
 import '../domain/bindings/home_controller.interface.dart';
 import 'widgets/list_todos.widget.dart';
@@ -31,6 +33,19 @@ class _HomeScreenState extends State<HomeScreen> {
     return LoadingWidget(
       child: Scaffold(
         backgroundColor: const Color(CColors.background),
+        drawer: Drawer(
+          backgroundColor: const Color(CColors.background),
+          child: Column(
+            children: [
+              const SizedBox(height: 50),
+              const Spacer(),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(onPressed: logout, child: const Text('Sair')),
+              )
+            ],
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: Colors.black,
           title: const Text('Lista Financeira'),
@@ -39,6 +54,29 @@ class _HomeScreenState extends State<HomeScreen> {
           valueListenable: widget.controller.todos,
           builder: (_, snap, ___) => ListTodoWidget(todos: snap),
         ),
+      ),
+    );
+  }
+
+  void logout() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Você tem certeza?'),
+        content: const Text('Você deseja sair do app?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('NÃO'),
+          ),
+          TextButton(
+            onPressed: () {
+              widget.controller.logout();
+              context.goNamed(Routes.login);
+            },
+            child: const Text('SIM'),
+          ),
+        ],
       ),
     );
   }

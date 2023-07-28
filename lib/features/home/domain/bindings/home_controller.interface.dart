@@ -7,4 +7,6 @@ abstract class IHomeController extends IController {
   void init();
 
   ValueNotifier<Map<DateTime, List<TodoModel>>> get todos;
+
+  Future<void> logout();
 }

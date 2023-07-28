@@ -8,9 +8,9 @@ part of 'get_todos.response.dart';
 
 GetTodosResponse _$GetTodosResponseFromJson(Map<String, dynamic> json) =>
     GetTodosResponse(
-      error: json['error'] == null
-          ? null
-          : ErrorData.fromJson(json['error'] as Map<String, dynamic>),
+      errors: (json['errors'] as List<dynamic>?)
+          ?.map((e) => ErrorData.fromJson(e as Map<String, dynamic>))
+          .toList(),
       data: (json['data'] as List<dynamic>)
           .map((e) => TodoData.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -19,5 +19,5 @@ GetTodosResponse _$GetTodosResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$GetTodosResponseToJson(GetTodosResponse instance) =>
     <String, dynamic>{
       'data': instance.data,
-      'error': instance.error,
+      'errors': instance.errors,
     };

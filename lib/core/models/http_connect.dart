@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import '../../config.dart';
 import '../abstractions/http_connect.interface.dart';
 import '../abstractions/response.model.dart';
+import '../exceptions/http_failure.exception.dart';
 
 class HttpConnect implements IHttpConnect {
   final http.Client _client;
@@ -49,6 +50,12 @@ class HttpConnect implements IHttpConnect {
     }
 
     final obj = Response<T>(statusCode: response.statusCode, payload: decoded);
+
+    final payload = obj.payload;
+    if (!obj.success && payload != null) {
+      throw HttpFailureException<T>(object: payload);
+    }
+
     return obj;
   }
 

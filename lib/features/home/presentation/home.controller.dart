@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:project_quest/features/home/domain/models/todo.model.dart';
 import 'package:project_quest/features/home/domain/usecases/get_todos.usecase.dart';
+import 'package:project_quest/features/home/domain/usecases/logout.usecase.dart';
 
 import '../../shared/loading/loading.interface.dart';
 import '../domain/bindings/home_controller.interface.dart';
@@ -8,13 +9,18 @@ import '../domain/bindings/home_controller.interface.dart';
 class HomeController implements IHomeController {
   final ILoadingController loading;
   final GetTodosUsecase getTodosUsecase;
+  final LogoutUsecase logoutUsecase;
 
   final _todos = ValueNotifier<Map<DateTime, List<TodoModel>>>({});
 
   @override
   ValueNotifier<Map<DateTime, List<TodoModel>>> get todos => _todos;
 
-  HomeController({required this.getTodosUsecase, required this.loading});
+  HomeController({
+    required this.loading,
+    required this.getTodosUsecase,
+    required this.logoutUsecase,
+  });
 
   @override
   void init() async {
@@ -39,6 +45,11 @@ class HomeController implements IHomeController {
     }
 
     return groupedTodos;
+  }
+
+  @override
+  Future<void> logout() async {
+    await logoutUsecase();
   }
 
   @override

@@ -7,7 +7,7 @@ part of 'error.data.dart';
 // **************************************************************************
 
 ErrorData _$ErrorDataFromJson(Map<String, dynamic> json) => ErrorData(
-      id: json['id'] as int,
+      id: json['id'] as String,
       message: json['message'] as String,
     );
 

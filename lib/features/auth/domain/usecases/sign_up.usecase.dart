@@ -1,7 +1,7 @@
-import '../repositories/sign_up_repository.interface.dart';
+import '../../../../core/domains/user/domain/user_repository.interface.dart';
 
 class SignUpUsecase {
-  final ISignUpRepository signUpRepository;
+  final IUserRepository signUpRepository;
   const SignUpUsecase({required this.signUpRepository});
 
   Future<void> call({

@@ -13,16 +13,16 @@ AuthenticateUserResponse _$AuthenticateUserResponseFromJson(
           ? null
           : AuthenticateUserDataResponse.fromJson(
               json['data'] as Map<String, dynamic>),
-      error: json['error'] == null
-          ? null
-          : ErrorData.fromJson(json['error'] as Map<String, dynamic>),
+      errors: (json['errors'] as List<dynamic>?)
+          ?.map((e) => ErrorData.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$AuthenticateUserResponseToJson(
         AuthenticateUserResponse instance) =>
     <String, dynamic>{
       'data': instance.data,
-      'error': instance.error,
+      'errors': instance.errors,
     };
 
 AuthenticateUserDataResponse _$AuthenticateUserDataResponseFromJson(

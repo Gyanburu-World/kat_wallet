@@ -1,6 +1,8 @@
 {
-    "error": {
-        "id": 32,
-        "message": "Email already in use"
-    }
+    "errors": [
+        {
+            "id": "Email",
+            "message": "Email already in use"
+        }
+    ]
 }

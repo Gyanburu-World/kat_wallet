@@ -5,11 +5,11 @@ import 'package:project_quest/features/shared/loading/loading.widget.dart';
 import 'package:project_quest/features/shared/primary_button.widget.dart';
 import 'package:project_quest/features/shared/text_field.widget.dart';
 
+import '../../../../core/domains/user/domain/exceptions/email_already_in_use.exception.dart';
 import '../../../../core/navigation/routes.dart';
 import '../../../../core/utils/snackbar.util.dart';
 import '../../../shared/view_controller.interface.dart';
 import '../../domain/bindings/sign_up/sign_up_controller.interface.dart';
-import '../../domain/exceptions/email_already_in_use.exception.dart';
 
 class SignUpScreen extends ViewController<ISignUpController> {
   const SignUpScreen({super.key});

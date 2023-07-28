@@ -1,13 +1,12 @@
-import 'package:project_quest/features/auth/dal/datasource/auth.datasource.interface.dart';
-import 'package:project_quest/features/auth/dal/repositories/login.repository.dart';
-import 'package:project_quest/features/auth/domain/usecases/authenticate_user.usecase.dart';
-
 import '../../../../../core/abstractions/field.interface.dart';
 import '../../../../../core/builders/field_validator.builder.dart';
 import '../../../../../core/dal/storage/storage.interface.dart';
+import '../../../../../core/domains/user/dal/datasource/user.datasource.interface.dart';
+import '../../../../../core/domains/user/dal/user.repository.dart';
 import '../../../../../core/inject.dart';
 import '../../../../../core/models/text_react_field.model.dart';
 import '../../../presentation/login/login.controller.dart';
+import '../../usecases/authenticate_user.usecase.dart';
 import 'login_controller.interface.dart';
 
 class LoginControllerBinding {
@@ -22,11 +21,11 @@ class LoginControllerBinding {
 
 ILoginController makeLoginController() {
   final storage = Inject.find<IStorage>();
-  final authDatasource = Inject.find<IAuthDatasource>();
+  final authDatasource = Inject.find<IUserDatasource>();
 
-  final loginRepository = LoginRepository(
+  final loginRepository = UserRepository(
     storage: storage,
-    authDatasource: authDatasource,
+    userDatasource: authDatasource,
   );
 
   final authenticateUserUsecase = AuthenticateUserUsecase(

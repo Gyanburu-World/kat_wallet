@@ -25,4 +25,9 @@ class GetxStorage implements IStorage {
   Future<void> clear() async {
     _storage.erase();
   }
+
+  @override
+  Future<void> remove(String key) async {
+    await _storage.remove(key);
+  }
 }

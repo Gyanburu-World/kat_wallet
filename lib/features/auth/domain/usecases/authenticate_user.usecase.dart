@@ -1,19 +1,19 @@
-import 'package:project_quest/features/auth/domain/repositories/login_repository.interface.dart';
+import '../../../../core/domains/user/domain/user_repository.interface.dart';
 
 class AuthenticateUserUsecase {
-  final ILoginRepository loginRepository;
+  final IUserRepository loginRepository;
   const AuthenticateUserUsecase({required this.loginRepository});
 
   Future<void> call({
     required String login,
     required String password,
   }) async {
-    final response = await loginRepository.authenticateUser(
+    final response = await loginRepository.authenticate(
       login: login,
       password: password,
     );
 
+    await loginRepository.save(response.user);
     await loginRepository.saveToken(response.token);
-    await loginRepository.saveUser(response.user);
   }
 }

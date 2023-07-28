@@ -8,14 +8,16 @@ part of 'sign_up.response.dart';
 
 SignUpResponse _$SignUpResponseFromJson(Map<String, dynamic> json) =>
     SignUpResponse(
-      error: json['error'] == null
+      errors: (json['errors'] as List<dynamic>?)
+          ?.map((e) => ErrorData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      data: json['data'] == null
           ? null
-          : ErrorData.fromJson(json['error'] as Map<String, dynamic>),
-      data: UserData.fromJson(json['data'] as Map<String, dynamic>),
+          : UserData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SignUpResponseToJson(SignUpResponse instance) =>
     <String, dynamic>{
       'data': instance.data,
-      'error': instance.error,
+      'errors': instance.errors,
     };

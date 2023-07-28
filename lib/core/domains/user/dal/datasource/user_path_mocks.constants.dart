@@ -1,5 +1,5 @@
-abstract class AuthPathMocksConstants {
-  static const _basePath = 'assets/mocks/auth';
+abstract class UserPathMocksConstants {
+  static const _basePath = 'assets/mocks/user';
   static const authenticateUserFailure =
       '$_basePath/authenticate_user_failure_mock.json';
   static const authenticateUserSuccess =

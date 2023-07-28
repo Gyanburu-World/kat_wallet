@@ -6,4 +6,6 @@ abstract class IStorage {
   Future<bool> hasData(String key);
 
   Future<void> clear();
+
+  Future<void> remove(String key);
 }

@@ -4,7 +4,7 @@ part 'error.data.g.dart';
 
 @JsonSerializable()
 class ErrorData {
-  final int id;
+  final String id;
   final String message;
 
   const ErrorData({required this.id, required this.message});

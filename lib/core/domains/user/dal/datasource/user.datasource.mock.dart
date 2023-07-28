@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import '../../../../core/utils/mock.util.dart';
+import '../../../../utils/mock.util.dart';
 import '../../domain/exceptions/email_already_in_use.exception.dart';
-import '../dto/authenticate_user.body.dart';
-import '../dto/sign_up.body.dart';
-import 'auth_path_mocks.constants.dart';
 import '../../domain/exceptions/user_or_password_incorrect.exception.dart';
+import '../dto/authenticate_user.body.dart';
 import '../dto/authenticate_user.response.dart';
-import 'auth.datasource.interface.dart';
+import '../dto/sign_up.body.dart';
+import 'user.datasource.interface.dart';
+import 'user_path_mocks.constants.dart';
 
-class AuthDatasourceMock implements IAuthDatasource {
+class UserDatasourceMock implements IUserDatasource {
   Future<AuthenticateUserResponse> _getMock(String path) async {
     final file = await MockUtil.getMockFile(path);
     final response = AuthenticateUserResponse.fromJson(jsonDecode(file));
@@ -26,13 +26,13 @@ class AuthDatasourceMock implements IAuthDatasource {
     if (body.email.toLowerCase() != 'joaovixgon@gmail.com' ||
         body.password != 'qwe123') {
       final mock = await _getMock(
-        AuthPathMocksConstants.authenticateUserFailure,
+        UserPathMocksConstants.authenticateUserFailure,
       );
-      throw UserOrPasswordIncorrectException(failure: mock.error!);
+      throw UserOrPasswordIncorrectException(failure: mock.errors!.first);
     }
 
     final response = await _getMock(
-      AuthPathMocksConstants.authenticateUserSuccess,
+      UserPathMocksConstants.authenticateUserSuccess,
     );
     return response.data!;
   }
@@ -43,10 +43,10 @@ class AuthDatasourceMock implements IAuthDatasource {
       await Future.delayed(const Duration(seconds: 1));
       if (body.email == 'katekko@gmail.com') {
         final mock = await _getMock(
-          AuthPathMocksConstants.signUpEmailAlreadyExists,
+          UserPathMocksConstants.signUpEmailAlreadyExists,
         );
 
-        throw EmailAlreadyInUseException(failure: mock.error!);
+        throw EmailAlreadyInUseException(failure: mock.errors!.first);
       }
 
       log(

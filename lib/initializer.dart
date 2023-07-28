@@ -3,19 +3,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:project_quest/core/models/token_client.dart';
-import 'package:project_quest/features/auth/dal/datasource/auth.datasource.interface.dart';
 import 'package:project_quest/features/home/data/datasource/todo.datasource.mock.dart';
 
 import 'core/abstractions/http_connect.interface.dart';
 import 'core/constants/storage.constants.dart';
 import 'core/dal/storage/getx_storage.dart';
 import 'core/dal/storage/storage.interface.dart';
+import 'core/domains/user/dal/datasource/user.datasource.dart';
+import 'core/domains/user/dal/datasource/user.datasource.interface.dart';
+import 'core/domains/user/domain/constants/user_storage.constants.dart';
 import 'core/i18n/pt_br.dart';
 import 'core/i18n/translation.dart';
 import 'core/inject.dart';
 import 'core/models/http_connect.dart';
-import 'features/auth/dal/datasource/auth.datasource.dart';
-import 'features/auth/domain/constants/auth_storage.constants.dart';
 import 'features/home/data/datasource/todo.datasource.interface.dart';
 import 'features/shared/loading/loading.controller.dart';
 import 'features/shared/loading/loading.interface.dart';
@@ -51,9 +51,9 @@ class Initializer {
 
   static void _initDatasourceDependencies() {
     final connect = Inject.find<IHttpConnect>();
-    final authDatasource = AuthDatasource(connect: connect);
+    final authDatasource = UserDatasource(connect: connect);
     // final authDatasource = AuthDatasourceMock();
-    Inject.put<IAuthDatasource>(authDatasource);
+    Inject.put<IUserDatasource>(authDatasource);
 
     final todoDatasource = TodoDatasourceMock();
     Inject.put<ITodoDatasource>(todoDatasource);
@@ -95,7 +95,7 @@ class Initializer {
 
   static Future<void> _initConnect() async {
     final storage = Inject.find<IStorage>();
-    final token = await storage.read(AuthStorageConstants.tokenAuthorization);
+    final token = await storage.read(UserStorageConstants.tokenAuthorization);
     final client = TokenClient(token);
     final connect = HttpConnect(client);
     Inject.put<IHttpConnect>(connect);

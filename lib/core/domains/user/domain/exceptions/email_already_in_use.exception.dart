@@ -1,5 +1,5 @@
-import '../../../../core/abstractions/custom_exception.interface.dart';
-import '../../../../core/dal/data/error.data.dart';
+import '../../../../abstractions/custom_exception.interface.dart';
+import '../../../../dal/data/error.data.dart';
 
 class EmailAlreadyInUseException implements CustomException {
   final ErrorData _failure;

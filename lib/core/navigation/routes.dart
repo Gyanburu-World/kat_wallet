@@ -1,15 +1,15 @@
-import '../../features/auth/dal/repositories/login.repository.dart';
+import '../domains/user/dal/user.repository.dart';
 import '../inject.dart';
 
 class Routes {
   static Future<String> get initialRoute async {
     try {
-      final authRepository = LoginRepository(
-        authDatasource: Inject.find(),
+      final authRepository = UserRepository(
+        userDatasource: Inject.find(),
         storage: Inject.find(),
       );
 
-      final isUserLoggedIn = await authRepository.isUserLoggedIn();
+      final isUserLoggedIn = await authRepository.isLoggedIn();
       if (isUserLoggedIn) return home;
       return landing;
     } catch (err) {

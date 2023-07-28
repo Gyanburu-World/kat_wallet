@@ -1,13 +1,12 @@
-import 'package:project_quest/features/auth/dal/repositories/sign_up.repository.dart';
-import 'package:project_quest/features/auth/domain/usecases/sign_up.usecase.dart';
-
 import '../../../../../core/abstractions/field.interface.dart';
 import '../../../../../core/builders/field_validator.builder.dart';
 import '../../../../../core/dal/storage/storage.interface.dart';
+import '../../../../../core/domains/user/dal/datasource/user.datasource.interface.dart';
+import '../../../../../core/domains/user/dal/user.repository.dart';
 import '../../../../../core/inject.dart';
 import '../../../../../core/models/text_react_field.model.dart';
-import '../../../dal/datasource/auth.datasource.interface.dart';
 import '../../../presentation/sign_up/sign_up.controller.dart';
+import '../../usecases/sign_up.usecase.dart';
 import 'sign_up_controller.interface.dart';
 
 class SignUpControllerBinding {
@@ -22,15 +21,14 @@ class SignUpControllerBinding {
 
 ISignUpController makeSignUpController() {
   final storage = Inject.find<IStorage>();
-  final authDatasource = Inject.find<IAuthDatasource>();
+  final authDatasource = Inject.find<IUserDatasource>();
 
-  final signUpRepository = SignUpRepository(
-    authDatasource: authDatasource,
+  final signUpRepository = UserRepository(
+    userDatasource: authDatasource,
     storage: storage,
   );
 
   final signUpUsecase = SignUpUsecase(signUpRepository: signUpRepository);
-
   return SignUpController(
     emailField: _makeEmailField(),
     passwordField: _makePasswordField(),

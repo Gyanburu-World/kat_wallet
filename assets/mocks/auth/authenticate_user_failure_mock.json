@@ -1,6 +1,8 @@
 {
-    "error":{
-        "id": 404,
-        "message": "Username or password is incorrect"
-    }
+    "errors": [
+        {
+            "id": "Email",
+            "message": "Username or password is incorrect"
+        }
+    ]
 }
