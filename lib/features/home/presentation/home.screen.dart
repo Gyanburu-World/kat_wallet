@@ -63,7 +63,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void onFloatingActionButtonPressed() {}
+  void onFloatingActionButtonPressed() async {
+    await context.pushNamed(Routes.todo);
+    widget.controller.reloadTodos();
+  }
 
   void logout() {
     showDialog(

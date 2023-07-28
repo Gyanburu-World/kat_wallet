@@ -19,6 +19,17 @@ class Navigation {
           onInit: (_) => HomeControllerBinding.inject(),
           onDispose: (_) => HomeControllerBinding.dipose(),
         ),
+        routes: [
+          GoRoute(
+            path: Routes.todo,
+            name: Routes.todo,
+            builder: (context, state) => EntryProvider(
+              onBuild: (_) => const TodoScreen(),
+              onInit: (_) => TodoControllerBinding.inject(),
+              onDispose: (_) => TodoControllerBinding.dipose(),
+            ),
+          ),
+        ],
       ),
       GoRoute(
         path: Routes.landing,

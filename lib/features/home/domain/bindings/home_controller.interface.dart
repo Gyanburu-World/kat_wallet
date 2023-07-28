@@ -8,5 +8,7 @@ abstract class IHomeController extends IController {
 
   ValueNotifier<Map<DateTime, List<TodoModel>>> get todos;
 
+  void reloadTodos();
+
   Future<void> logout();
 }

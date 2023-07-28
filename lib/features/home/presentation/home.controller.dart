@@ -24,6 +24,10 @@ class HomeController implements IHomeController {
 
   @override
   void init() async {
+    fetchTodos();
+  }
+
+  void fetchTodos() async {
     try {
       loading.isLoading = true;
       final response = await getTodosUsecase();
@@ -32,6 +36,11 @@ class HomeController implements IHomeController {
     } finally {
       loading.isLoading = false;
     }
+  }
+
+  @override
+  void reloadTodos() {
+    fetchTodos();
   }
 
   Map<DateTime, List<TodoModel>> groupTodos(List<TodoModel> todos) {
