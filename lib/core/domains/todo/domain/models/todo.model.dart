@@ -1,15 +1,21 @@
 class TodoModel {
   final int id;
   final String title;
+  final String description;
   final double? value;
-  final DateTime date;
-  final bool isBilling;
+  final bool recurring;
+  final DateTime doAt;
+  final DateTime? doneAt;
+  final bool pay;
 
-  TodoModel({
+  const TodoModel({
     required this.id,
     required this.title,
     required this.value,
-    required this.date,
-    required this.isBilling,
+    required this.description,
+    required this.doAt,
+    required this.doneAt,
+    required this.recurring,
+    required this.pay,
   });
 }

@@ -37,7 +37,7 @@ class HomeController implements IHomeController {
   Map<DateTime, List<TodoModel>> groupTodos(List<TodoModel> todos) {
     Map<DateTime, List<TodoModel>> groupedTodos = {};
     for (final todo in todos) {
-      final date = DateTime(todo.date.year, todo.date.month, todo.date.day);
+      final date = DateTime(todo.doAt.year, todo.doAt.month, todo.doAt.day);
       if (!groupedTodos.containsKey(date)) {
         groupedTodos[date] = [];
       }

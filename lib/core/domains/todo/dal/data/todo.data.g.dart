@@ -9,13 +9,14 @@ part of 'todo.data.dart';
 TodoData _$TodoDataFromJson(Map<String, dynamic> json) => TodoData(
       id: json['id'] as int,
       title: json['title'] as String,
-      value: (json['value'] as num? ?? 0).toDouble(),
+      value: (json['value'] as num?)?.toDouble(),
       description: json['description'] as String,
       doAt: DateTime.parse(json['do_at'] as String),
       doneAt: json['done_at'] == null
           ? null
           : DateTime.parse(json['done_at'] as String),
       recurring: json['recurring'] as bool,
+      pay: json['pay'] as bool,
     );
 
 Map<String, dynamic> _$TodoDataToJson(TodoData instance) => <String, dynamic>{
@@ -24,6 +25,7 @@ Map<String, dynamic> _$TodoDataToJson(TodoData instance) => <String, dynamic>{
       'description': instance.description,
       'value': instance.value,
       'recurring': instance.recurring,
+      'pay': instance.pay,
       'do_at': instance.doAt.toIso8601String(),
       'done_at': instance.doneAt?.toIso8601String(),
     };

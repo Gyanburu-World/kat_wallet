@@ -3,14 +3,6 @@ import 'models/todo.model.dart';
 abstract class ITodoRepository {
   Future<List<TodoModel>> fetch();
 
-// {
-//   "title": "string",
-//   "description": "string",
-//   "value": 0,
-//   "do_at": "2023-07-28",
-//   "recurring": true
-// }
-
   Future<void> create({
     required String title,
     required String? description,
@@ -18,4 +10,8 @@ abstract class ITodoRepository {
     required DateTime doAt,
     required bool recurring,
   });
+
+  Future<TodoModel> getById(int id);
+  Future<TodoModel> update(TodoModel data);
+  Future<void> delete(TodoModel data);
 }

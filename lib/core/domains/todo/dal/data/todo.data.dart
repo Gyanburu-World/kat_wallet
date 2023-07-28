@@ -9,6 +9,7 @@ class TodoData {
   final String description;
   final double? value;
   final bool recurring;
+  final bool pay;
 
   @JsonKey(name: 'do_at')
   final DateTime doAt;
@@ -24,6 +25,7 @@ class TodoData {
     required this.doAt,
     required this.doneAt,
     required this.recurring,
+    required this.pay,
   });
 
   factory TodoData.fromJson(Map<String, dynamic> json) =>

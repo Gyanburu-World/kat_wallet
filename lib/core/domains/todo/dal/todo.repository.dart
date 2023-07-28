@@ -38,4 +38,25 @@ class TodoRepository implements ITodoRepository {
 
     await todoDatasource.create(body);
   }
+
+  @override
+  Future<void> delete(TodoModel model) async {
+    final data = TodoMapper.toData(model);
+    await todoDatasource.delete(data);
+  }
+
+  @override
+  Future<TodoModel> getById(int id) async {
+    final response = await todoDatasource.getById(id);
+    final model = TodoMapper.toModel(response);
+    return model;
+  }
+
+  @override
+  Future<TodoModel> update(TodoModel model) async {
+    final data = TodoMapper.toData(model);
+    final response = await todoDatasource.update(data);
+    final responseModel = TodoMapper.toModel(response);
+    return responseModel;
+  }
 }

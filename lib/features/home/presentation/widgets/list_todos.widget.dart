@@ -44,7 +44,7 @@ class ListTodoWidget extends StatelessWidget {
                     style: const TextStyle(color: Colors.white),
                   ),
                   subtitle: Text(
-                    transaction.isBilling ? 'A cobrar' : 'A pagar',
+                    transaction.pay ? 'A pagar' : 'A cobrar',
                     style: const TextStyle(color: Colors.white),
                   ),
                   trailing: Text(
