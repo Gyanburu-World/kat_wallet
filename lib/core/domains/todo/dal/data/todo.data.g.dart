@@ -9,7 +9,7 @@ part of 'todo.data.dart';
 TodoData _$TodoDataFromJson(Map<String, dynamic> json) => TodoData(
       id: json['id'] as int,
       title: json['title'] as String,
-      value: double.parse((json['value'] as String?) ?? '0'),
+      value: (json['value'] as num? ?? 0).toDouble(),
       description: json['description'] as String,
       doAt: DateTime.parse(json['do_at'] as String),
       doneAt: json['done_at'] == null

@@ -2,8 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'todo.data.g.dart';
 
-// value: double.parse((json['value'] as String?) ?? '0'),
-
 @JsonSerializable()
 class TodoData {
   final int id;

@@ -83,7 +83,7 @@ class HttpConnect implements IHttpConnect {
   }
 
   @override
-  Future<Response<T>> patch<T>(
+  Future<Response<T>> update<T>(
     String urlPath,
     Map<String, dynamic> body, {
     T Function(Map<String, dynamic>)? decoder,

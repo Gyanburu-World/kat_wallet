@@ -18,7 +18,7 @@ abstract class IHttpConnect {
     T Function(Map<String, dynamic>)? decoder,
   });
 
-  Future<Response<T>> patch<T>(
+  Future<Response<T>> update<T>(
     String urlPath,
     Map<String, dynamic> body, {
     T Function(Map<String, dynamic>)? decoder,
@@ -26,7 +26,7 @@ abstract class IHttpConnect {
 
   Future<Response<T>> delete<T>(
     String urlPath, {
-    required T Function(Map<String, dynamic>)? decoder,
+    T Function(Map<String, dynamic>)? decoder,
   });
 
   Future<Response<T>> postMultipartFile<T>(
