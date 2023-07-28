@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../domain/models/todo.model.dart';
+import '../../../../core/domains/todo/domain/models/todo.model.dart';
 
 class ListTodoWidget extends StatelessWidget {
   final Map<DateTime, List<TodoModel>> todos;

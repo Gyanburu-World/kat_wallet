@@ -1,4 +1,4 @@
-import 'package:project_quest/features/home/domain/models/todo.model.dart';
+import 'package:project_quest/core/domains/todo/domain/models/todo.model.dart';
 
 import '../data/todo.data.dart';
 

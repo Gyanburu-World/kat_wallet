@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:project_quest/features/home/data/data/todo.data.dart';
+import 'package:project_quest/core/domains/todo/dal/data/todo.data.dart';
 
-import '../../../../core/dal/data/error.data.dart';
+import '../../../../dal/data/error.data.dart';
 
 part 'get_todos.response.g.dart';
 

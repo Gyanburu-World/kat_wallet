@@ -3,7 +3,7 @@ import '../../../../core/builders/field_validator.builder.dart';
 import '../../../../core/domains/user/dal/user.repository.dart';
 import '../../../../core/inject.dart';
 import '../../../../core/models/text_react_field.model.dart';
-import '../../data/repositories/todo.repository.dart';
+import '../../../../core/domains/todo/dal/todo.repository.dart';
 import '../../presentation/home.controller.dart';
 import '../usecases/get_todos.usecase.dart';
 import '../usecases/logout.usecase.dart';

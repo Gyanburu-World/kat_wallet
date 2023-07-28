@@ -1,6 +1,5 @@
-import 'package:project_quest/features/home/domain/models/todo.model.dart';
-
-import '../repositories/todo_repository.interface.dart';
+import '../../../../core/domains/todo/domain/models/todo.model.dart';
+import '../../../../core/domains/todo/domain/todo_repository.interface.dart';
 
 class GetTodosUsecase {
   final ITodoRepository todoRepository;
@@ -8,7 +7,7 @@ class GetTodosUsecase {
 
   Future<List<TodoModel>> call() async {
     try {
-      return await todoRepository.getTodos();
+      return await todoRepository.fetch();
     } catch (err) {
       rethrow;
     }

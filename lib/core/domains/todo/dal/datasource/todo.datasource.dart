@@ -3,7 +3,7 @@ import 'todo.datasource.interface.dart';
 
 class TodoDatasource implements ITodoDatasource {
   @override
-  Future<GetTodosResponse> getTodos() {
+  Future<GetTodosResponse> fetch() {
     throw UnimplementedError();
   }
 }

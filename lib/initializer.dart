@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:project_quest/core/models/token_client.dart';
-import 'package:project_quest/features/home/data/datasource/todo.datasource.mock.dart';
+import 'package:project_quest/core/domains/todo/dal/datasource/todo.datasource.mock.dart';
 
 import 'core/abstractions/http_connect.interface.dart';
 import 'core/constants/storage.constants.dart';
@@ -16,7 +16,7 @@ import 'core/i18n/pt_br.dart';
 import 'core/i18n/translation.dart';
 import 'core/inject.dart';
 import 'core/models/http_connect.dart';
-import 'features/home/data/datasource/todo.datasource.interface.dart';
+import 'core/domains/todo/dal/datasource/todo.datasource.interface.dart';
 import 'features/shared/loading/loading.controller.dart';
 import 'features/shared/loading/loading.interface.dart';
 
