@@ -8,8 +8,8 @@ class TextFieldWidget extends StatelessWidget {
   final IField field;
   final bool useLabelAsHint;
   const TextFieldWidget({
-    required this.field,
     required this.label,
+    required this.field,
     super.key,
     this.useLabelAsHint = false,
   });
