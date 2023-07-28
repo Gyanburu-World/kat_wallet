@@ -21,7 +21,30 @@ class HttpConnect implements IHttpConnect {
     String urlPath, {
     required T Function(Map<String, dynamic>)? decoder,
   }) async {
-    throw UnimplementedError();
+    var response = await _client.get(Uri.parse('$urlBase/$urlPath'));
+
+    final json = jsonDecode(response.body) as Map<String, dynamic>;
+    T? decoded;
+
+    try {
+      decoded = decoder?.call(json);
+    } catch (err) {
+      developer.log(
+        'GET | Failed to decode the response body',
+        error: response.body,
+        name: 'HttpConnect',
+      );
+      rethrow;
+    }
+
+    final obj = Response<T>(statusCode: response.statusCode, payload: decoded);
+
+    final payload = obj.payload;
+    if (!obj.success && payload != null) {
+      throw HttpFailureException<T>(object: payload);
+    }
+
+    return obj;
   }
 
   @override

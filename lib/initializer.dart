@@ -9,8 +9,8 @@ import 'core/base/dal/storage/getx_storage.dart';
 import 'core/base/dal/storage/storage.interface.dart';
 import 'core/base/models/http_connect.dart';
 import 'core/base/models/token_client.dart';
+import 'core/domains/todo/dal/datasource/todo.datasource.dart';
 import 'core/domains/todo/dal/datasource/todo.datasource.interface.dart';
-import 'core/domains/todo/dal/datasource/todo.datasource.mock.dart';
 import 'core/domains/user/dal/datasource/user.datasource.dart';
 import 'core/domains/user/dal/datasource/user.datasource.interface.dart';
 import 'core/domains/user/domain/constants/user_storage.constants.dart';
@@ -51,11 +51,11 @@ class Initializer {
 
   static void _initDatasourceDependencies() {
     final connect = Inject.find<IHttpConnect>();
+
     final authDatasource = UserDatasource(connect: connect);
-    // final authDatasource = AuthDatasourceMock();
     Inject.put<IUserDatasource>(authDatasource);
 
-    final todoDatasource = TodoDatasourceMock();
+    final todoDatasource = TodoDatasource(connect: connect);
     Inject.put<ITodoDatasource>(todoDatasource);
   }
 

@@ -13,7 +13,7 @@ class TodoRepository implements ITodoRepository {
   Future<List<TodoModel>> fetch() async {
     try {
       final response = await todoDatasource.fetch();
-      final models = response.data!.map((e) => TodoMapper.toModel(e)).toList();
+      final models = response.map((e) => TodoMapper.toModel(e)).toList();
       return models;
     } catch (err) {
       rethrow;
