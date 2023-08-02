@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:project_quest/features/auth/presentation/sign_up/widgets/checkbox.widget.dart';
+import 'package:go_router/go_router.dart';
+import 'package:project_quest/core/base/utils/snackbar.util.dart';
+import 'package:project_quest/features/shared/checkbox.widget.dart';
 import 'package:project_quest/features/shared/loading/loading.widget.dart';
+import 'package:project_quest/features/shared/primary_button.widget.dart';
 import 'package:project_quest/features/shared/text_field.widget.dart';
 
 import '../../../core/base/style/colors.dart';
@@ -31,35 +34,61 @@ class _TodoScreenState extends State<TodoScreen> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              TextFieldWidget(label: 'Título*', field: widget.controller.title),
-              const SizedBox(height: 12),
-              TextFieldWidget(
-                label: 'Descrição',
-                field: widget.controller.description,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TextFieldWidget(
+                        label: 'Título*',
+                        field: widget.controller.title,
+                      ),
+                      const SizedBox(height: 12),
+                      TextFieldWidget(
+                        label: 'Descrição',
+                        field: widget.controller.description,
+                      ),
+                      const SizedBox(height: 12),
+                      TextFieldWidget(
+                        label: 'Valor',
+                        field: widget.controller.value,
+                        onlyNumber: true,
+                      ),
+                      const SizedBox(height: 12),
+                      CheckboxWidget(
+                        label: 'É cobrança?',
+                        field: widget.controller.isBilling,
+                        icon: Icons.monetization_on_outlined,
+                      ),
+                      const SizedBox(height: 12),
+                      CheckboxWidget(
+                        label: 'É recorrente?',
+                        field: widget.controller.isRecurring,
+                        icon: Icons.calendar_month,
+                      ),
+                      const SizedBox(height: 12),
+                      DatePickerWidget(field: widget.controller.doAt),
+                      const SizedBox(height: 12),
+                    ],
+                  ),
+                ),
               ),
-              const SizedBox(height: 12),
-              TextFieldWidget(
-                label: 'Valor',
-                field: widget.controller.description,
-              ),
-              const SizedBox(height: 12),
-              CheckboxWidget(
-                label: 'É cobrança?',
-                field: widget.controller.isBilling,
-                icon: Icons.monetization_on_outlined,
-              ),
-              const SizedBox(height: 12),
-              CheckboxWidget(
-                label: 'É recorrente?',
-                field: widget.controller.isRecurring,
-                icon: Icons.calendar_month,
-              ),
-              const SizedBox(height: 12),
-              DatePickerWidget(field: widget.controller.doAt),
+              PrimaryButtonWidget(text: 'Criar', onPressed: createTodo)
             ],
           ),
         ),
       ),
     );
+  }
+
+  void createTodo(BuildContext context) async {
+    await widget.controller.createTodo();
+    if (mounted) {
+      context.pop();
+      showSuccessSnackbar(
+        context: context,
+        title: 'Sucesso',
+        message: 'Criado com sucesso!',
+      );
+    }
   }
 }

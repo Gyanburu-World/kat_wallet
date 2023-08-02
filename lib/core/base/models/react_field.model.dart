@@ -17,18 +17,16 @@ class ReactFieldModel<T> extends IField<T> {
     this.validateOnType = true,
   }) : _value = value {
     _valueNotifier.value = value;
+    _valueNotifier.addListener(() {
+      onChange(_valueNotifier.value);
+    });
   }
 
   @override
   T? get value => _value;
 
   @override
-  set value(T? val) {
-    onChange(val);
-  }
-
-  @override
-  ValueListenable<T?> get valueNotifier => _valueNotifier;
+  ValueNotifier<T?> get valueNotifier => _valueNotifier;
 
   @override
   Stream<String?> get errorStream => _error.stream;
@@ -43,16 +41,14 @@ class ReactFieldModel<T> extends IField<T> {
   void setError(String error) => _error.sink.add(error);
 
   @override
-  void onChange(T? val) {
+  void onChange(dynamic val) {
     if (val != null) {
       firstTimeAux = false;
       _value = val;
-      _valueNotifier.value = _value;
     }
 
     if (!firstTimeAux && validateOnType) validate();
     onChangeCallback?.call(_value);
-    _valueNotifier.value = _value;
   }
 
   @override

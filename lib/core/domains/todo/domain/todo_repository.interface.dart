@@ -6,9 +6,10 @@ abstract class ITodoRepository {
   Future<void> create({
     required String title,
     required String? description,
-    required int? value,
+    required double? value,
     required DateTime doAt,
-    required bool recurring,
+    required bool isRecurring,
+    required bool isBilling,
   });
 
   Future<TodoModel> getById(int id);

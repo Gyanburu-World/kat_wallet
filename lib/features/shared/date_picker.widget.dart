@@ -70,7 +70,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       },
     );
     if (date != null) {
-      widget.field.value = date;
+      widget.field.valueNotifier.value = date;
     }
   }
 }

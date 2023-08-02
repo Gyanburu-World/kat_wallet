@@ -7,9 +7,12 @@ part 'create_todo.body.g.dart';
 class CreateTodoBody extends Equatable {
   final String title;
   final String? description;
-  final int? value;
-  final DateTime doAt;
+  final double? value;
   final bool recurring;
+  final bool pay;
+
+  @JsonKey(name: 'do_at')
+  final DateTime doAt;
 
   const CreateTodoBody({
     required this.description,
@@ -17,6 +20,7 @@ class CreateTodoBody extends Equatable {
     required this.recurring,
     required this.title,
     required this.value,
+    required this.pay,
   });
 
   factory CreateTodoBody.fromJson(Map<String, dynamic> json) =>

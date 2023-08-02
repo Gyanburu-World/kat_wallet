@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/base/abstractions/field.interface.dart';
-import '../../../../shared/view_controller.interface.dart';
-import '../../../domain/bindings/sign_up/sign_up_controller.interface.dart';
+import '../../core/base/abstractions/field.interface.dart';
+import 'view_controller.interface.dart';
+import '../auth/domain/bindings/sign_up/sign_up_controller.interface.dart';
 
 class CheckboxWidget extends ViewController<ISignUpController> {
   final IField<bool> field;
@@ -23,7 +23,7 @@ class CheckboxWidget extends ViewController<ISignUpController> {
         return CheckboxListTile(
           value: snapshot,
           dense: true,
-          onChanged: (val) => field.value = val!,
+          onChanged: (val) => field.valueNotifier.value = val!,
           checkColor: Colors.white,
           tileColor: Colors.transparent,
           contentPadding: const EdgeInsets.only(right: 0, left: 10),

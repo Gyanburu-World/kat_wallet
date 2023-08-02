@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -18,19 +17,14 @@ class TextReactFieldModel<T> extends IField<T> {
     this.validateOnType = true,
   })  : _value = value,
         super(controller: TextEditingController()) {
-    controller?.addListener(() => onChange(controller?.text as T));
+    controller?.addListener(() => onChange(controller?.text as String));
   }
 
   @override
   T? get value => _value;
 
   @override
-  set value(T? val) {
-    onChange(val);
-  }
-
-  @override
-  ValueListenable<T?> get valueNotifier => _valueNotifier;
+  ValueNotifier<T?> get valueNotifier => _valueNotifier;
 
   @override
   Stream<String?> get errorStream => _error.stream;
@@ -45,20 +39,17 @@ class TextReactFieldModel<T> extends IField<T> {
   void setError(String error) => _error.sink.add(error);
 
   @override
-  void onChange(T? val) {
+  void onChange(dynamic val) {
     if (val != null && val is String) {
-      if ((runtimeType == TextReactFieldModel<double>) ||
-          runtimeType == TextReactFieldModel<int>) {
+      if (runtimeType == TextReactFieldModel<double>) {
         dynamic parse;
         final onlyNumber = val.replaceAll(RegExp('[^0-9.]'), '');
-        parse = num.tryParse(onlyNumber);
+        parse = double.tryParse(onlyNumber);
         _value = parse;
         firstTimeAux = false;
       } else if (runtimeType == TextReactFieldModel<String>) {
-        _value = val;
-        if (val == '') {
-          controller?.text = val;
-        } else {
+        _value = val as T?;
+        if (val != '') {
           firstTimeAux = false;
         }
       }

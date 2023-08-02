@@ -1,10 +1,12 @@
 import 'package:project_quest/core/base/abstractions/field.interface.dart';
+import 'package:project_quest/features/todo/usecases/create_todo.usecase.dart';
 
 import '../../shared/loading/loading.interface.dart';
 import '../binding/todo_controller.interface.dart';
 
 class TodoController implements ITodoController {
   final ILoadingController loading;
+  final CreateTodoUsecase createTodoUsecase;
 
   final IField<String> _titleField;
   final IField<String> _descriptionField;
@@ -29,10 +31,11 @@ class TodoController implements ITodoController {
   IField<String> get title => _titleField;
 
   @override
-  IField<double> get value => throw _valueField;
+  IField<double> get value => _valueField;
 
   TodoController({
     required this.loading,
+    required this.createTodoUsecase,
     required IField<String> titleField,
     required IField<String> descriptionField,
     required IField<double> valueField,
@@ -62,8 +65,19 @@ class TodoController implements ITodoController {
   }
 
   @override
-  Future<void> createTodo() {
-    // TODO: implement authenticateUser
-    throw UnimplementedError();
+  Future<void> createTodo() async {
+    try {
+      loading.isLoading = true;
+      await createTodoUsecase(
+        title: _titleField.value!,
+        description: _descriptionField.value,
+        value: _valueField.value,
+        isRecurring: _isRecurringField.value!,
+        isBilling: _isBillingField.value!,
+        doAt: _doAtField.value!,
+      );
+    } finally {
+      loading.isLoading = false;
+    }
   }
 }

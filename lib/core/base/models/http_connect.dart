@@ -41,6 +41,11 @@ class HttpConnect implements IHttpConnect {
 
     final payload = obj.payload;
     if (!obj.success && payload != null) {
+      developer.log(
+        'GET | Request failed',
+        error: response.body,
+        name: 'HttpConnect',
+      );
       throw HttpFailureException<T>(object: payload);
     }
 

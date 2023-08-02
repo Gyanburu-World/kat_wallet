@@ -1,3 +1,6 @@
+import 'package:project_quest/core/domains/todo/dal/todo.repository.dart';
+import 'package:project_quest/features/todo/usecases/create_todo.usecase.dart';
+
 import '../../../../core/inject.dart';
 import '../../../core/base/abstractions/field.interface.dart';
 import '../../../core/base/builders/field_validator.builder.dart';
@@ -17,8 +20,12 @@ class TodoControllerBinding {
 }
 
 ITodoController makeTodoController() {
+  final todoRepository = TodoRepository(todoDatasource: Inject.find());
+  final createTodoUsecase = CreateTodoUsecase(todoRepository: todoRepository);
+
   return TodoController(
     loading: Inject.find(),
+    createTodoUsecase: createTodoUsecase,
     titleField: makeTitleField(),
     descriptionField: makeDescriptionField(),
     valueField: makeValueField(),
@@ -62,6 +69,6 @@ IField<bool> makeIsRecurringField() {
 
 IField<DateTime> makeDoAtField() {
   return ReactFieldModel(
-    validators: FieldValidatorBuilder<DateTime>().build(),
+    validators: FieldValidatorBuilder<DateTime>().required().build(),
   );
 }

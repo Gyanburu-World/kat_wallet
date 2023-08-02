@@ -9,10 +9,11 @@ part of 'create_todo.body.dart';
 CreateTodoBody _$CreateTodoBodyFromJson(Map<String, dynamic> json) =>
     CreateTodoBody(
       description: json['description'] as String?,
-      doAt: DateTime.parse(json['doAt'] as String),
+      doAt: DateTime.parse(json['do_at'] as String),
       recurring: json['recurring'] as bool,
       title: json['title'] as String,
-      value: json['value'] as int?,
+      value: (json['value'] as num?)?.toDouble(),
+      pay: json['pay'] as bool,
     );
 
 Map<String, dynamic> _$CreateTodoBodyToJson(CreateTodoBody instance) =>
@@ -20,6 +21,7 @@ Map<String, dynamic> _$CreateTodoBodyToJson(CreateTodoBody instance) =>
       'title': instance.title,
       'description': instance.description,
       'value': instance.value,
-      'doAt': instance.doAt.toIso8601String(),
       'recurring': instance.recurring,
+      'pay': instance.pay,
+      'do_at': instance.doAt.toIso8601String(),
     };
