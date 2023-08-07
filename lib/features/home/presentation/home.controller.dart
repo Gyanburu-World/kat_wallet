@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:project_quest/core/domains/todo/domain/models/todo.model.dart';
-import 'package:project_quest/features/home/domain/usecases/get_todos.usecase.dart';
-import 'package:project_quest/features/home/domain/usecases/logout.usecase.dart';
 
 import '../../shared/loading/loading.interface.dart';
-import '../domain/bindings/home_controller.interface.dart';
+import '../bindings/home_controller.interface.dart';
+import '../usecases/get_todos.usecase.dart';
+import '../usecases/logout.usecase.dart';
 
 class HomeController implements IHomeController {
   final ILoadingController loading;

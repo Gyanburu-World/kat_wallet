@@ -4,7 +4,7 @@ import '../../../../core/base/models/text_react_field.model.dart';
 import '../../../../core/domains/user/dal/user.repository.dart';
 import '../../../../core/inject.dart';
 import '../../../../core/domains/todo/dal/todo.repository.dart';
-import '../../presentation/home.controller.dart';
+import '../presentation/home.controller.dart';
 import '../usecases/get_todos.usecase.dart';
 import '../usecases/logout.usecase.dart';
 import 'home_controller.interface.dart';
