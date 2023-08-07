@@ -60,6 +60,9 @@ class ListTodoWidget extends StatelessWidget {
       );
     }
 
-    return ListView(children: dateGroupWidgets);
+    return ListView(
+      padding: const EdgeInsets.only(bottom: 80),
+      children: dateGroupWidgets,
+    );
   }
 }
