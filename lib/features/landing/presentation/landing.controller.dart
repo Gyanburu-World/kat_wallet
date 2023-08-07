@@ -1,4 +1,4 @@
-import '../../domain/bindings/landing/landing_controller.interface.dart';
+import '../binding/landing_controller.interface.dart';
 
 class LandingController implements ILandingController {
   LandingController();

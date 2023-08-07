@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/view_controller.interface.dart';
-import '../../../domain/bindings/landing/landing_controller.interface.dart';
+import '../../../shared/view_controller.interface.dart';
+import '../../binding/landing_controller.interface.dart';
 
 class BodyTextWidget extends ViewController<ILandingController> {
   const BodyTextWidget({super.key});

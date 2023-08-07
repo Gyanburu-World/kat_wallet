@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../shared/view_controller.interface.dart';
-import '../../domain/bindings/landing/landing_controller.interface.dart';
+import '../../shared/view_controller.interface.dart';
+import '../binding/landing_controller.interface.dart';
 import 'widgets/body_text.widget.dart';
 import 'widgets/buttons.widget.dart';
 import 'widgets/header.widget.dart';

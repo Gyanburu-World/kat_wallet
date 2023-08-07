@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/navigation/routes.dart';
-import '../../../../shared/primary_button.widget.dart';
-import '../../../../shared/secondary_button.widget.dart';
-import '../../../../shared/view_controller.interface.dart';
-import '../../../domain/bindings/landing/landing_controller.interface.dart';
+import '../../../../core/navigation/routes.dart';
+import '../../../shared/primary_button.widget.dart';
+import '../../../shared/secondary_button.widget.dart';
+import '../../../shared/view_controller.interface.dart';
+import '../../binding/landing_controller.interface.dart';
 
 class ButtonsWidget extends ViewController<ILandingController> {
   const ButtonsWidget({super.key});

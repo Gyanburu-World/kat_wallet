@@ -1,5 +1,5 @@
 import '../../../../../core/inject.dart';
-import '../../../presentation/landing/landing.controller.dart';
+import '../presentation/landing.controller.dart';
 import 'landing_controller.interface.dart';
 
 class LandingControllerBinding {
