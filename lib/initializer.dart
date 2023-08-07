@@ -13,7 +13,6 @@ import 'core/domains/todo/dal/datasource/todo.datasource.dart';
 import 'core/domains/todo/dal/datasource/todo.datasource.interface.dart';
 import 'core/domains/user/dal/datasource/user.datasource.dart';
 import 'core/domains/user/dal/datasource/user.datasource.interface.dart';
-import 'core/domains/user/domain/constants/user_storage.constants.dart';
 import 'core/i18n/pt_br.dart';
 import 'core/i18n/translation.dart';
 import 'core/inject.dart';
@@ -95,8 +94,7 @@ class Initializer {
 
   static Future<void> _initConnect() async {
     final storage = Inject.find<IStorage>();
-    final token = await storage.read(UserStorageConstants.tokenAuthorization);
-    final client = TokenClient(token);
+    final client = TokenClient(storage);
     final connect = HttpConnect(client);
     Inject.put<IHttpConnect>(connect);
   }
