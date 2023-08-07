@@ -4,19 +4,42 @@ import 'package:intl/intl.dart';
 import '../../core/base/abstractions/field.interface.dart';
 import '../../core/base/style/colors.dart';
 
-class DatePickerWidget extends StatefulWidget {
+class DatePickerWidget extends StatelessWidget {
   final IField<DateTime> field;
   const DatePickerWidget({super.key, required this.field});
 
   @override
-  State<DatePickerWidget> createState() => _DatePickerWidgetState();
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: field.errorStream,
+      builder: (_, snap, ___) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _PickerWidget(field: field),
+          Visibility(
+            visible: snap != null,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+              child: Text(
+                snap ?? '',
+                style: TextStyle(color: Colors.red[700], fontSize: 12.0),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-class _DatePickerWidgetState extends State<DatePickerWidget> {
+class _PickerWidget extends StatelessWidget {
+  final IField<DateTime> field;
+  const _PickerWidget({required this.field});
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: widget.field.valueNotifier,
+      valueListenable: field.valueNotifier,
       builder: (_, __, ___) => Container(
         height: 48,
         decoration: BoxDecoration(
@@ -26,21 +49,24 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: InkWell(
-            onTap: onPressed,
+            onTap: () => onPressed(context),
             child: Row(
               children: [
                 Expanded(
                   child: Text(
-                    widget.field.value == null
+                    field.value == null
                         ? 'Selecione uma data*'
-                        : DateFormat('dd/MM/yyyy').format(widget.field.value!),
+                        : DateFormat('dd/MM/yyyy').format(field.value!),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                     ),
                   ),
                 ),
-                const Icon(Icons.calendar_today_outlined, color: Colors.white),
+                const Icon(
+                  Icons.calendar_today_outlined,
+                  color: Colors.white,
+                ),
               ],
             ),
           ),
@@ -49,12 +75,12 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
     );
   }
 
-  void onPressed() async {
+  void onPressed(BuildContext context) async {
     final theme = Theme.of(context);
 
     final date = await showDatePicker(
       context: context,
-      initialDate: widget.field.value ?? DateTime.now(),
+      initialDate: field.value ?? DateTime.now(),
       firstDate: DateTime(2023),
       lastDate: DateTime(2024),
       builder: (BuildContext context, Widget? child) {
@@ -70,7 +96,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       },
     );
     if (date != null) {
-      widget.field.valueNotifier.value = date;
+      field.valueNotifier.value = date;
     }
   }
 }

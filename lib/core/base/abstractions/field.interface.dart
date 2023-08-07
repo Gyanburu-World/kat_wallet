@@ -5,7 +5,7 @@ import 'validators/validator.interface.dart';
 abstract class IField<T> extends IValidator<T> {
   T? get value;
   ValueNotifier<T?> get valueNotifier;
-  Stream<String?> get errorStream;
+  ValueNotifier<String?> get errorStream;
   final TextEditingController? controller;
 
   IField({required super.validators, this.controller});

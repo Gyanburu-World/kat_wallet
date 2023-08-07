@@ -65,19 +65,40 @@ class TodoController implements ITodoController {
   }
 
   @override
-  Future<void> createTodo() async {
+  Future<bool> createTodo() async {
     try {
       loading.isLoading = true;
-      await createTodoUsecase(
-        title: _titleField.value!,
-        description: _descriptionField.value,
-        value: _valueField.value,
-        isRecurring: _isRecurringField.value!,
-        isBilling: _isBillingField.value!,
-        doAt: _doAtField.value!,
-      );
+      if (validateFields()) {
+        await createTodoUsecase(
+          title: _titleField.value!,
+          description: _descriptionField.value,
+          value: _valueField.value,
+          isRecurring: _isRecurringField.value!,
+          isBilling: _isBillingField.value!,
+          doAt: _doAtField.value!,
+        );
+
+        return true;
+      }
+
+      return false;
     } finally {
       loading.isLoading = false;
     }
+  }
+
+  bool validateFields() {
+    _titleField.validate();
+    _descriptionField.validate();
+    _valueField.validate();
+    _isRecurringField.validate();
+    _isBillingField.validate();
+    _doAtField.validate();
+
+    return !_titleField.hasError &&
+        !_valueField.hasError &&
+        !_doAtField.hasError &&
+        !_isRecurringField.hasError &&
+        !_isBillingField.hasError;
   }
 }

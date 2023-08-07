@@ -83,8 +83,8 @@ class _TodoScreenState extends State<TodoScreen> {
 
   void createTodo(BuildContext context) async {
     try {
-      await widget.controller.createTodo();
-      if (mounted) {
+      final success = await widget.controller.createTodo();
+      if (mounted && success) {
         context.pop();
         showSuccessSnackbar(
           context: context,

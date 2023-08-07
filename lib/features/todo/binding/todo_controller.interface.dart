@@ -11,5 +11,5 @@ abstract class ITodoController extends IController {
   IField<bool> get isBilling;
   IField<DateTime> get doAt;
 
-  Future<void> createTodo();
+  Future<bool> createTodo();
 }

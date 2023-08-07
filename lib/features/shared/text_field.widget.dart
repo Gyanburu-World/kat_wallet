@@ -30,9 +30,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<String?>(
-      stream: widget.field.errorStream,
-      builder: (_, snapshot) {
+    return ValueListenableBuilder<String?>(
+      valueListenable: widget.field.errorStream,
+      builder: (_, snapshot, __) {
         return TextFormField(
           controller: widget.field.controller,
           textInputAction: TextInputAction.next,
@@ -52,7 +52,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             labelStyle: const TextStyle(color: Color(0xFFBEBEBE), fontSize: 16),
             hintText: widget.useLabelAsHint ? widget.label : null,
             hintStyle: const TextStyle(color: Color(0xFFBEBEBE), fontSize: 16),
-            errorText: snapshot.data,
+            errorText: snapshot,
             contentPadding: const EdgeInsets.symmetric(horizontal: 16),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),

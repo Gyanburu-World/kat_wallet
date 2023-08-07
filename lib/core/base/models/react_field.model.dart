@@ -1,12 +1,11 @@
 import 'package:flutter/foundation.dart';
-import 'package:rxdart/rxdart.dart';
 
 import '../abstractions/field.interface.dart';
 
 class ReactFieldModel<T> extends IField<T> {
   T? _value;
   final _valueNotifier = ValueNotifier<T?>(null);
-  final _error = BehaviorSubject<String?>();
+  final _error = ValueNotifier<String?>(null);
 
   var firstTimeAux = true;
   final bool validateOnType;
@@ -29,22 +28,23 @@ class ReactFieldModel<T> extends IField<T> {
   ValueNotifier<T?> get valueNotifier => _valueNotifier;
 
   @override
-  Stream<String?> get errorStream => _error.stream;
+  ValueNotifier<String?> get errorStream => _error;
 
   @override
   bool get hasError => _error.value != null;
 
   @override
-  void clearError() => _error.sink.add(null);
+  void clearError() => _error.value = null;
 
   @override
-  void setError(String error) => _error.sink.add(error);
+  void setError(String error) => _error.value = error;
 
   @override
   void onChange(dynamic val) {
     if (val != null) {
       firstTimeAux = false;
       _value = val;
+      clearError();
     }
 
     if (!firstTimeAux && validateOnType) validate();
@@ -53,13 +53,14 @@ class ReactFieldModel<T> extends IField<T> {
 
   @override
   bool validate() {
-    _error.sink.add(super.validateValue(value));
+    _error.value = super.validateValue(value);
     return _error.value == null;
   }
 
   @override
   void dispose() {
-    _error.close();
+    _error.dispose();
+    _valueNotifier.dispose();
     controller?.dispose();
   }
 }
