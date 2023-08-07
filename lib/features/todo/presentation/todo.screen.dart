@@ -23,6 +23,12 @@ class TodoScreen extends ViewStateController<ITodoController> {
 
 class _TodoScreenState extends State<TodoScreen> {
   @override
+  void initState() {
+    super.initState();
+    widget.controller.init();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return LoadingWidget(
       child: Scaffold(

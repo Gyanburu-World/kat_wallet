@@ -5,7 +5,8 @@ import '../../../../core/domains/todo/domain/models/todo.model.dart';
 
 class ListTodoWidget extends StatelessWidget {
   final Map<DateTime, List<TodoModel>> todos;
-  const ListTodoWidget({super.key, required this.todos});
+  final void Function(TodoModel) onTap;
+  const ListTodoWidget({super.key, required this.todos, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -33,23 +34,23 @@ class ListTodoWidget extends StatelessWidget {
               itemCount: todos[date]!.length,
               separatorBuilder: (_, __) => const SizedBox(height: 3),
               itemBuilder: (_, int index) {
-                final transaction = todos[date]![index];
+                final todo = todos[date]![index];
 
                 return ListTile(
                   tileColor: Colors.grey[900],
                   visualDensity: VisualDensity.comfortable,
-                  onTap: () {},
+                  onTap: () => onTap(todo),
                   title: Text(
-                    transaction.title,
+                    todo.title,
                     style: const TextStyle(color: Colors.white),
                   ),
                   subtitle: Text(
-                    transaction.pay ? 'A pagar' : 'A cobrar',
+                    todo.pay ? 'A pagar' : 'A cobrar',
                     style: const TextStyle(color: Colors.white),
                   ),
                   trailing: Text(
                     NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$')
-                        .format(transaction.value ?? 0),
+                        .format(todo.value ?? 0),
                     style: const TextStyle(color: Colors.white),
                   ),
                 );

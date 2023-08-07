@@ -40,7 +40,7 @@ class _PickerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: field.valueNotifier,
-      builder: (_, __, ___) => Container(
+      builder: (_, snap, ___) => Container(
         height: 48,
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.1),
@@ -54,9 +54,9 @@ class _PickerWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    field.value == null
+                    snap == null
                         ? 'Selecione uma data*'
-                        : DateFormat('dd/MM/yyyy').format(field.value!),
+                        : DateFormat('dd/MM/yyyy').format(snap),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -80,7 +80,7 @@ class _PickerWidget extends StatelessWidget {
 
     final date = await showDatePicker(
       context: context,
-      initialDate: field.value ?? DateTime.now(),
+      initialDate: field.valueNotifier.value ?? DateTime.now(),
       firstDate: DateTime(2023),
       lastDate: DateTime(2024),
       builder: (BuildContext context, Widget? child) {

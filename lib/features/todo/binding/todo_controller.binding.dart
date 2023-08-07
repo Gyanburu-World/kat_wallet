@@ -6,12 +6,13 @@ import '../../../core/base/abstractions/field.interface.dart';
 import '../../../core/base/builders/field_validator.builder.dart';
 import '../../../core/base/models/react_field.model.dart';
 import '../../../core/base/models/text_react_field.model.dart';
+import '../../../core/domains/todo/domain/models/todo.model.dart';
 import '../presentation/todo.controller.dart';
 import 'todo_controller.interface.dart';
 
 class TodoControllerBinding {
-  static void inject() {
-    Inject.injectController<ITodoController>(makeTodoController);
+  static void inject(TodoModel? todo) {
+    Inject.injectController<ITodoController>(() => makeTodoController(todo));
   }
 
   static void dipose() {
@@ -19,11 +20,12 @@ class TodoControllerBinding {
   }
 }
 
-ITodoController makeTodoController() {
+ITodoController makeTodoController(TodoModel? todo) {
   final todoRepository = TodoRepository(todoDatasource: Inject.find());
   final createTodoUsecase = CreateTodoUsecase(todoRepository: todoRepository);
 
   return TodoController(
+    updateTodo: todo,
     loading: Inject.find(),
     createTodoUsecase: createTodoUsecase,
     titleField: makeTitleField(),

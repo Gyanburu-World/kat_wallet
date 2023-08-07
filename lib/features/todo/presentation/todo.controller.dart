@@ -1,6 +1,7 @@
 import 'package:project_quest/core/base/abstractions/field.interface.dart';
 import 'package:project_quest/features/todo/usecases/create_todo.usecase.dart';
 
+import '../../../core/domains/todo/domain/models/todo.model.dart';
 import '../../shared/loading/loading.interface.dart';
 import '../binding/todo_controller.interface.dart';
 
@@ -33,9 +34,12 @@ class TodoController implements ITodoController {
   @override
   IField<double> get value => _valueField;
 
+  TodoModel? updateTodo;
+
   TodoController({
     required this.loading,
     required this.createTodoUsecase,
+    required this.updateTodo,
     required IField<String> titleField,
     required IField<String> descriptionField,
     required IField<double> valueField,
@@ -51,7 +55,14 @@ class TodoController implements ITodoController {
 
   @override
   void init() {
-    // TODO: Carregar os dados do todo clicado
+    if (updateTodo != null) {
+      _titleField.controller?.text = updateTodo!.title;
+      _descriptionField.controller?.text = updateTodo!.description;
+      _valueField.controller?.text = updateTodo!.value?.toString() ?? '';
+      _isRecurringField.valueNotifier.value = updateTodo!.recurring;
+      _isBillingField.valueNotifier.value = updateTodo!.pay;
+      _doAtField.valueNotifier.value = updateTodo!.doAt;
+    }
   }
 
   @override
@@ -70,12 +81,12 @@ class TodoController implements ITodoController {
       loading.isLoading = true;
       if (validateFields()) {
         await createTodoUsecase(
-          title: _titleField.value!,
-          description: _descriptionField.value,
-          value: _valueField.value,
-          isRecurring: _isRecurringField.value!,
-          isBilling: _isBillingField.value!,
-          doAt: _doAtField.value!,
+          title: _titleField.valueNotifier.value!,
+          description: _descriptionField.valueNotifier.value,
+          value: _valueField.valueNotifier.value,
+          isRecurring: _isRecurringField.valueNotifier.value!,
+          isBilling: _isBillingField.valueNotifier.value!,
+          doAt: _doAtField.valueNotifier.value!,
         );
 
         return true;

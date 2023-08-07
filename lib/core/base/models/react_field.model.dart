@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import '../abstractions/field.interface.dart';
 
 class ReactFieldModel<T> extends IField<T> {
-  T? _value;
   final _valueNotifier = ValueNotifier<T?>(null);
   final _error = ValueNotifier<String?>(null);
 
@@ -14,15 +13,12 @@ class ReactFieldModel<T> extends IField<T> {
     T? value,
     required super.validators,
     this.validateOnType = true,
-  }) : _value = value {
+  }) {
     _valueNotifier.value = value;
     _valueNotifier.addListener(() {
       onChange(_valueNotifier.value);
     });
   }
-
-  @override
-  T? get value => _value;
 
   @override
   ValueNotifier<T?> get valueNotifier => _valueNotifier;
@@ -43,17 +39,16 @@ class ReactFieldModel<T> extends IField<T> {
   void onChange(dynamic val) {
     if (val != null) {
       firstTimeAux = false;
-      _value = val;
       clearError();
     }
 
     if (!firstTimeAux && validateOnType) validate();
-    onChangeCallback?.call(_value);
+    onChangeCallback?.call(_valueNotifier.value);
   }
 
   @override
   bool validate() {
-    _error.value = super.validateValue(value);
+    _error.value = super.validateValue(_valueNotifier.value);
     return _error.value == null;
   }
 

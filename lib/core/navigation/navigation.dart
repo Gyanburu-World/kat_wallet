@@ -4,6 +4,7 @@ import '../../features/bindings.dart';
 import '../../features/screens.dart';
 import '../../initializer.dart';
 import '../base/utils/provider.util.dart';
+import '../domains/todo/domain/models/todo.model.dart';
 import 'routes.dart';
 
 class Navigation {
@@ -25,7 +26,9 @@ class Navigation {
             name: Routes.todo,
             builder: (context, state) => EntryProvider(
               onBuild: (_) => const TodoScreen(),
-              onInit: (_) => TodoControllerBinding.inject(),
+              onInit: (_) => TodoControllerBinding.inject(
+                state.extra as TodoModel?,
+              ),
               onDispose: (_) => TodoControllerBinding.dipose(),
             ),
           ),

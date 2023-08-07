@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'validators/validator.interface.dart';
 
 abstract class IField<T> extends IValidator<T> {
-  T? get value;
   ValueNotifier<T?> get valueNotifier;
   ValueNotifier<String?> get errorStream;
   final TextEditingController? controller;
@@ -16,23 +15,23 @@ abstract class IField<T> extends IValidator<T> {
   void setError(String error);
   void dispose();
 
-  @override
-  bool operator ==(Object other) {
-    if (runtimeType == other.runtimeType) {
-      var obj = other as IField;
-      if (obj.value != other.value) return false;
-      if (validators.length != other.validators.length) return false;
-      for (var val1 in validators) {
-        final hasThisValidator = other.validators.any((e) => e == val1);
-        if (!hasThisValidator) return false;
-      }
+  // @override
+  // bool operator ==(Object other) {
+  //   if (runtimeType == other.runtimeType) {
+  //     var obj = other as IField;
+  //     if (valueNotifier.value != valueNotifier.value) return false;
+  //     if (validators.length != other.validators.length) return false;
+  //     for (var val1 in validators) {
+  //       final hasThisValidator = other.validators.any((e) => e == val1);
+  //       if (!hasThisValidator) return false;
+  //     }
 
-      return true;
-    }
+  //     return true;
+  //   }
 
-    return false;
-  }
+  //   return false;
+  // }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
+  // @override
+  // int get hashCode => runtimeType.hashCode;
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../abstractions/field.interface.dart';
 
 class TextReactFieldModel<T> extends IField<T> {
-  T? _value;
   final _valueNotifier = ValueNotifier<T?>(null);
   final _error = ValueNotifier<String?>(null);
 
@@ -14,13 +13,9 @@ class TextReactFieldModel<T> extends IField<T> {
     T? value,
     required super.validators,
     this.validateOnType = true,
-  })  : _value = value,
-        super(controller: TextEditingController()) {
+  }) : super(controller: TextEditingController()) {
     controller?.addListener(() => onChange(controller?.text as String));
   }
-
-  @override
-  T? get value => _value;
 
   @override
   ValueNotifier<T?> get valueNotifier => _valueNotifier;
@@ -44,10 +39,10 @@ class TextReactFieldModel<T> extends IField<T> {
         dynamic parse;
         final onlyNumber = val.replaceAll(RegExp('[^0-9.]'), '');
         parse = double.tryParse(onlyNumber);
-        _value = parse;
+        _valueNotifier.value = parse;
         firstTimeAux = false;
       } else if (runtimeType == TextReactFieldModel<String>) {
-        _value = val as T?;
+        _valueNotifier.value = val as T?;
         if (val != '') {
           firstTimeAux = false;
         }
@@ -55,12 +50,12 @@ class TextReactFieldModel<T> extends IField<T> {
     }
 
     if (!firstTimeAux && validateOnType) validate();
-    onChangeCallback?.call(_value);
+    onChangeCallback?.call(_valueNotifier.value);
   }
 
   @override
   bool validate() {
-    _error.value = super.validateValue(value);
+    _error.value = super.validateValue(_valueNotifier.value);
     return _error.value == null;
   }
 

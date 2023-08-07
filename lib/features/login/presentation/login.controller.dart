@@ -30,8 +30,8 @@ class LoginController implements ILoginController {
       loading.isLoading = true;
       if (validateFields) {
         await authenticateUserUsecase(
-          login: _loginField.value!,
-          password: _passwordField.value!,
+          login: _loginField.valueNotifier.value!,
+          password: _passwordField.valueNotifier.value!,
         );
       }
     } finally {

@@ -32,8 +32,8 @@ class SignUpController implements ISignUpController {
       loading.isLoading = true;
       if (validateFields) {
         await signUpUsecase(
-          email: emailField.value!,
-          password: passwordField.value!,
+          email: emailField.valueNotifier.value!,
+          password: passwordField.valueNotifier.value!,
         );
       }
     } on EmailAlreadyInUseException catch (err) {

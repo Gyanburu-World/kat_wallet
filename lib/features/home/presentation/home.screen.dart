@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project_quest/core/base/utils/snackbar.util.dart';
 
+import '../../../core/base/abstractions/custom_exception.interface.dart';
 import '../../../core/base/style/colors.dart';
+import '../../../core/domains/todo/domain/models/todo.model.dart';
 import '../../../core/navigation/routes.dart';
 import '../../shared/loading/loading.widget.dart';
 import '../../shared/view_controller.interface.dart';
@@ -23,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     try {
       widget.controller.init();
+    } on CustomException catch (err) {
+      showErrorSnackbar(context: context, err: err);
     } catch (err) {
       rethrow;
     }
@@ -52,7 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: ValueListenableBuilder(
           valueListenable: widget.controller.todos,
-          builder: (_, snap, ___) => ListTodoWidget(todos: snap),
+          builder: (_, snap, ___) => ListTodoWidget(
+            todos: snap,
+            onTap: onTapTodo,
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: onFloatingActionButtonPressed,
@@ -89,5 +97,16 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  void onTapTodo(TodoModel todo) async {
+    try {
+      await context.pushNamed(Routes.todo, extra: todo);
+      widget.controller.reloadTodos();
+    } on CustomException catch (err) {
+      showErrorSnackbar(context: context, err: err);
+    } catch (err) {
+      rethrow;
+    }
   }
 }
