@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/base/abstractions/field.interface.dart';
-import 'view_controller.interface.dart';
-import '../auth/domain/bindings/sign_up/sign_up_controller.interface.dart';
 
-class CheckboxWidget extends ViewController<ISignUpController> {
+class CheckboxWidget extends StatelessWidget {
   final IField<bool> field;
   final IconData icon;
   final String label;

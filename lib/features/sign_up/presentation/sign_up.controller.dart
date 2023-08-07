@@ -1,8 +1,8 @@
 import '../../../../core/base/abstractions/field.interface.dart';
 import '../../../../core/domains/user/domain/exceptions/email_already_in_use.exception.dart';
-import '../../../shared/loading/loading.interface.dart';
-import '../../domain/bindings/sign_up/sign_up_controller.interface.dart';
-import '../../domain/usecases/sign_up.usecase.dart';
+import '../../shared/loading/loading.interface.dart';
+import '../binding/sign_up_controller.interface.dart';
+import '../usecases/sign_up.usecase.dart';
 
 class SignUpController implements ISignUpController {
   final ILoadingController loading;

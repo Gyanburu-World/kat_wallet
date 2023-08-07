@@ -8,8 +8,8 @@ import '../../../../core/base/style/colors.dart';
 import '../../../../core/base/utils/snackbar.util.dart';
 import '../../../../core/domains/user/domain/exceptions/email_already_in_use.exception.dart';
 import '../../../../core/navigation/routes.dart';
-import '../../../shared/view_controller.interface.dart';
-import '../../domain/bindings/sign_up/sign_up_controller.interface.dart';
+import '../../shared/view_controller.interface.dart';
+import '../binding/sign_up_controller.interface.dart';
 
 class SignUpScreen extends ViewController<ISignUpController> {
   const SignUpScreen({super.key});

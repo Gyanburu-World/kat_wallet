@@ -5,8 +5,8 @@ import '../../../../../core/base/models/text_react_field.model.dart';
 import '../../../../../core/domains/user/dal/datasource/user.datasource.interface.dart';
 import '../../../../../core/domains/user/dal/user.repository.dart';
 import '../../../../../core/inject.dart';
-import '../../../presentation/sign_up/sign_up.controller.dart';
-import '../../usecases/sign_up.usecase.dart';
+import '../presentation/sign_up.controller.dart';
+import '../usecases/sign_up.usecase.dart';
 import 'sign_up_controller.interface.dart';
 
 class SignUpControllerBinding {
