@@ -7,6 +7,7 @@ import 'package:project_quest/features/shared/primary_button.widget.dart';
 import 'package:project_quest/features/shared/text_field.widget.dart';
 
 import '../../../core/base/style/colors.dart';
+import '../../../core/domains/todo/exceptions/create_todo_fail.exception.dart';
 import '../../shared/date_picker.widget.dart';
 import '../../shared/view_controller.interface.dart';
 import '../binding/todo_controller.interface.dart';
@@ -81,14 +82,18 @@ class _TodoScreenState extends State<TodoScreen> {
   }
 
   void createTodo(BuildContext context) async {
-    await widget.controller.createTodo();
-    if (mounted) {
-      context.pop();
-      showSuccessSnackbar(
-        context: context,
-        title: 'Sucesso',
-        message: 'Criado com sucesso!',
-      );
+    try {
+      await widget.controller.createTodo();
+      if (mounted) {
+        context.pop();
+        showSuccessSnackbar(
+          context: context,
+          title: 'Sucesso',
+          message: 'Criado com sucesso!',
+        );
+      }
+    } on FailToCreateTodoException catch (err) {
+      showErrorSnackbar(context: context, err: err);
     }
   }
 }

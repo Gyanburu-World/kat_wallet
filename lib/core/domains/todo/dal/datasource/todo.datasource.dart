@@ -1,9 +1,13 @@
 import 'package:project_quest/core/domains/todo/dal/dto/create_todo.body.dart';
 import 'package:project_quest/core/domains/todo/dal/dto/get_todo_by_id.response.dart';
+import 'package:project_quest/core/domains/todo/dal/dto/update_todo.response.dart';
+import 'package:project_quest/core/domains/todo/exceptions/create_todo_fail.exception.dart';
 
 import '../../../../base/abstractions/http_connect.interface.dart';
 import '../../../../base/exceptions/http_failure.exception.dart';
 import '../data/todo.data.dart';
+import '../dto/create_todo.response.dart';
+import '../dto/delete_todo.response.dart';
 import '../dto/get_todos.response.dart';
 import 'todo.datasource.interface.dart';
 
@@ -28,17 +32,25 @@ class TodoDatasource implements ITodoDatasource {
   @override
   Future<void> create(CreateTodoBody body) async {
     try {
-      await _connect.post('todos', body.toJson());
-    } on HttpFailureException<GetTodosResponse> catch (_) {
-      rethrow;
+      await _connect.post(
+        'todos',
+        body.toJson(),
+        decoder: CreateTodoResponse.fromJson,
+      );
+    } on HttpFailureException<CreateTodoResponse> catch (err) {
+      final error = err.object.errors!.first;
+      throw FailToCreateTodoException(failure: error);
     }
   }
 
   @override
   Future<void> delete(TodoData data) async {
     try {
-      await _connect.delete('todos/${data.id}');
-    } on HttpFailureException<GetTodosResponse> catch (_) {
+      await _connect.delete(
+        'todos/${data.id}',
+        decoder: DeleteTodoResponse.fromJson,
+      );
+    } on HttpFailureException catch (_) {
       rethrow;
     }
   }
@@ -52,7 +64,7 @@ class TodoDatasource implements ITodoDatasource {
       );
 
       return response.payload!.data!;
-    } on HttpFailureException<GetTodosResponse> catch (_) {
+    } on HttpFailureException catch (_) {
       rethrow;
     }
   }
@@ -63,11 +75,11 @@ class TodoDatasource implements ITodoDatasource {
       final response = await _connect.update(
         'todos/${data.id}',
         data.toJson(),
-        decoder: GetTodoByIdResponse.fromJson,
+        decoder: UpdateTodoResponse.fromJson,
       );
 
       return response.payload!.data!;
-    } on HttpFailureException<GetTodosResponse> catch (_) {
+    } on HttpFailureException catch (_) {
       rethrow;
     }
   }

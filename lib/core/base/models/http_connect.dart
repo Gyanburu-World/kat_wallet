@@ -40,6 +40,7 @@ class HttpConnect implements IHttpConnect {
     final obj = Response<T>(statusCode: response.statusCode, payload: decoded);
 
     final payload = obj.payload;
+    assert(payload != null, 'Payload is null, see the decoder function');
     if (!obj.success && payload != null) {
       developer.log(
         'GET | Request failed',
@@ -58,9 +59,12 @@ class HttpConnect implements IHttpConnect {
     Map<String, dynamic> body, {
     T Function(Map<String, dynamic>)? decoder,
   }) async {
+    final bodyString =
+        body.map((key, value) => MapEntry(key, value.toString()));
+
     var response = await _client.post(
       Uri.parse('$urlBase/$urlPath'),
-      body: body,
+      body: bodyString,
     );
 
     final json = jsonDecode(response.body) as Map<String, dynamic>;
@@ -80,6 +84,7 @@ class HttpConnect implements IHttpConnect {
     final obj = Response<T>(statusCode: response.statusCode, payload: decoded);
 
     final payload = obj.payload;
+    assert(payload != null, 'Payload is null, see the decoder function');
     if (!obj.success && payload != null) {
       throw HttpFailureException<T>(object: payload);
     }

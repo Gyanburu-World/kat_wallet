@@ -9,29 +9,29 @@ abstract class IHttpConnect {
   Future<Response<T>> post<T>(
     String urlPath,
     Map<String, dynamic> body, {
-    T Function(Map<String, dynamic>)? decoder,
+    required T Function(Map<String, dynamic>) decoder,
   });
 
   Future<Response<T>> put<T>(
     String urlPath,
     Map<String, dynamic> body, {
-    T Function(Map<String, dynamic>)? decoder,
+    required T Function(Map<String, dynamic>) decoder,
   });
 
   Future<Response<T>> update<T>(
     String urlPath,
     Map<String, dynamic> body, {
-    T Function(Map<String, dynamic>)? decoder,
+    required T Function(Map<String, dynamic>) decoder,
   });
 
   Future<Response<T>> delete<T>(
     String urlPath, {
-    T Function(Map<String, dynamic>)? decoder,
+    required T Function(Map<String, dynamic>) decoder,
   });
 
   Future<Response<T>> postMultipartFile<T>(
     String urlPath,
     dynamic form, {
-    T Function(Map<String, dynamic>)? decoder,
+    required T Function(Map<String, dynamic>) decoder,
   });
 }
