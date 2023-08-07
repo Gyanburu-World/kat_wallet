@@ -1,4 +1,4 @@
-import '../../../../core/domains/user/domain/user_repository.interface.dart';
+import '../../../core/domains/user/domain/user_repository.interface.dart';
 
 class AuthenticateUserUsecase {
   final IUserRepository loginRepository;

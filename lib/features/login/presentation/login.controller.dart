@@ -1,8 +1,8 @@
 import 'package:project_quest/features/shared/loading/loading.interface.dart';
 
 import '../../../../core/base/abstractions/field.interface.dart';
-import '../../domain/bindings/login/login_controller.interface.dart';
-import '../../domain/usecases/authenticate_user.usecase.dart';
+import '../binding/login_controller.interface.dart';
+import '../usecases/authenticate_user.usecase.dart';
 
 class LoginController implements ILoginController {
   final AuthenticateUserUsecase authenticateUserUsecase;

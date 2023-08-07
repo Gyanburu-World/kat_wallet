@@ -6,10 +6,10 @@ import '../../../../core/base/style/colors.dart';
 import '../../../../core/base/utils/snackbar.util.dart';
 import '../../../../core/domains/user/domain/exceptions/user_or_password_incorrect.exception.dart';
 import '../../../../core/navigation/routes.dart';
-import '../../../shared/loading/loading.widget.dart';
-import '../../../shared/text_field.widget.dart';
-import '../../../shared/view_controller.interface.dart';
-import '../../domain/bindings/login/login_controller.interface.dart';
+import '../../shared/loading/loading.widget.dart';
+import '../../shared/text_field.widget.dart';
+import '../../shared/view_controller.interface.dart';
+import '../binding/login_controller.interface.dart';
 
 class LoginScreen extends ViewController<ILoginController> {
   const LoginScreen({super.key});

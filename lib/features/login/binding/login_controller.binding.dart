@@ -5,8 +5,8 @@ import '../../../../../core/base/models/text_react_field.model.dart';
 import '../../../../../core/domains/user/dal/datasource/user.datasource.interface.dart';
 import '../../../../../core/domains/user/dal/user.repository.dart';
 import '../../../../../core/inject.dart';
-import '../../../presentation/login/login.controller.dart';
-import '../../usecases/authenticate_user.usecase.dart';
+import '../presentation/login.controller.dart';
+import '../usecases/authenticate_user.usecase.dart';
 import 'login_controller.interface.dart';
 
 class LoginControllerBinding {
