@@ -6,11 +6,13 @@ import '../../../core/domains/todo/domain/models/todo.model.dart';
 import '../../shared/loading/loading.interface.dart';
 import '../binding/todo_controller.interface.dart';
 import '../usecases/create_todo.usecase.dart';
+import '../usecases/delete_todo.usecase.dart';
 
 class TodoController implements ITodoController {
   final ILoadingController loading;
   final CreateTodoUsecase createTodoUsecase;
   final EditTodoUsecase editTodoUsecase;
+  final DeleteTodoUsecase deleteTodoUsecase;
 
   final IField<String> _titleField;
   final IField<String> _descriptionField;
@@ -49,6 +51,7 @@ class TodoController implements ITodoController {
     required this.createTodoUsecase,
     required this.todoForUpdate,
     required this.editTodoUsecase,
+    required this.deleteTodoUsecase,
     required IField<String> titleField,
     required IField<String> descriptionField,
     required IField<double> valueField,
@@ -132,6 +135,11 @@ class TodoController implements ITodoController {
     } finally {
       loading.isLoading = false;
     }
+  }
+
+  @override
+  Future<void> deleteTodo() async {
+    if (todoForUpdate != null) await deleteTodoUsecase(todoForUpdate!);
   }
 
   bool validateFields() {

@@ -1,3 +1,5 @@
+import 'package:project_quest/features/home/usecases/delete_todo.usecase.dart';
+
 import '../../../../core/base/abstractions/field.interface.dart';
 import '../../../../core/base/builders/field_validator.builder.dart';
 import '../../../../core/base/models/text_react_field.model.dart';
@@ -28,11 +30,13 @@ IHomeController makeHomeController() {
 
   final logoutUsecase = LogoutUsecase(userRepository: userRepository);
   final getTodosUsecase = GetTodosUsecase(todoRepository: todoRepository);
+  final deleteTodoUsecase = DeleteTodoUsecase(todoRepository: todoRepository);
 
   return HomeController(
     loading: Inject.find(),
     getTodosUsecase: getTodosUsecase,
     logoutUsecase: logoutUsecase,
+    deleteTodoUsecase: deleteTodoUsecase,
   );
 }
 

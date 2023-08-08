@@ -6,6 +6,7 @@ import 'package:project_quest/core/domains/todo/exceptions/fail_to_edit_todo.exc
 
 import '../../../../base/abstractions/http_connect.interface.dart';
 import '../../../../base/exceptions/http_failure.exception.dart';
+import '../../exceptions/fail_to_delete_todo.exception.dart';
 import '../data/todo.data.dart';
 import '../dto/create_todo.response.dart';
 import '../dto/delete_todo.response.dart';
@@ -51,8 +52,9 @@ class TodoDatasource implements ITodoDatasource {
         'todos/${data.id}',
         decoder: DeleteTodoResponse.fromJson,
       );
-    } on HttpFailureException catch (_) {
-      rethrow;
+    } on HttpFailureException<DeleteTodoResponse> catch (err) {
+      final error = err.object.errors!.first;
+      throw FailToDeleteTodoException(failure: error);
     }
   }
 
@@ -73,7 +75,7 @@ class TodoDatasource implements ITodoDatasource {
   @override
   Future<TodoData> update(TodoData data) async {
     try {
-      final response = await _connect.update(
+      final response = await _connect.put(
         'todos/${data.id}',
         data.toJson(),
         decoder: UpdateTodoResponse.fromJson,

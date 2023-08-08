@@ -6,7 +6,13 @@ import '../../../../core/domains/todo/domain/models/todo.model.dart';
 class ListTodoWidget extends StatelessWidget {
   final Map<DateTime, List<TodoModel>> todos;
   final void Function(TodoModel) onTap;
-  const ListTodoWidget({super.key, required this.todos, required this.onTap});
+  final void Function(TodoModel) onLongPress;
+  const ListTodoWidget({
+    super.key,
+    required this.todos,
+    required this.onTap,
+    required this.onLongPress,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +46,7 @@ class ListTodoWidget extends StatelessWidget {
                   tileColor: Colors.grey[900],
                   visualDensity: VisualDensity.comfortable,
                   onTap: () => onTap(todo),
+                  onLongPress: () => onLongPress(todo),
                   title: Text(
                     todo.title,
                     style: const TextStyle(color: Colors.white),

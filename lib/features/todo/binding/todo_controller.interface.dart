@@ -17,4 +17,5 @@ abstract class ITodoController extends IController {
 
   Future<bool> createTodo();
   Future<bool> editTodo();
+  Future<void> deleteTodo();
 }

@@ -18,12 +18,6 @@ abstract class IHttpConnect {
     required T Function(Map<String, dynamic>) decoder,
   });
 
-  Future<Response<T>> update<T>(
-    String urlPath,
-    Map<String, dynamic> body, {
-    required T Function(Map<String, dynamic>) decoder,
-  });
-
   Future<Response<T>> delete<T>(
     String urlPath, {
     required T Function(Map<String, dynamic>) decoder,

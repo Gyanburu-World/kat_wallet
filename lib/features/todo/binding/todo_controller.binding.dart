@@ -1,14 +1,12 @@
-import 'package:project_quest/core/domains/todo/dal/todo.repository.dart';
-import 'package:project_quest/features/todo/usecases/create_todo.usecase.dart';
-import 'package:project_quest/features/todo/usecases/edit_todo.usecas.dart';
-
 import '../../../../core/inject.dart';
 import '../../../core/base/abstractions/field.interface.dart';
 import '../../../core/base/builders/field_validator.builder.dart';
 import '../../../core/base/models/react_field.model.dart';
 import '../../../core/base/models/text_react_field.model.dart';
+import '../../../core/domains/todo/dal/todo.repository.dart';
 import '../../../core/domains/todo/domain/models/todo.model.dart';
 import '../presentation/todo.controller.dart';
+import '../usecases/usecases.dart';
 import 'todo_controller.interface.dart';
 
 class TodoControllerBinding {
@@ -25,12 +23,14 @@ ITodoController makeTodoController(TodoModel? todo) {
   final todoRepository = TodoRepository(todoDatasource: Inject.find());
   final createTodoUsecase = CreateTodoUsecase(todoRepository: todoRepository);
   final editTodoUsecase = EditTodoUsecase(todoRepository: todoRepository);
+  final deleteTodoUsecase = DeleteTodoUsecase(todoRepository: todoRepository);
 
   return TodoController(
     todoForUpdate: todo,
     loading: Inject.find(),
     createTodoUsecase: createTodoUsecase,
     editTodoUsecase: editTodoUsecase,
+    deleteTodoUsecase: deleteTodoUsecase,
     titleField: makeTitleField(),
     descriptionField: makeDescriptionField(),
     valueField: makeValueField(),

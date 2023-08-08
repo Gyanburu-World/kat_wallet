@@ -3,6 +3,7 @@ import 'package:project_quest/core/domains/todo/domain/models/todo.model.dart';
 
 import '../../shared/loading/loading.interface.dart';
 import '../bindings/home_controller.interface.dart';
+import '../usecases/delete_todo.usecase.dart';
 import '../usecases/get_todos.usecase.dart';
 import '../usecases/logout.usecase.dart';
 
@@ -10,6 +11,7 @@ class HomeController implements IHomeController {
   final ILoadingController loading;
   final GetTodosUsecase getTodosUsecase;
   final LogoutUsecase logoutUsecase;
+  final DeleteTodoUsecase deleteTodoUsecase;
 
   final _todos = ValueNotifier<Map<DateTime, List<TodoModel>>>({});
 
@@ -20,6 +22,7 @@ class HomeController implements IHomeController {
     required this.loading,
     required this.getTodosUsecase,
     required this.logoutUsecase,
+    required this.deleteTodoUsecase,
   });
 
   @override
@@ -54,6 +57,11 @@ class HomeController implements IHomeController {
     }
 
     return groupedTodos;
+  }
+
+  @override
+  Future<void> deleteTodo(TodoModel todo) async {
+    await deleteTodoUsecase(todo);
   }
 
   @override

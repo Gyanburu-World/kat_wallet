@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:project_quest/core/base/utils/snackbar.util.dart';
+import 'package:project_quest/features/home/presentation/widgets/dialogs/logout.dialog.dart';
 
 import '../../../core/base/abstractions/custom_exception.interface.dart';
 import '../../../core/base/style/colors.dart';
 import '../../../core/domains/todo/domain/models/todo.model.dart';
+import '../../../core/domains/todo/exceptions/fail_to_delete_todo.exception.dart';
 import '../../../core/navigation/routes.dart';
 import '../../shared/loading/loading.widget.dart';
 import '../../shared/view_controller.interface.dart';
 import '../bindings/home_controller.interface.dart';
+import 'widgets/dialogs/option_menu.dialog.dart';
 import 'widgets/list_todos.widget.dart';
 
 class HomeScreen extends ViewStateController<IHomeController> {
@@ -60,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (_, snap, ___) => ListTodoWidget(
             todos: snap,
             onTap: onTapTodo,
+            onLongPress: onLongPress,
           ),
         ),
         floatingActionButton: FloatingActionButton(
@@ -79,22 +83,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void logout() {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Você tem certeza?'),
-        content: const Text('Você deseja sair do app?'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('NÃO'),
-          ),
-          TextButton(
-            onPressed: () {
-              widget.controller.logout();
-              context.goNamed(Routes.login);
-            },
-            child: const Text('SIM'),
-          ),
-        ],
+      builder: (_) => LogoutDialog(
+        onPressedYes: () {
+          widget.controller.logout();
+          context.goNamed(Routes.login);
+        },
       ),
     );
   }
@@ -107,6 +100,31 @@ class _HomeScreenState extends State<HomeScreen> {
       showErrorSnackbar(context: context, err: err);
     } catch (err) {
       rethrow;
+    }
+  }
+
+  void onLongPress(TodoModel todo) async {
+    try {
+      final response = await showDialog<OptionsMenuDialogResult>(
+        context: context,
+        builder: (_) => OptionsMenuDialog(item: todo),
+      );
+
+      switch (response) {
+        case OptionsMenuDialogResult.delete:
+          await widget.controller.deleteTodo(todo);
+          widget.controller.reloadTodos();
+          break;
+        case OptionsMenuDialogResult.deleteAll:
+          // Excluir todas as recorrências
+          break;
+        case OptionsMenuDialogResult.edit:
+          onTapTodo(todo);
+          break;
+        default:
+      }
+    } on FailToDeleteTodoException catch (err) {
+      showErrorSnackbar(context: context, err: err);
     }
   }
 }

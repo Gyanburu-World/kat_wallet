@@ -5,6 +5,7 @@ import 'package:project_quest/features/shared/checkbox.widget.dart';
 import 'package:project_quest/features/shared/loading/loading.widget.dart';
 import 'package:project_quest/features/shared/primary_button.widget.dart';
 import 'package:project_quest/features/shared/text_field.widget.dart';
+import 'package:project_quest/features/todo/presentation/widgets/dialog/confirm_delete_todo.dialog.dart';
 
 import '../../../core/base/style/colors.dart';
 import '../../../core/domains/todo/exceptions/create_todo_fail.exception.dart';
@@ -42,6 +43,12 @@ class _TodoScreenState extends State<TodoScreen> {
             },
           ),
           backgroundColor: Colors.black,
+          actions: [
+            IconButton(
+              onPressed: deleteTodo,
+              icon: const Icon(Icons.delete),
+            )
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(16),
@@ -131,5 +138,22 @@ class _TodoScreenState extends State<TodoScreen> {
     } on FailToEditTodoException catch (err) {
       showErrorSnackbar(context: context, err: err);
     }
+  }
+
+  void deleteTodo() async {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return ConfirmDeleteTodoDialog(
+          onPressedYes: () async {
+            await widget.controller.deleteTodo();
+            if (mounted) {
+              context.pop();
+              context.pop();
+            }
+          },
+        );
+      },
+    );
   }
 }
