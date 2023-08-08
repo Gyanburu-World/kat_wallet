@@ -9,10 +9,10 @@ abstract class TodoMapper {
       description: data.description,
       doAt: data.doAt,
       doneAt: data.doneAt,
-      recurring: data.recurring,
+      isRecurring: data.recurring,
       title: data.title,
       value: data.value,
-      pay: data.pay,
+      isBilling: data.pay,
     );
   }
 
@@ -24,8 +24,8 @@ abstract class TodoMapper {
       value: model.value,
       description: model.description,
       doneAt: model.doneAt,
-      recurring: model.recurring,
-      pay: model.pay,
+      recurring: model.isRecurring,
+      pay: model.isBilling,
     );
   }
 }

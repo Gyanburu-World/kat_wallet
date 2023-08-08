@@ -72,7 +72,7 @@ class _ExampleItem extends StatelessWidget {
         style: const TextStyle(color: Colors.white),
       ),
       subtitle: Text(
-        todo.pay ? 'A pagar' : 'A cobrar',
+        todo.isBilling ? 'A pagar' : 'A cobrar',
         style: const TextStyle(color: Colors.white),
       ),
       trailing: Text(

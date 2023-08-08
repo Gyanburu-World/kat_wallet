@@ -3,10 +3,10 @@ class TodoModel {
   final String title;
   final String? description;
   final double? value;
-  final bool recurring;
+  final bool isRecurring;
   final DateTime doAt;
   final DateTime? doneAt;
-  final bool pay;
+  final bool isBilling;
 
   const TodoModel({
     required this.id,
@@ -15,7 +15,7 @@ class TodoModel {
     required this.description,
     required this.doAt,
     this.doneAt,
-    required this.recurring,
-    required this.pay,
+    required this.isRecurring,
+    required this.isBilling,
   });
 }

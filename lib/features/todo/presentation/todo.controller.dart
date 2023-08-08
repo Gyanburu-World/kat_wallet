@@ -74,8 +74,8 @@ class TodoController implements ITodoController {
       _titleField.controller?.text = todoForUpdate!.title;
       _descriptionField.controller?.text = todoForUpdate!.description ?? '';
       _valueField.controller?.text = todoForUpdate!.value?.toString() ?? '';
-      _isRecurringField.valueNotifier.value = todoForUpdate!.recurring;
-      _isBillingField.valueNotifier.value = todoForUpdate!.pay;
+      _isRecurringField.valueNotifier.value = todoForUpdate!.isRecurring;
+      _isBillingField.valueNotifier.value = todoForUpdate!.isBilling;
       _doAtField.valueNotifier.value = todoForUpdate!.doAt;
     }
   }

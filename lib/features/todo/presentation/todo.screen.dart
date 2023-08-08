@@ -75,7 +75,7 @@ class _TodoScreenState extends State<TodoScreen> {
                       ),
                       const SizedBox(height: 12),
                       CheckboxWidget(
-                        label: 'É cobrança?',
+                        label: 'É uma conta para pagar?',
                         field: widget.controller.isBilling,
                         icon: Icons.monetization_on_outlined,
                       ),

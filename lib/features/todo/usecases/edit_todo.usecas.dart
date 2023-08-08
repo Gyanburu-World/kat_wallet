@@ -22,8 +22,8 @@ class EditTodoUsecase {
         value: value,
         description: description,
         doAt: doAt,
-        recurring: isRecurring,
-        pay: isBilling,
+        isRecurring: isRecurring,
+        isBilling: isBilling,
       );
 
       await todoRepository.update(todo);
