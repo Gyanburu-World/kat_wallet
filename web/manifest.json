@@ -1,6 +1,6 @@
 {
-    "name": "project_quest",
-    "short_name": "project_quest",
+    "name": "kat_wallet",
+    "short_name": "kat_wallet",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
