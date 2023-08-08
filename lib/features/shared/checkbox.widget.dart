@@ -21,7 +21,7 @@ class CheckboxWidget extends StatelessWidget {
         return CheckboxListTile(
           value: snapshot,
           dense: true,
-          onChanged: (val) => field.valueNotifier.value = val!,
+          onChanged: (val) => onChanged(val, context: context),
           checkColor: Colors.white,
           tileColor: Colors.transparent,
           contentPadding: const EdgeInsets.only(right: 0, left: 10),
@@ -36,5 +36,10 @@ class CheckboxWidget extends StatelessWidget {
         );
       },
     );
+  }
+
+  void onChanged(bool? val, {required BuildContext context}) {
+    FocusScope.of(context).unfocus();
+    field.valueNotifier.value = val!;
   }
 }

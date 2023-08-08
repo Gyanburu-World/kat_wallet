@@ -76,8 +76,9 @@ class _PickerWidget extends StatelessWidget {
   }
 
   void onPressed(BuildContext context) async {
-    final theme = Theme.of(context);
+    FocusScope.of(context).unfocus();
 
+    final theme = Theme.of(context);
     final date = await showDatePicker(
       context: context,
       initialDate: field.valueNotifier.value ?? DateTime.now(),
