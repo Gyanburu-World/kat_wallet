@@ -10,7 +10,7 @@ TodoData _$TodoDataFromJson(Map<String, dynamic> json) => TodoData(
       id: json['id'] as int,
       title: json['title'] as String,
       value: (json['value'] as num?)?.toDouble(),
-      description: json['description'] as String,
+      description: json['description'] as String?,
       doAt: DateTime.parse(json['do_at'] as String),
       doneAt: json['done_at'] == null
           ? null

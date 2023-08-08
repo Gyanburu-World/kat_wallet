@@ -6,7 +6,7 @@ part 'todo.data.g.dart';
 class TodoData {
   final int id;
   final String title;
-  final String description;
+  final String? description;
   final double? value;
   final bool recurring;
   final bool pay;

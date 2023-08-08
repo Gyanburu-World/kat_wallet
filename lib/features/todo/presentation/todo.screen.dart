@@ -8,6 +8,7 @@ import 'package:project_quest/features/shared/text_field.widget.dart';
 
 import '../../../core/base/style/colors.dart';
 import '../../../core/domains/todo/exceptions/create_todo_fail.exception.dart';
+import '../../../core/domains/todo/exceptions/fail_to_edit_todo.exception.dart';
 import '../../shared/date_picker.widget.dart';
 import '../../shared/view_controller.interface.dart';
 import '../binding/todo_controller.interface.dart';
@@ -34,7 +35,12 @@ class _TodoScreenState extends State<TodoScreen> {
       child: Scaffold(
         backgroundColor: const Color(CColors.background),
         appBar: AppBar(
-          title: const Text('Criando'),
+          title: ValueListenableBuilder(
+            valueListenable: widget.controller.isToEdit,
+            builder: (_, bool value, __) {
+              return Text(value ? 'Editando' : 'Criando');
+            },
+          ),
           backgroundColor: Colors.black,
         ),
         body: Padding(
@@ -79,7 +85,15 @@ class _TodoScreenState extends State<TodoScreen> {
                   ),
                 ),
               ),
-              PrimaryButtonWidget(text: 'Criar', onPressed: createTodo)
+              ValueListenableBuilder(
+                valueListenable: widget.controller.isToEdit,
+                builder: (_, bool value, __) {
+                  return PrimaryButtonWidget(
+                    text: value ? 'Atualizar' : 'Criar',
+                    onPressed: value ? editTodo : createTodo,
+                  );
+                },
+              )
             ],
           ),
         ),
@@ -99,6 +113,22 @@ class _TodoScreenState extends State<TodoScreen> {
         );
       }
     } on FailToCreateTodoException catch (err) {
+      showErrorSnackbar(context: context, err: err);
+    }
+  }
+
+  void editTodo(BuildContext context) async {
+    try {
+      final success = await widget.controller.editTodo();
+      if (mounted && success) {
+        context.pop();
+        showSuccessSnackbar(
+          context: context,
+          title: 'Sucesso',
+          message: 'Editado com sucesso!',
+        );
+      }
+    } on FailToEditTodoException catch (err) {
       showErrorSnackbar(context: context, err: err);
     }
   }

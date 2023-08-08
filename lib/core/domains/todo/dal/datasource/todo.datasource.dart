@@ -2,6 +2,7 @@ import 'package:project_quest/core/domains/todo/dal/dto/create_todo.body.dart';
 import 'package:project_quest/core/domains/todo/dal/dto/get_todo_by_id.response.dart';
 import 'package:project_quest/core/domains/todo/dal/dto/update_todo.response.dart';
 import 'package:project_quest/core/domains/todo/exceptions/create_todo_fail.exception.dart';
+import 'package:project_quest/core/domains/todo/exceptions/fail_to_edit_todo.exception.dart';
 
 import '../../../../base/abstractions/http_connect.interface.dart';
 import '../../../../base/exceptions/http_failure.exception.dart';
@@ -79,8 +80,9 @@ class TodoDatasource implements ITodoDatasource {
       );
 
       return response.payload!.data!;
-    } on HttpFailureException catch (_) {
-      rethrow;
+    } on HttpFailureException<UpdateTodoResponse> catch (err) {
+      final error = err.object.errors!.first;
+      throw FailToEditTodoException(failure: error);
     }
   }
 }

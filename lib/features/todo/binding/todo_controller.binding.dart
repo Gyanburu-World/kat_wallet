@@ -1,5 +1,6 @@
 import 'package:project_quest/core/domains/todo/dal/todo.repository.dart';
 import 'package:project_quest/features/todo/usecases/create_todo.usecase.dart';
+import 'package:project_quest/features/todo/usecases/edit_todo.usecas.dart';
 
 import '../../../../core/inject.dart';
 import '../../../core/base/abstractions/field.interface.dart';
@@ -23,11 +24,13 @@ class TodoControllerBinding {
 ITodoController makeTodoController(TodoModel? todo) {
   final todoRepository = TodoRepository(todoDatasource: Inject.find());
   final createTodoUsecase = CreateTodoUsecase(todoRepository: todoRepository);
+  final editTodoUsecase = EditTodoUsecase(todoRepository: todoRepository);
 
   return TodoController(
-    updateTodo: todo,
+    todoForUpdate: todo,
     loading: Inject.find(),
     createTodoUsecase: createTodoUsecase,
+    editTodoUsecase: editTodoUsecase,
     titleField: makeTitleField(),
     descriptionField: makeDescriptionField(),
     valueField: makeValueField(),

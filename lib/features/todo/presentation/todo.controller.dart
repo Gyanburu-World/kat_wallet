@@ -1,13 +1,16 @@
-import 'package:project_quest/core/base/abstractions/field.interface.dart';
-import 'package:project_quest/features/todo/usecases/create_todo.usecase.dart';
+import 'package:flutter/foundation.dart';
+import 'package:project_quest/features/todo/usecases/edit_todo.usecas.dart';
 
+import '../../../core/base/abstractions/field.interface.dart';
 import '../../../core/domains/todo/domain/models/todo.model.dart';
 import '../../shared/loading/loading.interface.dart';
 import '../binding/todo_controller.interface.dart';
+import '../usecases/create_todo.usecase.dart';
 
 class TodoController implements ITodoController {
   final ILoadingController loading;
   final CreateTodoUsecase createTodoUsecase;
+  final EditTodoUsecase editTodoUsecase;
 
   final IField<String> _titleField;
   final IField<String> _descriptionField;
@@ -15,6 +18,8 @@ class TodoController implements ITodoController {
   final IField<bool> _isRecurringField;
   final IField<bool> _isBillingField;
   final IField<DateTime> _doAtField;
+
+  late final ValueNotifier<bool> _isToEdit;
 
   @override
   IField<String> get description => _descriptionField;
@@ -34,12 +39,16 @@ class TodoController implements ITodoController {
   @override
   IField<double> get value => _valueField;
 
-  TodoModel? updateTodo;
+  TodoModel? todoForUpdate;
+
+  @override
+  ValueNotifier<bool> get isToEdit => _isToEdit;
 
   TodoController({
     required this.loading,
     required this.createTodoUsecase,
-    required this.updateTodo,
+    required this.todoForUpdate,
+    required this.editTodoUsecase,
     required IField<String> titleField,
     required IField<String> descriptionField,
     required IField<double> valueField,
@@ -51,17 +60,20 @@ class TodoController implements ITodoController {
         _valueField = valueField,
         _isRecurringField = isRecurringField,
         _isBillingField = isBillingField,
-        _doAtField = doAtField;
+        _doAtField = doAtField {
+    _isToEdit = ValueNotifier(false);
+  }
 
   @override
   void init() {
-    if (updateTodo != null) {
-      _titleField.controller?.text = updateTodo!.title;
-      _descriptionField.controller?.text = updateTodo!.description;
-      _valueField.controller?.text = updateTodo!.value?.toString() ?? '';
-      _isRecurringField.valueNotifier.value = updateTodo!.recurring;
-      _isBillingField.valueNotifier.value = updateTodo!.pay;
-      _doAtField.valueNotifier.value = updateTodo!.doAt;
+    if (todoForUpdate != null) {
+      _isToEdit.value = true;
+      _titleField.controller?.text = todoForUpdate!.title;
+      _descriptionField.controller?.text = todoForUpdate!.description ?? '';
+      _valueField.controller?.text = todoForUpdate!.value?.toString() ?? '';
+      _isRecurringField.valueNotifier.value = todoForUpdate!.recurring;
+      _isBillingField.valueNotifier.value = todoForUpdate!.pay;
+      _doAtField.valueNotifier.value = todoForUpdate!.doAt;
     }
   }
 
@@ -81,6 +93,30 @@ class TodoController implements ITodoController {
       loading.isLoading = true;
       if (validateFields()) {
         await createTodoUsecase(
+          title: _titleField.valueNotifier.value!,
+          description: _descriptionField.valueNotifier.value,
+          value: _valueField.valueNotifier.value,
+          isRecurring: _isRecurringField.valueNotifier.value!,
+          isBilling: _isBillingField.valueNotifier.value!,
+          doAt: _doAtField.valueNotifier.value!,
+        );
+
+        return true;
+      }
+
+      return false;
+    } finally {
+      loading.isLoading = false;
+    }
+  }
+
+  @override
+  Future<bool> editTodo() async {
+    try {
+      loading.isLoading = true;
+      if (validateFields()) {
+        await editTodoUsecase(
+          id: todoForUpdate!.id,
           title: _titleField.valueNotifier.value!,
           description: _descriptionField.valueNotifier.value,
           value: _valueField.valueNotifier.value,
