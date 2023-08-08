@@ -20,7 +20,7 @@ class PtBrStringsTranslations implements StringsTranslations {
 
   final login = LoginScreenStrings(
     title: title,
-    userNameLabel: 'Nome de Usuario',
+    userNameLabel: 'E-mail',
     passwordLabel: 'Senha',
     loginButtonLabel: 'Entrar',
   );
