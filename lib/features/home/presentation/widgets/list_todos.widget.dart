@@ -68,9 +68,26 @@ class ListTodoWidget extends StatelessWidget {
       );
     }
 
-    return ListView(
-      padding: const EdgeInsets.only(bottom: 80),
-      children: dateGroupWidgets,
+    return Visibility(
+      visible: todos.keys.isNotEmpty,
+      replacement: const Center(
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Text(
+            'Crie seu primeiro item ao clicar no botão flutuante na parte inferior da tela',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              height: 1.5,
+            ),
+          ),
+        ),
+      ),
+      child: ListView(
+        padding: const EdgeInsets.only(bottom: 80),
+        children: dateGroupWidgets,
+      ),
     );
   }
 }
