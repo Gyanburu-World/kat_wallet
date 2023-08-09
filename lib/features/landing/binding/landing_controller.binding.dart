@@ -1,4 +1,4 @@
-import '../../../../../core/inject.dart';
+import '../../../core/base/inject.dart';
 import '../presentation/landing.controller.dart';
 import 'landing_controller.interface.dart';
 
